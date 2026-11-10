@@ -380,12 +380,12 @@ def patch_contact(tpl):
     card = resub(card, r'<a class="btn btn-gold" href="https://maps\.google\.com/\?q=47\.836047,-69\.537465">', '<a class="btn btn-gold" href="{{coMap}}" target="_blank" rel="noopener">')
     card = rep(card, '>47,836047 · −69,537465</span>', '>{{coCoords}}</span>')
     sec = sec[:ca] + sc_if('coCarte', card) + sec[cb:]
-    sec = rep(sec, '>34, 37e Avenue<br>Edmundston (Québec)</h2>', '>{{coAdr}}<br>{{coVille}}</h2>')
+    sec = rep(sec, '>106, rue de l’Église<br>Edmundston (Québec)</h2>', '>{{coAdr}}<br>{{coVille}}</h2>')
     sec = rep(sec, '<p class="ph" style="margin:12px 0 0">Code postal : affiché une fois confirmé par l’association</p>',
               sc_if('hasCP', '<p class="muted" style="margin:12px 0 0">Code postal : {{coCP}}</p>', 'false'))
     for txt, on, var in (('Stationnement dans les rues avoisinantes', 'liStat', 'txStat'), ('Salle de prière accessible en fauteuil roulant', 'liFaut', 'txFaut'),
                          ('Ablutions et toilettes sur place', 'liAblu', 'txAblu')):
-        sec = resub(sec, r'(<li style="display:flex;gap:14px;align-items:center"><span style="color:#0E4D3C">' + SVG + r'</span>)' + re.escape(txt) + '</li>',
+        sec = resub(sec, r'(<li style="display:flex;gap:14px;align-items:center"><span style="color:#0B0F1A">' + SVG + r'</span>)' + re.escape(txt) + '</li>',
                     lambda x, on=on, var=var: sc_if(on, x.group(1) + '{{' + var + '}}</li>'))
     sec = resub(sec, r'(<ul style="list-style:none;margin:28px 0 0.*?</ul>)', lambda x: sc_if('showLignes', x.group(1)))
     m = m[:sa] + sec + m[sb:]
@@ -393,10 +393,10 @@ def patch_contact(tpl):
     sa, sb = section_span(m, '<section class="sand" aria-labelledby="eti-t"')
     sec = m[sa:sb]
     sec = rep(sec, '>Tous les visiteurs sont les bienvenus</h2>', '>{{etiTitre}}</h2>')
-    sec = resub(sec, r'<p class="lead" style="margin-top:16px;color:#1E2B26">Une tenue.*?</p>',
+    sec = resub(sec, r'<p class="lead" style="margin-top:16px;color:#141B2C">Une tenue.*?</p>',
                 '<div style="display:flex;flex-direction:column;gap:16px;margin-top:20px"><sc-for list="{{etis}}" as="e" hint-placeholder-count="3"><div>'
                 + sc_if('e.hasTitre', '<p class="h3" style="font-size:19px">{{e.titre}}</p>')
-                + '<p class="lead" style="margin:6px 0 0;color:#1E2B26">{{e.texte}}</p></div></sc-for></div>')
+                + '<p class="lead" style="margin:6px 0 0;color:#141B2C">{{e.texte}}</p></div></sc-for></div>')
     m = m[:sa] + sc_if('showEti', sec) + m[sb:]
     # ---------- Écrire ----------
     sa, sb = section_span(m, '<section class="sec" aria-labelledby="ec-t">')
