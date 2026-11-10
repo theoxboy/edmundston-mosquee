@@ -420,7 +420,7 @@ def patch_dons(tpl):
     sb = m.index('</section>', sa) + len('</section>')
     sec = m[sa:sb]
     sec = rep(sec, '<div class="split" style="align-items:stretch">', '<div class="{{payCls}}" style="align-items:stretch">')
-    ia = sec.index('<div style="background:#fff;border:2px solid #C49A4A')
+    ia = sec.index('<div style="background:#fff;border:2px solid #D9B46C')
     da = sec.index('<div class="card" style="display:flex;flex-direction:column">')
     de = sec.index('</dl>', da) + len('</dl>')
     de = sec.index('</div>', de) + len('</div>')
@@ -455,8 +455,8 @@ def patch_dons(tpl):
     cards = sec[ga:ge]
     arrow = re.search(r'Écrire à l’association (<svg.*?</svg>)</a>', cards, re.S).group(1)
     card = ('\n   <sc-for list="{{autres}}" as="z" hint-placeholder-count="3"><div class="card">'
-            '<p class="h3">{{z.titre}}' + sc_if('z.hasAr', ' <span class="ar" lang="ar" dir="rtl" style="font-weight:400;font-size:18px;color:#4F5E57">{{z.arabe}}</span>', 'true') + '</p>'
-            + sc_if('z.hasFitr', '<p style="margin:8px 0 0"><strong class="tnum" style="font-size:22px;color:#0E4D3C">{{z.fitrAmt}}</strong> par personne{{z.fitrYear}}</p>', 'false')
+            '<p class="h3">{{z.titre}}' + sc_if('z.hasAr', ' <span class="ar" lang="ar" dir="rtl" style="font-weight:400;font-size:18px;color:#515B66">{{z.arabe}}</span>', 'true') + '</p>'
+            + sc_if('z.hasFitr', '<p style="margin:8px 0 0"><strong class="tnum" style="font-size:22px;color:#0B0F1A">{{z.fitrAmt}}</strong> par personne{{z.fitrYear}}</p>', 'false')
             + sc_if('z.hasTexte', '<p class="muted" style="margin:8px 0 0">{{z.texte}}</p>', 'true')
             + sc_if('z.hasLien', '<a class="link" href="{{z.href}}" style="margin-top:12px">{{z.lienTexte}} ' + arrow + '</a>', 'false')
             + '</div></sc-for>\n  ')

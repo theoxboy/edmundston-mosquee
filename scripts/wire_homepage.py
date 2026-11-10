@@ -398,11 +398,11 @@ PUBLIC_HOME_SYNC_SCRIPT = r'''<script id="ascil-home-sync">
         if (s.general.address || s.general.city) {
           var footAdr = document.querySelector('footer .g4 > div:first-child > p:nth-of-type(1)');
           if (footAdr) {
-            footAdr.innerHTML = (s.general.address || '34, 37e Avenue') + '<br>' + (s.general.city || 'Edmundston, NB E3V 3S2');
+            footAdr.innerHTML = (s.general.address || '106, rue de l’Église') + '<br>' + (s.general.city || 'Edmundston, NB E3V 1V5');
           }
           var cardAdr = document.querySelector('section[aria-label="Accès rapides"] a[href="Contact.dc.html"] p.h3');
           if (cardAdr) {
-            cardAdr.textContent = 'Nous trouver — ' + (s.general.address || '34, 37e Avenue');
+            cardAdr.textContent = 'Nous trouver — ' + (s.general.address || '106, rue de l’Église');
           }
         }
       }
@@ -552,7 +552,7 @@ PUBLIC_HOME_SYNC_SCRIPT = r'''<script id="ascil-home-sync">
           if (annContainer && activeItems.length) {
             annContainer.innerHTML = activeItems.map(function(item) {
               return '<a class="card" href="' + escAttr(toUrl(item.lien || 'Page : Événements')) + '">'
-                + '<span class="pill tnum" style="background:#0E4D3C;color:#fff">' + escHtml(item.date) + '</span>'
+                + '<span class="pill tnum" style="background:#0B0F1A;color:#fff">' + escHtml(item.date) + '</span>'
                 + '<p class="h3" style="margin-top:16px;font-size:20px">' + escHtml(item.titre) + '</p>'
                 + '<p class="muted" style="margin:8px 0 0">' + escHtml(item.resume) + '</p>'
                 + '</a>';

@@ -57,7 +57,7 @@ PUBLIC_INSCRIPTION_SYNC_SCRIPT = r'''<script id="ascil-inscription-sync">
       'DTEND:' + dtEnd,
       'SUMMARY:' + (title || 'Événement ASCIL'),
       'DESCRIPTION:' + (desc || ''),
-      'LOCATION:' + (location || '34, 37e Avenue, Edmundston'),
+      'LOCATION:' + (location || '106, rue de l’Église, Edmundston'),
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR'
@@ -82,12 +82,12 @@ PUBLIC_INSCRIPTION_SYNC_SCRIPT = r'''<script id="ascil-inscription-sync">
 
     var dateEl = document.querySelector('section[aria-labelledby="ev-t"] p.tnum:first-of-type');
     if (dateEl && ev.date_str) {
-      dateEl.innerHTML = '<svg class="icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C49A4A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>' + esc(ev.date_str);
+      dateEl.innerHTML = '<svg class="icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9B46C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>' + esc(ev.date_str);
     }
 
     var locEl = document.querySelector('section[aria-labelledby="ev-t"] p:nth-of-type(2)');
     if (locEl && ev.location) {
-      locEl.innerHTML = '<svg class="icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C49A4A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>' + esc(ev.location);
+      locEl.innerHTML = '<svg class="icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9B46C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>' + esc(ev.location);
     }
 
     var descEl = document.querySelector('section[aria-labelledby="ev-t"] p:nth-of-type(3)');

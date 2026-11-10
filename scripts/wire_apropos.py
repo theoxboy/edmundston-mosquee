@@ -66,7 +66,7 @@ URL_MAP = {
 # Contenu d’origine de la page publique : affiché tant que les réglages ne sont pas arrivés
 # (et si le serveur ne répond pas). Identique à DEFAULT_SETTINGS.apropos (functions/_lib/settings.js).
 APROPOS_DEFAULT = {
-    'presentation': {'on': True, 'texte': 'L’ASCIL rassemble les musulmanes et les musulmans de Edmundston et des environs. Elle tient un lieu de prière au 34, 37e Avenue, organise la prière du vendredi, les prières de l’Aïd et des activités de solidarité, et accueille les nouveaux arrivants dans la région.'},
+    'presentation': {'on': True, 'texte': 'L’ASCIL rassemble les musulmanes et les musulmans de Edmundston et des environs. Elle tient un lieu de prière au 106, rue de l’Église, organise la prière du vendredi, les prières de l’Aïd et des activités de solidarité, et accueille les nouveaux arrivants dans la région.'},
     'valeurs': {'on': True, 'items': [
         {'titre': 'Prier ensemble', 'texte': 'Les cinq prières quotidiennes et la prière du vendredi (Jumu’a).', 'on': True},
         {'titre': 'Se soutenir', 'texte': 'Accueil, solidarité et événements caritatifs, comme l’activité avec Soleil des Orphelins d’avril 2026.', 'on': True},
@@ -74,7 +74,7 @@ APROPOS_DEFAULT = {
     ]},
     'histoire': {'on': True, 'items': [
         {'date': '', 'titre': 'Fondation de l’association', 'on': True},
-        {'date': '', 'titre': 'Installation au 34, 37e Avenue', 'on': True},
+        {'date': '', 'titre': 'Installation au 106, rue de l’Église', 'on': True},
         {'date': '2026-10-01', 'titre': 'Lancement du projet de nouveau lieu', 'on': True},
     ]},
     'projet': {'on': True, 'btnSoutenir': 'Page : Faire un don', 'btnSuivre': 'Page : Campagne en direct'},
@@ -828,18 +828,18 @@ def patch_apropos(tpl):
     m = tpl[a:b]
 
     # 1. Présentation
-    m = rep(m, '<p class="lead" style="font-size:21px;color:#1E2B26">' + APROPOS_DEFAULT['presentation']['texte'] + '</p>',
-            '<p class="lead" style="font-size:21px;color:#1E2B26;white-space:pre-line">{{apTexte}}</p>')
+    m = rep(m, '<p class="lead" style="font-size:21px;color:#141B2C">' + APROPOS_DEFAULT['presentation']['texte'] + '</p>',
+            '<p class="lead" style="font-size:21px;color:#141B2C;white-space:pre-line">{{apTexte}}</p>')
     m = wrap_section(m, '<section class="sec" aria-label="Présentation">', 'apPres')
 
     # 2. Valeurs : trois cartes -> liste, l'icône d'origine tourne (1, 2, 3, 1…)
     g = m.index('<div class="g3" style="margin-top:28px">', m.index('id="mv-t"'))
     ge = m.index('</div>\n </div>\n</section>', g)
-    cards = re.findall(r'<div class="card"><span style="color:#0E4D3C">(<svg.*?</svg>)</span>', m[g:ge], flags=re.S)
+    cards = re.findall(r'<div class="card"><span style="color:#0B0F1A">(<svg.*?</svg>)</span>', m[g:ge], flags=re.S)
     assert len(cards) == 3, 'icônes des valeurs introuvables'
     icons = ''.join(f'<sc-if value="{{{{v.i{k}}}}}" hint-placeholder-val="{{{{ {str(k == 0).lower()} }}}}">{svg}</sc-if>' for k, svg in enumerate(cards))
     m = m[:g] + ('<div class="g3" style="margin-top:28px"><sc-for list="{{apValeurs}}" as="v" hint-placeholder-count="3">'
-                 f'<div class="card"><span style="color:#0E4D3C">{icons}</span>'
+                 f'<div class="card"><span style="color:#0B0F1A">{icons}</span>'
                  '<p class="h3" style="margin-top:14px">{{v.titre}}</p><p class="muted" style="margin:8px 0 0">{{v.texte}}</p></div>'
                  '</sc-for>') + m[ge:]
     m = rep(m, '>Trois engagements</h2>', '>{{apValTitre}}</h2>')
@@ -848,8 +848,8 @@ def patch_apropos(tpl):
     # 3. Histoire : étapes datées seulement
     m = resub(m, r'(<ol class="g3" style="list-style:none;margin:32px 0 0;[^"]*">).*?(</ol>)',
               lambda x: x.group(1) + '<sc-for list="{{apHistoire}}" as="h" hint-placeholder-count="1">'
-              '<li style="padding-top:20px;position:relative"><span style="position:absolute;top:-9px;left:0;width:16px;height:16px;border-radius:50%;background:#C49A4A"></span>'
-              '<p class="pill tnum" style="background:#0E4D3C;color:#fff;margin:0">{{h.date}}</p>'
+              '<li style="padding-top:20px;position:relative"><span style="position:absolute;top:-9px;left:0;width:16px;height:16px;border-radius:50%;background:#D9B46C"></span>'
+              '<p class="pill tnum" style="background:#0B0F1A;color:#fff;margin:0">{{h.date}}</p>'
               '<p style="margin:12px 0 0;font-weight:700">{{h.titre}}</p></li></sc-for>' + x.group(2))
     m = wrap_section(m, '<section class="sec" aria-labelledby="hist-t">', 'apHist')
 
@@ -866,7 +866,7 @@ def patch_apropos(tpl):
     m = m[:eqa] + ('<div class="g3" style="margin-top:28px"><sc-for list="{{apMembres}}" as="p" hint-placeholder-count="3">'
                    '<div class="card" style="display:flex;gap:16px;align-items:center">'
                    '<sc-if value="{{p.hasPhoto}}" hint-placeholder-val="{{ false }}"><img src="{{p.photo}}" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none"></sc-if>'
-                   '<sc-if value="{{p.noPhoto}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="width:72px;height:72px;border-radius:50%;background:#FBF7EC;border:2px solid #E4D9C0;flex:none;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:24px;color:#0E4D3C">{{p.ini}}</span></sc-if>'
+                   '<sc-if value="{{p.noPhoto}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="width:72px;height:72px;border-radius:50%;background:#FBF7EC;border:2px solid #E9E3D3;flex:none;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:24px;color:#0B0F1A">{{p.ini}}</span></sc-if>'
                    '<div style="min-width:0"><p style="margin:0;font-weight:700;overflow-wrap:anywhere">{{p.nom}}</p><p class="muted" style="margin:2px 0 0">{{p.role}}</p></div></div>'
                    '</sc-for>') + m[eqb:]
     m = wrap_section(m, '<section class="sand" aria-labelledby="eq-t"', 'apEquipe')
@@ -875,7 +875,7 @@ def patch_apropos(tpl):
     cha = m.index('<div class="g3" style="margin-top:28px">', m.index('id="ch-t"'))
     chb = m.index('</div>\n  <p class="muted"', cha)
     m = m[:cha] + ('<div class="g3" style="margin-top:28px"><sc-for list="{{apChiffres}}" as="c" hint-placeholder-count="3">'
-                   '<div class="card"><p class="serif tnum" style="margin:0;font-size:44px;font-weight:700;color:#0E4D3C;overflow-wrap:anywhere">{{c.v}}<sup style="font-size:22px">{{c.sup}}</sup></p>'
+                   '<div class="card"><p class="serif tnum" style="margin:0;font-size:44px;font-weight:700;color:#0B0F1A;overflow-wrap:anywhere">{{c.v}}<sup style="font-size:22px">{{c.sup}}</sup></p>'
                    '<p style="margin:6px 0 0">{{c.libelle}}</p></div></sc-for>') + m[chb:]
     m = resub(m, r'>Sources : page Facebook de l’ASCIL ; données de la MRC de Edmundston\. ',
               '>' + sc_if('apHasSources', 'Sources : {{apSources}}. ') )
@@ -929,11 +929,11 @@ CAMPAGNE_XVALS = r"""
       gDonors: C ? fr(C.donateurs || 0) : '', showDonors: !!(C && C.donateurs > 0),
       gLeft: fr(Math.max(0, obj - g)) + ' $', gObjectif: fr(obj) + ' $', gObjRaw: obj,
       cHasEtapes: etapes.length > 0,
-      cEtapes: etapes.map((e) => ({ seuil: e.seuil, libelle: e.libelle, bg: recPct >= e.seuil ? '#0E4D3C' : '#fff',
+      cEtapes: etapes.map((e) => ({ seuil: e.seuil, libelle: e.libelle, bg: recPct >= e.seuil ? '#0B0F1A' : '#fff',
         etat: recPct >= e.seuil ? 'étape atteinte' : 'étape à venir' })),
       cHasWeeks: wk.length > 0 && wmax > 0,
       cWeeks: wk.map((w, i) => ({ label: w.label, val: kfmt(w.montant), h: Math.max(2, Math.round(w.montant / (wmax || 1) * 100)) + '%',
-        bg: i === wk.length - 1 ? '#C49A4A' : '#0E4D3C' })),
+        bg: i === wk.length - 1 ? '#D9B46C' : '#0B0F1A' })),
       showFeed: der.length > 0,
       feed: der.map((d, i) => ({ who: d.nom, amt: d.montant == null ? '' : fr(d.montant) + ' $', when: ago(d.date), bg: i === 0 ? '#FFF8E8' : '#F7F2E4', cls: '' })),
     };
@@ -998,7 +998,7 @@ def patch_campagne(tpl):
     chk = re.search(CHECK_RE, m[ua:ub]).group(0)
     etapes = ('<div class="card"><p class="eyebrow">Étapes du projet</p><ul style="list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">'
               '<sc-for list="{{cEtapes}}" as="e" hint-placeholder-count="4"><li style="display:flex;gap:12px;align-items:center">'
-              '<span style="flex:none;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:{{e.bg}};color:#fff;border:2px solid #0E4D3C">'
+              '<span style="flex:none;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:{{e.bg}};color:#fff;border:2px solid #0B0F1A">'
               + chk + '</span><span><strong class="tnum">{{e.seuil}} %</strong> — {{e.libelle}}'
               '<span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap"> ({{e.etat}})</span></span></li></sc-for></ul></div>')
     m = m[:ua] + sc_if('cHasEtapes', etapes) + m[ub:]

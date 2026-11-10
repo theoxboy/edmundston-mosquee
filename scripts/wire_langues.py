@@ -83,7 +83,7 @@ SCRIPT = r"""<script id="ascil-i18n">
       var want = l === lang ? 'true' : 'false';
       if (p.getAttribute('aria-pressed') !== want) p.setAttribute('aria-pressed', want);
       var on = l === lang;
-      var bg = on ? '#0E4D3C' : '#F3EAD8', fg = on ? '#fff' : '#1E2B26';
+      var bg = on ? '#0B0F1A' : '#F4EBD6', fg = on ? '#fff' : '#141B2C';
       if (p.style.background !== bg && p.dataset.i18nBg !== bg) { p.style.background = bg; p.style.color = fg; p.dataset.i18nBg = bg; }
     });
     document.querySelectorAll('.lang-desk > button').forEach(function (b) {
@@ -338,7 +338,7 @@ def visible_texts(tpl):
 # Police arabe Cairo (fichier variable, toutes les graisses ; licence SIL OFL dans /fonts/cairo/OFL.txt).
 # Feuille FIXE dans chaque page (pas ajoutée par script), placée après les polices de la page :
 # 1. toute lettre arabe s'affiche en Cairo, dans les trois langues, même dans un élément qui impose
-#    'Noto Sans', 'Noto Serif' ou 'Noto Sans Arabic' dans son propre style (ces noms reçoivent
+#    'Jost', 'Cormorant Garamond' ou 'Noto Sans Arabic' dans son propre style (ces noms reçoivent
 #    Cairo pour la plage de caractères arabes uniquement ; le latin garde sa police) ;
 # 2. en version arabe (html lang="ar"), toute la page passe en Cairo, latin et chiffres compris,
 #    malgré les polices écrites sur les éléments eux-mêmes (d'où !important) ; les icônes SVG et le code
@@ -347,7 +347,7 @@ AR_RANGE = 'U+0600-06FF,U+0750-077F,U+0870-089F,U+08A0-08FF,U+FB50-FDFF,U+FE70-F
 FONT_STYLE = ('<style id="ascil-cairo">'
     + ''.join("@font-face{font-family:'%s';src:url('/fonts/cairo/Cairo-Variable.ttf') format('truetype');"
               "font-weight:100 1000;font-style:normal;font-display:swap;unicode-range:%s}" % (f, AR_RANGE)
-              for f in ('Noto Sans', 'Noto Serif', 'Noto Sans Arabic'))
+              for f in ('Jost', 'Cormorant Garamond', 'Noto Sans Arabic'))
     + "@font-face{font-family:'Cairo';src:url('/fonts/cairo/Cairo-Variable.ttf') format('truetype');"
       "font-weight:200 1000;font-style:normal;font-display:swap}"
     + 'html[lang="ar"] body,html[lang="ar"] body *:not(svg):not(svg *):not(code):not(pre):not(kbd)'

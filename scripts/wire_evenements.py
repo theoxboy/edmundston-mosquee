@@ -584,7 +584,7 @@ ARROW = ('<svg class="icon" aria-hidden="true" width="16" height="16" sc-camel-v
 def fiche(x):
     """Fiche dépliable d'un événement (x = nom de la variable de boucle ou de l'objet)."""
     return sc_if(f'{x}.open',
-        '<div class="pop" style="margin-top:16px;padding-top:16px;border-top:1px solid #E4D9C0;display:flex;flex-direction:column;gap:10px">'
+        '<div class="pop" style="margin-top:16px;padding-top:16px;border-top:1px solid #E9E3D3;display:flex;flex-direction:column;gap:10px">'
         + sc_if(f'{x}.hasDesc', f'<p style="margin:0;white-space:pre-line">{{{{{x}.description}}}}</p>', 'true')
         + sc_if(f'{x}.hasPart', f'<p style="margin:0"><strong>Partenaire :</strong> {{{{{x}.partenaire}}}}</p>', 'false')
         + sc_if(f'{x}.hasPublic', f'<p style="margin:0"><strong>Public :</strong> {{{{{x}.public}}}}</p>', 'false')
@@ -598,16 +598,16 @@ def fiche(x):
 
 def ev_card(x):
     return (f'<div class="card" id="{{{{{x}.anchor}}}}" style="display:flex;gap:20px;align-items:flex-start;scroll-margin-top:96px">'
-            '<span class="tnum" style="flex:none;width:76px;border-radius:14px;background:#F3EAD8;text-align:center;padding:10px 0;color:#0E4D3C">'
+            '<span class="tnum" style="flex:none;width:76px;border-radius:14px;background:#F4EBD6;text-align:center;padding:10px 0;color:#0B0F1A">'
             f'<span style="display:block;font-size:28px;font-weight:700;line-height:1">{{{{{x}.day}}}}</span>'
             f'<span style="display:block;font-size:13px;font-weight:700;text-transform:uppercase">{{{{{x}.mon}}}}</span>'
             f'<span style="display:block;font-size:12px">{{{{{x}.year}}}}</span></span>'
             '<div style="flex:1;min-width:0">'
             f'<span class="h3" style="display:block;font-size:20px;overflow-wrap:anywhere">{{{{{x}.titre}}}}</span>'
-            + sc_if(f'{x}.hasLieu', f'<span style="display:flex;gap:6px;align-items:center;margin-top:6px;font-weight:600;color:#0E4D3C;font-size:15px">{PIN.format(n=16)}{{{{{x}.lieuTxt}}}}</span>', 'true')
-            + sc_if(f'{x}.hasHeure', f'<span class="tnum" style="display:flex;gap:6px;align-items:center;margin-top:4px;font-size:15px;color:#4F5E57">{CLOCK}{{{{{x}.heure}}}}</span>', 'false')
+            + sc_if(f'{x}.hasLieu', f'<span style="display:flex;gap:6px;align-items:center;margin-top:6px;font-weight:600;color:#0B0F1A;font-size:15px">{PIN.format(n=16)}{{{{{x}.lieuTxt}}}}</span>', 'true')
+            + sc_if(f'{x}.hasHeure', f'<span class="tnum" style="display:flex;gap:6px;align-items:center;margin-top:4px;font-size:15px;color:#515B66">{CLOCK}{{{{{x}.heure}}}}</span>', 'false')
             + sc_if(f'{x}.hasResume', f'<span class="muted" style="display:block;margin-top:6px">{{{{{x}.resume}}}}</span>', 'true')
-            + sc_if(f'{x}.hasPill', f'<span class="pill" style="margin-top:10px;background:#F3EAD8;color:#7A5A1E">{{{{{x}.pill}}}}</span>', 'false')
+            + sc_if(f'{x}.hasPill', f'<span class="pill" style="margin-top:10px;background:#F4EBD6;color:#7A5A1E">{{{{{x}.pill}}}}</span>', 'false')
             + '<div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;align-items:center">'
             + sc_if(f'{x}.hasLien', f'<a class="link" href="{{{{{x}.lienHref}}}}">{{{{{x}.lienTexte}}}} {ARROW}</a>', 'false')
             + sc_if(f'{x}.hasFiche', f'<button type="button" class="link" sc-camel-on-click="{{{{{x}.toggle}}}}" aria-expanded="{{{{{x}.exp}}}}" '
@@ -624,7 +624,7 @@ EV_JS = r"""
     if (!today) { try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) { today = ''; } }
     const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
     const MC = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
-    const LIEUX = { mosquee: 'Mosquée — 34, 37e Avenue', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
+    const LIEUX = { mosquee: 'Mosquée — 106, rue de l’Église', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
     const PAGES = { dons: 'Dons', campagne: 'N3-Campagne', horaires: 'Horaires', services: 'Services', cours: 'N2-Cours', inscription: 'N3-Inscription',
       calendrier: 'N3-Calendrier', contact: 'Contact', ressources: 'Ressources' };
     const page = (k) => (PAGES[k] ? pre + PAGES[k] + '.dc.html' : '');
@@ -725,13 +725,13 @@ def patch_evenements(tpl):
     sa, sb = section_span(m, '<section class="sec" aria-labelledby="pe-t">')
     sec = m[sa:sb]
     sec = rep(sec, '<p class="eyebrow">Prochain événement</p>', '<p class="eyebrow">{{uneEyebrow}}</p>')
-    sec = rep(sec, 'line-height:1;color:#C49A4A">25</p>', 'line-height:1;color:#C49A4A">{{une.day}}</p>')
+    sec = rep(sec, 'line-height:1;color:#D9B46C">25</p>', 'line-height:1;color:#D9B46C">{{une.day}}</p>')
     sec = rep(sec, 'font-weight:700">avril 2026</p>', 'font-weight:700">{{une.monthYear}}</p>')
     sec = resub(sec, r'(<p class="tnum" style="[^"]*">)13 h 45 à 15 h 45</p>', lambda x: sc_if('une.hasHeure', x.group(1) + '{{une.heure}}</p>', 'false'))
     sec = resub(sec, r'<span class="pill"([^>]*)>Inscription requise</span>', lambda x: sc_if('une.hasPill', '<span class="pill"' + x.group(1) + '>{{une.pill}}</span>', 'false'))
     sec = rep(sec, ' style="margin-top:14px">Journée de parrainage d’orphelins</h2>', ' style="margin-top:14px;overflow-wrap:anywhere">{{une.titre}}</h2>')
     sec = resub(sec, r'(<p style="margin:12px 0 0">)Avec l’organisme Soleil des Orphelins\.</p>', lambda x: sc_if('une.hasResume', x.group(1) + '{{une.resume}}</p>'))
-    sec = resub(sec, r'(<p style="margin:12px 0 0;display:flex[^"]*">)(<svg.*?</svg>)Mosquée — 34, 37e Avenue</p>',
+    sec = resub(sec, r'(<p style="margin:12px 0 0;display:flex[^"]*">)(<svg.*?</svg>)Mosquée — 106, rue de l’Église</p>',
                 lambda x: sc_if('une.hasLieu', x.group(1) + x.group(2) + '{{une.lieuTxt}}</p>'))
     sec = resub(sec, r'<a class="btn btn-green" href="(?:[MT]-)?EvenementDetail\.dc\.html">S’inscrire</a>',
                 sc_if('uneHasBtn', sc_if('uneBtnIsLink', '<a class="btn btn-green" href="{{uneHref}}">{{uneBtnLabel}}</a>', 'false')
@@ -765,8 +765,8 @@ def patch_evenements(tpl):
     sec = m[sa:sb]
     ga = sec.index('<div class="g4" style="margin-top:28px">') + len('<div class="g4" style="margin-top:28px">')
     ge = sec.rindex('</div>\n </div>\n</section>')
-    icon = re.search(r'<span style="color:#0E4D3C">(<svg.*?</svg>)</span>', sec[ga:ge], re.S).group(1)
-    sec = (sec[:ga] + '\n   <sc-for list="{{fixes}}" as="f" hint-placeholder-count="4"><div class="card"><span style="color:#0E4D3C">' + icon + '</span>'
+    icon = re.search(r'<span style="color:#0B0F1A">(<svg.*?</svg>)</span>', sec[ga:ge], re.S).group(1)
+    sec = (sec[:ga] + '\n   <sc-for list="{{fixes}}" as="f" hint-placeholder-count="4"><div class="card"><span style="color:#0B0F1A">' + icon + '</span>'
            '<p class="h3" style="margin-top:12px;font-size:19px">{{f.titre}}</p>'
            + sc_if('f.hasTexte', '<p class="muted" style="margin:6px 0 0;font-size:15px">{{f.texte}}</p>') + '</div></sc-for>\n  ' + sec[ge:])
     m = m[:sa] + sc_if('showFixes', sec) + m[sb:]
@@ -780,7 +780,7 @@ def patch_evenements(tpl):
     # ---------- Rester informé : l'emplacement réservé disparaît ----------
     m = resub(m, r'\s*<div class="card" style="border-style:dashed[^"]*">\s*<p class="h3"[^>]*>Alertes par courriel</p>.*?</div>', '')
     m = rep(m, '<section class="sec" aria-labelledby="ri-t">\n <div class="wrap g2">', '<section class="sec" aria-labelledby="ri-t">\n <div class="wrap">')
-    m = rep(m, '<div class="card" style="background:#0E4D3C;color:#fff;border-color:#0E4D3C">', '<div class="card" style="background:#0E4D3C;color:#fff;border-color:#0E4D3C;max-width:720px">')
+    m = rep(m, '<div class="card" style="background:#0B0F1A;color:#fff;border-color:#0B0F1A">', '<div class="card" style="background:#0B0F1A;color:#fff;border-color:#0B0F1A;max-width:720px">')
     assert 'EvenementDetail' not in m and 'Emplacement réservé' not in m and '25</p>' not in m
     return tpl[:a] + m + tpl[b:]
 
@@ -798,7 +798,7 @@ CAL_JS = r"""
     let today = PT.date || '';
     if (!today) { try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) { today = '2026-01-01'; } }
     const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
-    const T = {"cours": ["Cours", "#0E4D3C", "#fff", "#0E4D3C"], "priere": ["Prière et spiritualité", "#C49A4A", "#1E2B26", "#C49A4A"], "comm": ["Communauté", "#1E2B26", "#fff", "#1E2B26"], "collecte": ["Collectes", "#fff", "#0E4D3C", "#0E4D3C"]};
+    const T = {"cours": ["Cours", "#0B0F1A", "#fff", "#0B0F1A"], "priere": ["Prière et spiritualité", "#D9B46C", "#141B2C", "#D9B46C"], "comm": ["Communauté", "#141B2C", "#fff", "#141B2C"], "collecte": ["Collectes", "#fff", "#0B0F1A", "#0B0F1A"]};
     const CATS = Object.keys(T).filter((k) => !CAL.categories || CAL.categories[k] !== false);
     const off = st.cm || 0;
     let y = parseInt(today.slice(0, 4), 10), mo = parseInt(today.slice(5, 7), 10) - 1 + off;
@@ -808,7 +808,7 @@ CAL_JS = r"""
     const lead = (new Date(Date.UTC(y, mo, 1)).getUTCDay() + 6) % 7;
     const hm = (t) => (t ? t.replace(':', ' h ').replace(/ h 00$/, ' h') : '');
     const span = (a, b) => (a ? hm(a) + (b ? ' – ' + hm(b) : '') : 'Toute la journée');
-    const LIEUX = { mosquee: 'Mosquée — 34, 37e Avenue', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
+    const LIEUX = { mosquee: 'Mosquée — 106, rue de l’Église', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
     const E = [];
     if (CAL.evenements !== false) {
       (EV.items || []).filter((x) => x.on && x.titre && x.date && x.date.slice(0, 7) === ym).forEach((x) => {
@@ -820,7 +820,7 @@ CAL_JS = r"""
     }
     if (CAL.cours !== false && CO && Array.isArray(CO.items)) {
       const WD = { Dimanche: 0, Lundi: 1, Mardi: 2, Mercredi: 3, Jeudi: 4, Vendredi: 5, Samedi: 6 };
-      const lieu = (CO.infos && CO.infos.lieu) || '34, 37e Avenue';
+      const lieu = (CO.infos && CO.infos.lieu) || '106, rue de l’Église';
       CO.items.filter((c) => c.on && c.titre && WD[c.jour] !== undefined).forEach((c) => {
         for (let n = 1; n <= dim; n++) {
           if (new Date(Date.UTC(y, mo, n)).getUTCDay() !== WD[c.jour]) continue;
@@ -840,7 +840,7 @@ CAL_JS = r"""
       const n = k - lead + 1, ok = n >= 1 && n <= dim, evs = ok ? vis.filter((e) => e.d === n) : [];
       const has = (t) => evs.some((e) => e.type === t), sel = ok && st.cday === n, isT = n === todayN;
       cells.push({ n: ok ? n : '', aria: ok ? n + ' ' + MOIS[mo] + ', ' + evs.length + ' événement(s)' + (isT ? ', aujourd’hui' : '') : 'Hors du mois', pressed: String(sel), op: ok ? 1 : 0.25,
-        bg: sel ? '#0E4D3C' : (isT ? '#F6E7C4' : '#fff'), fg: sel ? '#fff' : '#1E2B26', bd: sel ? '#0E4D3C' : '#E4D9C0',
+        bg: sel ? '#0B0F1A' : (isT ? '#F6E7C4' : '#fff'), fg: sel ? '#fff' : '#141B2C', bd: sel ? '#0B0F1A' : '#E9E3D3',
         d1: has('cours'), d2: has('priere'), d3: has('comm'), d4: has('collecte'), pick: () => ok && this.setState({ cday: sel ? 0 : n, cev: -1 }) });
     }
     const listSrc = (st.cday && view === 'mois') ? vis.filter((e) => e.d === st.cday) : vis;
@@ -873,11 +873,11 @@ CAL_JS = r"""
       vMonthP: String(view === 'mois'), vListP: String(view === 'liste'),
       vMonth: () => this.setState({ cview: 'mois', cviewPicked: true }), vList: () => this.setState({ cview: 'liste', cviewPicked: true, cday: 0 }),
       isMonth: view === 'mois', cells,
-      cTypes: CATS.map((k) => { const on = cf[k] !== false; return { label: T[k][0], pressed: String(on), dot: T[k][1], dotb: T[k][3], bg: on ? '#fff' : '#F7F2E4', bd: on ? T[k][3] : '#E4D9C0', op: on ? 1 : 0.6,
+      cTypes: CATS.map((k) => { const on = cf[k] !== false; return { label: T[k][0], pressed: String(on), dot: T[k][1], dotb: T[k][3], bg: on ? '#fff' : '#F7F2E4', bd: on ? T[k][3] : '#E9E3D3', op: on ? 1 : 0.6,
         toggle: () => this.setState({ cf: Object.assign({}, cf, { [k]: !on }) }) }; }),
       listTitle: (st.cday && view === 'mois') ? st.cday + ' ' + MOIS[mo] : 'Tous les événements de ' + MOIS[mo],
       listEmpty: listSrc.length === 0,
-      evList: listSrc.map((e) => Object.assign({}, e, deco(e), { mo: moC, pressed: String(st.cev === e.i), bd: st.cev === e.i ? '#C49A4A' : '#E4D9C0', pick: () => this.setState({ cev: e.i, agd: false }) })),
+      evList: listSrc.map((e) => Object.assign({}, e, deco(e), { mo: moC, pressed: String(st.cev === e.i), bd: st.cev === e.i ? '#D9B46C' : '#E9E3D3', pick: () => this.setState({ cev: e.i, agd: false }) })),
       hasFiche: !!fe0, noFiche: !fe0,
       fe: fe0 ? Object.assign({}, fe0, deco(fe0), { date: fe0.d + ' ' + MOIS[mo] + ' ' + y, hasDesc: !!fe0.desc, hasLieu: !!fe0.l }) : {},
       showAgenda: CAL.agenda !== false, addAgenda: () => { if (fe0) ics(fe0); }, agendaLabel: st.agd ? 'Fichier agenda téléchargé' : 'Ajouter à mon agenda',

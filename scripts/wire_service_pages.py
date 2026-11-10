@@ -589,8 +589,8 @@ COURS_JS = r"""
       res = (exact.length ? exact : base).map((c) => {
         const can = open && (c.places > 0 || wait);
         return { ...c, when: when(c), info: info(c), hasInfo: !!info(c), tag: exact.length && st.lvl ? 'Recommandé pour vous' : 'Cours proposé',
-          placesTxt: c.places ? c.places + ' places restantes' : 'Complet', pBg: c.places ? '#EAF3EF' : '#FDF3F2', pFg: c.places ? '#0E4D3C' : '#B3261E',
-          cta: c.places ? 'S’inscrire à ce cours' : 'Rejoindre la liste d’attente', border: c.places ? '#C49A4A' : '#E4D9C0',
+          placesTxt: c.places ? c.places + ' places restantes' : 'Complet', pBg: c.places ? '#EAF3EF' : '#FDF3F2', pFg: c.places ? '#0B0F1A' : '#B3261E',
+          cta: c.places ? 'S’inscrire à ce cours' : 'Rejoindre la liste d’attente', border: c.places ? '#D9B46C' : '#E9E3D3',
           canReg: can, noReg: !can, noRegTxt: !open ? 'Les inscriptions sont fermées pour le moment.' : 'Ce cours est complet.',
           pick: () => this.setState({ course: c.id, regDone: false, sendErr: '' }) };
       });
@@ -621,7 +621,7 @@ COURS_JS = r"""
       allCourses: C.map((c) => ({ subjL: SUBJ[c.subj] || '', n: c.n, when: when(c), info: info(c), hasInfo: !!info(c),
         pub: c.ages.map((a) => AGE[a]).filter(Boolean).join(', ') + (c.lvl.length ? ' · ' + c.lvl.map((l) => LVL[l]).filter(Boolean).join(', ') : ''),
         placesTxt: c.places ? c.places + ' places' : (wait && open ? 'Complet — liste d’attente' : 'Complet'),
-        pBg: c.places ? '#EAF3EF' : '#FDF3F2', pFg: c.places ? '#0E4D3C' : '#B3261E' })),
+        pBg: c.places ? '#EAF3EF' : '#FDF3F2', pFg: c.places ? '#0B0F1A' : '#B3261E' })),
       infosOn: I.on !== false, tarifTitre: !prices.length ? 'Sur demande' : lo === hi ? lo + ' $ par mois' : lo + ' à ' + hi + ' $ par mois',
       tarifTxt: I.tarifs || '', essaiOn: !!V.essai, essaiTxt: I.essai || '', lieuTitre: I.lieu || '', lieuTxt: I.lieuTexte || '',
     };"""
@@ -631,18 +631,18 @@ def patch_cours(tpl, default):
     tpl = strip_marks(tpl)
     tpl = set_xvals(tpl, COURS_JS, default)
     # Résultats du chercheur
-    tpl = rep(tpl, '<p class="tnum" style="margin:8px 0 0;font-size:19px;font-weight:700;color:#0E4D3C">{{c.jour}} · {{c.h}}</p>',
-              '<p class="tnum" style="margin:8px 0 0;font-size:19px;font-weight:700;color:#0E4D3C">{{c.when}}</p>')
+    tpl = rep(tpl, '<p class="tnum" style="margin:8px 0 0;font-size:19px;font-weight:700;color:#0B0F1A">{{c.jour}} · {{c.h}}</p>',
+              '<p class="tnum" style="margin:8px 0 0;font-size:19px;font-weight:700;color:#0B0F1A">{{c.when}}</p>')
     tpl = rep(tpl, '<p style="margin:6px 0 0">{{c.prix}} · {{c.prof}}</p>',
               sc_if('c.hasInfo', '<p style="margin:6px 0 0">{{c.info}}</p>'))
     old = '<button type="button" class="btn btn-gold" sc-camel-on-click="{{c.pick}}" style="margin-top:18px">{{c.cta}}</button>'
     tpl = rep(tpl, old, sc_if('c.canReg', old) + sc_if('c.noReg', '<p class="muted" style="margin:14px 0 0;font-weight:600">{{c.noRegTxt}}</p>', 'false'))
     # Liste d'attente
     a = tpl.index('<p class="muted" style="margin:8px 0 0">Laissez votre courriel')
-    tpl = wrap_between(tpl, a, '<p class="pop" style="margin:12px 0 0;font-weight:700;color:#0E4D3C">C’est noté, merci.</p></sc-if>', 'showWait')
+    tpl = wrap_between(tpl, a, '<p class="pop" style="margin:12px 0 0;font-weight:700;color:#0B0F1A">C’est noté, merci.</p></sc-if>', 'showWait')
     tpl = btn_send(tpl, 'joinWait', 'Rejoindre la liste d’attente', 'waitBtn')
-    tpl = rep(tpl, '<sc-if value="{{waitDone}}" hint-placeholder-val="{{ false }}"><p class="pop" style="margin:12px 0 0;font-weight:700;color:#0E4D3C">C’est noté, merci.</p></sc-if>',
-              '<sc-if value="{{waitDone}}" hint-placeholder-val="{{ false }}"><p class="pop" role="status" style="margin:12px 0 0;font-weight:700;color:#0E4D3C">C’est noté, merci. Nous vous écrirons dès qu’un groupe ouvre.</p></sc-if>')
+    tpl = rep(tpl, '<sc-if value="{{waitDone}}" hint-placeholder-val="{{ false }}"><p class="pop" style="margin:12px 0 0;font-weight:700;color:#0B0F1A">C’est noté, merci.</p></sc-if>',
+              '<sc-if value="{{waitDone}}" hint-placeholder-val="{{ false }}"><p class="pop" role="status" style="margin:12px 0 0;font-weight:700;color:#0B0F1A">C’est noté, merci. Nous vous écrirons dès qu’un groupe ouvre.</p></sc-if>')
     # Inscription
     tpl = btn_send(tpl, 'regSend', 'Envoyer la demande', 'regBtn')
     tpl = rep(tpl, 'L’enseignant vous répond sous 48 h. Le premier cours est un cours d’essai gratuit.</p>', '{{regDoneTxt}}</p>')
@@ -651,9 +651,9 @@ def patch_cours(tpl, default):
     a = tpl.index('<div class="g3" style="margin-top:24px"><div class="card">')
     b = tpl.index('</div>\n </div>\n</section>', a)
     card = ('<sc-for list="{{allCourses}}" as="k" hint-placeholder-count="6"><div class="card"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">'
-            '<span class="pill" style="background:#F3EAD8;color:#7A5A1E">{{k.subjL}}</span><span class="pill" style="background:{{k.pBg}};color:{{k.pFg}}">{{k.placesTxt}}</span></div>'
+            '<span class="pill" style="background:#F4EBD6;color:#7A5A1E">{{k.subjL}}</span><span class="pill" style="background:{{k.pBg}};color:{{k.pFg}}">{{k.placesTxt}}</span></div>'
             '<p class="h3" style="margin-top:14px">{{k.n}}</p><p style="margin:8px 0 0">{{k.pub}}</p>'
-            '<p class="tnum" style="margin:6px 0 0;font-weight:700;color:#0E4D3C">{{k.when}}</p>'
+            '<p class="tnum" style="margin:6px 0 0;font-weight:700;color:#0B0F1A">{{k.when}}</p>'
             + sc_if('k.hasInfo', '<p class="muted" style="margin:6px 0 0">{{k.info}}</p>') + '</div></sc-for>')
     tpl = tpl[:a] + '<div class="g3" style="margin-top:24px">' + card + tpl[b:]
     a = tpl.index('<section class="sand" aria-labelledby="all-t"')
@@ -664,7 +664,7 @@ def patch_cours(tpl, default):
     sec = tpl[a:b]
     sec = resub(sec, r'(id="tar-t" style="margin-top:10px">)25 à 40 \$ par mois(</p><p class="muted" style="margin:8px 0 0">).*?(</p>)', r'\1{{tarifTitre}}\2{{tarifTxt}}\3')
     sec = resub(sec, r'(<div class="card"><p class="eyebrow">Premier cours</p>.*?<p class="muted" style="margin:8px 0 0">).*?(</p></div>)', r'\1{{essaiTxt}}\2')
-    sec = resub(sec, r'(<p class="eyebrow">Lieu</p><p class="h3" style="margin-top:10px">)34, 37e Avenue(</p><p class="muted" style="margin:8px 0 0">).*?(</p>)', r'\1{{lieuTitre}}\2{{lieuTxt}}\3')
+    sec = resub(sec, r'(<p class="eyebrow">Lieu</p><p class="h3" style="margin-top:10px">)106, rue de l’Église(</p><p class="muted" style="margin:8px 0 0">).*?(</p>)', r'\1{{lieuTitre}}\2{{lieuTxt}}\3')
     ea = sec.index('<div class="card"><p class="eyebrow">Premier cours</p>')
     sec = wrap_between(sec, ea, '</p></div>', 'essaiOn')
     tpl = tpl[:a] + sc_if('infosOn', sec) + tpl[b:]
@@ -681,13 +681,13 @@ MARIAGES_JS = r"""
     return {
       hasSteps: n > 0, nSteps: n, stepsTitle: n + (n > 1 ? ' étapes' : ' étape') + (V.duree ? ' · ' + V.duree : ''),
       mSteps: S.map((s, i) => ({ t: s.titre, d: s.quand || '', num: i + 1, cur: i === cur ? 'step' : 'false', pick: () => this.setState({ mstep: i }),
-        bg: i === cur ? '#0E4D3C' : (i < cur ? '#EAF3EF' : '#fff'), fg: i === cur ? '#fff' : '#1E2B26', bd: i === cur ? '#0E4D3C' : '#E4D9C0',
-        nbg: i <= cur ? '#C49A4A' : '#F3EAD8', nfg: '#1E2B26' })),
+        bg: i === cur ? '#0B0F1A' : (i < cur ? '#EAF3EF' : '#fff'), fg: i === cur ? '#fff' : '#141B2C', bd: i === cur ? '#0B0F1A' : '#E9E3D3',
+        nbg: i <= cur ? '#D9B46C' : '#F4EBD6', nfg: '#141B2C' })),
       stepNum: cur + 1, stepPct: n ? Math.round((cur + 1) / n * 100) : 0,
       curTitle: n ? S[cur].titre : '', curWhen: n ? S[cur].quand || '' : '', curText: n ? S[cur].texte || '' : '',
       prevStep: () => this.setState({ mstep: Math.max(0, cur - 1) }), nextStep: () => this.setState({ mstep: Math.min(n - 1, cur + 1) }),
       docSecOn: docsOn || formOn, docsOn, formOn, nDocs: D.length,
-      docs: D.map((d, i) => ({ t: d.titre, pressed: String(!!st.mdocs[i]), bg: st.mdocs[i] ? '#0E4D3C' : '#fff', bd: st.mdocs[i] ? '#0E4D3C' : '#E4D9C0', deco: st.mdocs[i] ? 'line-through' : 'none',
+      docs: D.map((d, i) => ({ t: d.titre, pressed: String(!!st.mdocs[i]), bg: st.mdocs[i] ? '#0B0F1A' : '#fff', bd: st.mdocs[i] ? '#0B0F1A' : '#E9E3D3', deco: st.mdocs[i] ? 'line-through' : 'none',
         toggle: () => this.setState({ mdocs: Object.assign({}, st.mdocs, { [i]: !st.mdocs[i] }) }) })),
       docCount: done, docPct: D.length ? Math.round(done / D.length * 100) : 0,
       rdv: st.rdv, rdvNot: !st.rdv,
@@ -742,7 +742,7 @@ FUNERAILLES_JS = r"""
       fu911: V.rappel911 !== false,
       hasFSteps: S.length > 0, fuStepsTitle: (W[S.length] || S.length) + (S.length > 1 ? ' étapes, une à la fois' : ' étape'),
       fSteps: S.map((s, i) => ({ t: s.titre, d: s.texte || '', num: i + 1, pressed: String(!!st.fdone[i]), lab: st.fdone[i] ? 'Fait' : 'Marquer comme fait',
-        bbg: st.fdone[i] ? '#0E4D3C' : '#fff', bfg: st.fdone[i] ? '#fff' : '#0E4D3C', bd: st.fdone[i] ? '#0E4D3C' : '#E4D9C0', bgc: st.fdone[i] ? '#F3F8F5' : '#fff',
+        bbg: st.fdone[i] ? '#0B0F1A' : '#fff', bfg: st.fdone[i] ? '#fff' : '#0B0F1A', bd: st.fdone[i] ? '#0B0F1A' : '#E9E3D3', bgc: st.fdone[i] ? '#F3F8F5' : '#fff',
         toggle: () => this.setState({ fdone: Object.assign({}, st.fdone, { [i]: !st.fdone[i] }) }) })),
       fuDocsOn: (V.docs || {}).on !== false && D.length > 0, fuDocs: D.map((d) => ({ t: d.titre })),
       fuChargeOn: (V.charge || {}).on !== false && !!(V.charge || {}).texte, fuCharge: (V.charge || {}).texte || '',
@@ -763,7 +763,7 @@ def patch_funerailles(tpl, default):
                       + sc_if('fuIsTel', PHONE_SVG, 'false') + sc_if('fuIsMail', m.group(1)) + '{{fuCta}}</a>')
     tpl = rep(tpl, '</svg>Copier le numéro</sc-if>', '</svg>{{fuCopyTxt}}</sc-if>')
     tpl = rep(tpl, '</svg>Numéro copié</sc-if>', '</svg>{{fuCopiedTxt}}</sc-if>')
-    a = tpl.index('<p style="margin:18px 0 0;padding-top:14px;border-top:1px solid #E4D9C0;font-size:15px"><strong>Urgence médicale ?</strong>')
+    a = tpl.index('<p style="margin:18px 0 0;padding-top:14px;border-top:1px solid #E9E3D3;font-size:15px"><strong>Urgence médicale ?</strong>')
     tpl = wrap_between(tpl, a, '</p>', 'fu911')
     tpl = rep(tpl, '>Cinq étapes, une à la fois</h2>', '>{{fuStepsTitle}}</h2>')
     a = tpl.index('<section class="sec" aria-labelledby="qf-t"')
@@ -794,7 +794,7 @@ AIDE_JS = r"""
       aFormOff: !formOn, contactHref: pre + 'Contact.dc.html',
       hh: st.hh, hhMinus: () => this.setState({ hh: Math.max(1, st.hh - 1) }), hhPlus: () => this.setState({ hh: Math.min(12, st.hh + 1) }),
       hasNeeds: N.length > 0,
-      needOpts: N.map((n) => ({ label: n, pressed: String(!!st.needs[n]), bg: st.needs[n] ? '#0E4D3C' : '#fff', fg: st.needs[n] ? '#fff' : '#0E4D3C',
+      needOpts: N.map((n) => ({ label: n, pressed: String(!!st.needs[n]), bg: st.needs[n] ? '#0B0F1A' : '#fff', fg: st.needs[n] ? '#fff' : '#0B0F1A',
         pick: () => this.setState({ needs: Object.assign({}, st.needs, { [n]: !st.needs[n] }) }) })),
       hasPu: sur || liv, puSurOn: sur, puLivOn: liv,
       puSurP: String(pu === 'sur'), puLivP: String(pu === 'liv'), puSur: () => this.setState({ pu: 'sur' }), puLiv: () => this.setState({ pu: 'liv' }),
@@ -833,10 +833,10 @@ def patch_aide(tpl, default):
     tpl = resub(tpl, r'(<div class="card"><p class="eyebrow">Ce qui manque ce mois-ci</p><ul [^>]*>).*?(</ul></div>)',
                 r'\1<sc-for list="{{manque}}" as="x" hint-placeholder-count="5"><li><div style="display:flex;justify-content:space-between;gap:10px;font-weight:600">'
                 r'<span>{{x.t}}</span><span class="muted" style="font-weight:400">{{x.lv}}</span></div>'
-                r'<div class="prog" style="background:#F3EAD8;margin-top:6px;height:8px"><i style="width:{{x.w}}%"></i></div></li></sc-for>\2')
+                r'<div class="prog" style="background:#F4EBD6;margin-top:6px;height:8px"><i style="width:{{x.w}}%"></i></div></li></sc-for>\2')
     a = tpl.index('<div class="card"><p class="eyebrow">Ce qui manque ce mois-ci</p>')
     tpl = wrap_between(tpl, a, '</ul></div>', 'manqueOn')
-    tpl = resub(tpl, r'(<p class="eyebrow">Déposer des denrées</p><p class="h3" style="margin-top:10px">)34, 37e Avenue(</p><p class="tnum" style="margin:8px 0 0">)Samedi et dimanche, 10 h – 14 h(</p>)'
+    tpl = resub(tpl, r'(<p class="eyebrow">Déposer des denrées</p><p class="h3" style="margin-top:10px">)106, rue de l’Église(</p><p class="tnum" style="margin:8px 0 0">)Samedi et dimanche, 10 h – 14 h(</p>)'
                 r'(<p class="muted" style="margin:8px 0 0">)Produits non périssables, non ouverts, non périmés\.(</p>)',
                 r'\1{{depotAdr}}\2{{depotQuand}}\3<sc-if value="{{hasDepotNote}}" hint-placeholder-val="{{ true }}">\4{{depotNote}}\5</sc-if>')
     a = tpl.index('<div class="card"><p class="eyebrow">Déposer des denrées</p>')
@@ -882,7 +882,7 @@ FEMMES_JS = r"""
     return {
       openTxt: slot ? 'Ouvert' : 'Fermé', openDot: slot ? '#7BE0A6' : '#E8A39C',
       openSub: closedToday ? 'Fermeture exceptionnelle aujourd’hui' : slot ? 'Jusqu’à ' + fmt(slot[1]) + ' aujourd’hui' : (nextS ? 'Ouvre à ' + fmt(nextS[0]) + ' aujourd’hui' : (nextTxt || 'Horaires à venir')),
-      fDays: keys.map((k) => ({ short: HF[k][0].slice(0, 3) + '.', pressed: String(k === sel), bg: k === sel ? '#C49A4A' : 'rgba(255,255,255,.1)', fg: k === sel ? '#1E2B26' : '#fff', pick: () => this.setState({ fday: k }) })),
+      fDays: keys.map((k) => ({ short: HF[k][0].slice(0, 3) + '.', pressed: String(k === sel), bg: k === sel ? '#D9B46C' : 'rgba(255,255,255,.1)', fg: k === sel ? '#141B2C' : '#fff', pick: () => this.setState({ fday: k }) })),
       dayName: HF[sel][0], dayHours: closedToday && sel === wd ? 'Fermé aujourd’hui' : HF[sel][1],
       planOn: !!V.plan, planSrc: V.plan || '',
       pratOn: P.on !== false && PR.some((x) => String(x[1] || '').trim()), pr, prOn: Object.fromEntries(Object.keys(pr).map((k) => [k, !!pr[k]])),
