@@ -330,20 +330,5 @@ export async function writeMonth(db, month, cleanedDays) {
   return { upserted, cleared };
 }
 
-export const todayMoncton = todayMoncton;
-export const currentMonthToronto = currentMonthMoncton;
-
-export const todayMoncton = todayMoncton;
-export const currentMonthToronto = currentMonthMoncton;
-
-export const todayMoncton = todayMoncton;
-export const currentMonthToronto = currentMonthMoncton;
-
-export const todayMoncton = todayMoncton;
-export const currentMonthToronto = currentMonthMoncton;
-
-export const todayMoncton = todayMoncton;
-export const currentMonthToronto = currentMonthMoncton;
-
 export const todayToronto = todayMoncton;
 export const currentMonthToronto = currentMonthMoncton;
