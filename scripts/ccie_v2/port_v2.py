@@ -12,6 +12,7 @@ from bundle import split, join, add_assets
 MARK = '<style id="ccie-v2">'
 EXTRA = r"""
 /* ---- en-tête et pied v2 sur le balisage du site ---- */
+.root>.cc,.root .cc[style*="display:contents"]{container-type:normal !important}
 .cc .hdr .tb strong{color:#141A2B}
 .cc .hdr .tb a{color:#5B6272}
 .cc .hdr .tb a:hover{color:#8E6524}
@@ -70,11 +71,13 @@ def port(tpl, css):
         return None
     k = tpl.rindex('</head>')
     tpl = tpl[:k] + MARK + css + EXTRA + '</style>' + tpl[k:]
-    tpl = sub1(tpl, '<div class="root"', '<div class="root cc"', 'racine')
+    # comme sur les planches, seuls l'en-tête et le pied sont dans la couche .cc ;
+    # display:contents garde la mise en page (et l'en-tête collant) intacte
+    W = '<div class="cc" style="display:contents">'
     s, e = region(tpl, 'header')
-    tpl = tpl[:s] + header(tpl[s:e]) + tpl[e:]
+    tpl = tpl[:s] + W + header(tpl[s:e]) + '</div>' + tpl[e:]
     s, e = region(tpl, 'footer')
-    tpl = tpl[:s] + footer(tpl[s:e]) + tpl[e:]
+    tpl = tpl[:s] + W + footer(tpl[s:e]) + '</div>' + tpl[e:]
     return tpl
 
 
