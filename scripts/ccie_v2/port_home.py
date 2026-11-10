@@ -10,10 +10,10 @@ from bundle import split, join
 
 MARK = '<style id="ccie-v2-home">'
 CSS = r"""
-.cc .m-first .big-m{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500 !important;color:#141A2B !important;letter-spacing:.02em}
-.cc .m-first .serif{font-weight:600 !important}
-.cc .m-first .prog{background:rgba(20,26,43,.08)}
-.cc .m-first .chip:hover{border-color:rgba(168,129,60,.8)}
+.root .m-first .big-m{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500 !important;color:#141A2B !important;letter-spacing:.02em}
+.root .m-first .serif{font-weight:600 !important}
+.root .m-first .prog{background:rgba(20,26,43,.08)}
+.root .m-first .chip:hover{border-color:rgba(168,129,60,.8)}
 """
 XDC = [  # pastilles des prières : fond sombre -> carte claire, prière choisie en or
     ("chipBg: selected ? '#A8813C' : 'rgba(255,255,255,.08)'", "chipBg: selected ? 'linear-gradient(135deg,#C49A4A,#8E6524)' : '#FBF8F1'"),
