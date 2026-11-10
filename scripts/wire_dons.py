@@ -409,11 +409,11 @@ def patch_dons(tpl):
     a = tpl.index('<main'); b = tpl.index('</main>')
     m = tpl[a:b]
     # ---------- Campagne ----------
-    m = rep(m, 'L’ASCIL rassemble 350 000 $ pour', 'L’ASCIL rassemble {{leadObj}} pour')
+    m = rep(m, 'Le Centre rassemble des dons pour', 'L’ASCIL rassemble {{leadObj}} pour')
     m = resub(m, r'(<a class="btn btn-light" href="(?:[MT]-)?N3-Campagne\.dc\.html"[^>]*>.*?Suivre la campagne en direct</a>)',
               lambda x: sc_if('showSuivi', x.group(1)))
-    m = rep(m, 'line-height:1.1">350 000 $</p>', 'line-height:1.1">{{objFmt}}</p>')
-    m = resub(m, r'(<div style="[^"]*" role="progressbar" aria-valuemin="0" aria-valuemax=")350000(" aria-label="Montant récolté">\s*<div class="bar".*?</div>\s*</div>)',
+    m = rep(m, 'line-height:1.1">0 $</p>', 'line-height:1.1">{{objFmt}}</p>')
+    m = resub(m, r'(<div style="[^"]*" role="progressbar" aria-valuemin="0" aria-valuemax=")0(" aria-label="Montant récolté">\s*<div class="bar".*?</div>\s*</div>)',
               lambda x: sc_if('showBar', x.group(1) + '{{objMax}}" aria-valuenow="{{raisedNum}}' + x.group(2)))
     # ---------- Interac et Desjardins ----------
     sa = m.index('<section class="sec" aria-labelledby="int-t">')
@@ -483,7 +483,7 @@ def patch_dons(tpl):
     be = sec.index('</div>', sec.rindex('</sc-if>')) + len('</div>')
     sec = sec[:ba] + sc_if('showMerciBtns', sec[ba:be]) + sec[be:]
     m = m[:sa] + sc_if('showMerci', sec) + m[sb:]
-    assert 'À remplir depuis' not in m and '350 000' not in m and 'href="#"' not in m.split('class="totop"')[0]
+    assert 'À remplir depuis' not in m and '50 000' not in m and 'href="#"' not in m.split('class="totop"')[0]
     return tpl[:a] + m + tpl[b:]
 
 

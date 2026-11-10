@@ -632,8 +632,8 @@ SYNC_SCRIPT = r'''<script id="sa-apropos-sync">
   function saveAll() {
     if (saving || !apBase || !cpBase) return;
     var obj = parseAmount(getVal('f23')), rec = parseAmount(getVal('f24'));
-    if (!obj) { flash('Indiquez l’objectif de la campagne en dollars, par exemple 350 000.'); if (getEl('f23')) getEl('f23').focus(); return; }
-    if (rec === null && getVal('f24') !== '') { flash('Montant récolté illisible. Écrivez un nombre, par exemple 140 000.'); if (getEl('f24')) getEl('f24').focus(); return; }
+    if (!obj) { flash('Indiquez l’objectif de la campagne en dollars, par exemple 50 000.'); if (getEl('f23')) getEl('f23').focus(); return; }
+    if (rec === null && getVal('f24') !== '') { flash('Montant récolté illisible. Écrivez un nombre, par exemple 20 000.'); if (getEl('f24')) getEl('f24').focus(); return; }
     if (getVal('f25') !== '' && parseAmount(getVal('f25')) === null) { flash('Nombre de donateurs illisible. Écrivez un nombre entier, par exemple 212.'); if (getEl('f25')) getEl('f25').focus(); return; }
     var badWeek = weeks.slice(0, parseInt(getVal('f32'), 10) || 8).some(function (v) { return String(v).trim() !== '' && parseAmount(v) === null; });
     if (badWeek) { flash('Un montant de semaine est illisible. Écrivez des nombres, par exemple 9 800.'); return; }
@@ -724,7 +724,7 @@ SYNC_SCRIPT = r'''<script id="sa-apropos-sync">
       }
       applyAp(r[0].settings, true);
       applyCp(r[1].settings, true);
-      applyMoney(r[2].settings.campagne || { objectif: 350000, recolte: 0 });
+      applyMoney(r[2].settings.campagne || { objectif: 0, recolte: 0 });
       if (r[3] && r[3].ok && r[3].settings) {
         pagesBase = r[3].settings;
         var c = comp();
@@ -788,7 +788,7 @@ APROPOS_XVALS = r"""
     const chif = on(A.chiffres) ? A.chiffres.items.filter((x) => x.on && x.valeur) : [];
     const srcs = [];
     chif.forEach((x) => { if (x.source && srcs.indexOf(x.source) === -1) srcs.push(x.source); });
-    const obj = C && C.objectif ? C.objectif : 350000;
+    const obj = C && C.objectif ? C.objectif : 0;
     const texte = A.presentation && A.presentation.texte ? A.presentation.texte : '';
     return {
       apPres: on(A.presentation) && !!texte, apTexte: texte,
@@ -854,7 +854,7 @@ def patch_apropos(tpl):
     m = wrap_section(m, '<section class="sec" aria-labelledby="hist-t">', 'apHist')
 
     # 4. Projet : objectif de la campagne et liens des boutons
-    m = rep(m, 'Une campagne de 350 000 $ pour', 'Une campagne de {{apObjectif}} pour')
+    m = rep(m, 'Une campagne pour', 'Une campagne de {{apObjectif}} pour')
     m = resub(m, r'<a class="btn btn-gold" href="(?:[MT]-)?Dons\.dc\.html">Soutenir le projet', '<a class="btn btn-gold" href="{{apSoutenir}}">Soutenir le projet')
     m = resub(m, r'<a class="btn btn-light" href="(?:[MT]-)?N3-Campagne\.dc\.html">Suivre en direct', '<a class="btn btn-light" href="{{apSuivre}}">Suivre en direct')
     m = wrap_section(m, '<section style="padding-bottom:80px" aria-labelledby="nl-t">', 'apProjet')
@@ -903,7 +903,7 @@ CAMPAGNE_XVALS = r"""
     /*ascil-campagne*/
     const PT = (typeof window !== 'undefined' && window.__ascilPrayer) || {};
     const C = PT.campagne || null, st = this.state;
-    const obj = C && C.objectif ? C.objectif : 350000, g = Math.max(0, st.graw || 0), pct = Math.min(100, g / obj * 100);
+    const obj = C && C.objectif ? C.objectif : 0, g = Math.max(0, st.graw || 0), pct = obj > 0 ? Math.min(100, g / obj * 100) : 0;
     const fr = (n) => Math.round(n).toLocaleString('fr-CA');
     const kfmt = (n) => (n >= 1000 ? (Math.round(n / 100) / 10).toLocaleString('fr-CA') + ' k' : fr(n));
     const rec = C ? C.recolte : 0;
@@ -965,11 +965,11 @@ def patch_campagne(tpl):
     code = tpl[la:lb]
     if '/*ascil-campagne*/' not in code:
         # Simulation retirée : montant animé vers la vraie valeur dès que /api/campagne répond.
-        code = resub(code, r' const tgt2 = 140000, t0 = .*?\}, 7000\); \}',
+        code = resub(code, r' const tgt2 = 0, t0 = .*?\}, 7000\); \}',
                      lambda _: " this.onCamp = () => this.campAnim(); try { window.addEventListener('ascil:prayer', this.onCamp); } catch (e) {} this.campAnim(); }")
         code = rep(code, 'clearInterval(this.xt);',
                    "clearInterval(this.xt); cancelAnimationFrame(this.raf2); try { window.removeEventListener('ascil:prayer', this.onCamp); } catch (e) {}")
-        code = rep(code, ', graw: 140000, donors: 312, fi: 0, feedL: [] }', ', graw: 0 }')
+        code = rep(code, ', graw: 0, donors: 312, fi: 0, feedL: [] }', ', graw: 0 }')
         code, n = re.subn(r'\n  xvals\(\) \{.*?\n  \}\n', lambda _: CAMPAGNE_XVALS, code, count=1, flags=re.S)
         assert n == 1, 'xvals introuvable dans N3-Campagne'
         tpl = tpl[:la] + code + tpl[lb:]
@@ -987,8 +987,8 @@ def patch_campagne(tpl):
     m = rep(m, 'Voici où nous en sommes, mis à jour en temps réel.', 'Voici où nous en sommes.')
     m = re.sub(r'\s*<span class="ex"[^>]*>\[EXEMPLE À MODIFIER\]</span>', '', m)
     assert 'EXEMPLE' not in m
-    m = rep(m, 'collectés sur <strong>350 000 $</strong>', 'collectés sur <strong>{{gObjectif}}</strong>')
-    m = rep(m, 'aria-valuemax="350000"', 'aria-valuemax="{{gObjRaw}}"')
+    m = rep(m, 'collectés', 'collectés sur <strong>{{gObjectif}}</strong>')
+    m = rep(m, 'aria-valuemax="0"', 'aria-valuemax="{{gObjRaw}}"')
     m = resub(m, r'(<div style="display:flex;gap:24px;margin-top:18px;flex-wrap:wrap" class="tnum">)(<div><p[^>]*>\{\{gDonors\}\}</p><p[^>]*>donateurs</p></div>)',
               lambda x: x.group(1) + sc_if('showDonors', x.group(2)))
 
@@ -1018,8 +1018,8 @@ def patch_campagne(tpl):
     fb = m.index('</ul>\n   </div>', fa) + len('</ul>\n   </div>')
     m = m[:fa] + sc_if('showFeed', m[fa:fb], 'false') + m[fb:]
 
-    m = rep(m, 'Faire un don maintenant · Objectif 350 000 $', 'Faire un don maintenant · Objectif {{gObjectif}}')
-    assert '350 000' not in m and '350000' not in m, 'montant en dur restant'
+    m = rep(m, 'Faire un don maintenant · Objectif à définir', 'Faire un don maintenant · Objectif {{gObjectif}}')
+    assert '50 000' not in m and '0' not in m, 'montant en dur restant'
     return tpl[:a] + m + tpl[b:]
 
 

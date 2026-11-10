@@ -337,7 +337,7 @@ def accueil(tpl):
     # « Vivre le Ramadan ensemble » : exemples sans vraie donnée, retiré jusqu'à la rubrique Ramadan du panneau.
     tpl = resub(tpl, r'<section class="sec" style="padding-top:20px" aria-labelledby="r-c">.*?</section>', '')
     # Campagne : vrais chiffres de l'Accueil.
-    tpl = rep(tpl, '<span class="serif" style="font-size:40px;font-weight:700;color:#F5D896">142 500 $</span><span class="muted">sur 350 000 $</span>',
+    tpl = rep(tpl, '<span class="serif" style="font-size:40px;font-weight:700;color:#F5D896">0 $</span>',
               '<span class="serif" style="font-size:40px;font-weight:700;color:#F5D896">{{campRec}}</span><span class="muted">{{campObj}}</span>')
     tpl = rep(tpl, '<div class="bar" style="margin-top:14px"><i style="width:41%"></i></div>', '<div class="bar" style="margin-top:14px"><i style="{{campBar}}"></i></div>')
     tpl = rep(tpl, '41 % · 38 dons depuis le début du Ramadan', '{{campPct}}')

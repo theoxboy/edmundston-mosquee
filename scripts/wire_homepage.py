@@ -72,7 +72,7 @@ PANNEAU_SYNC_SCRIPT = r'''<script id="sa-panneau-sync">
   function bridge() { return window.__saHome; }
   function toast(msg) { var b = bridge(); if (b) b.flash(msg); }
   // Valeurs réelles des champs : la page peut redessiner une carte, et un champ redessiné reprend la
-  // valeur de la maquette (ex. « 140 000 »). On garde donc la vraie valeur ici, on la remet dès qu'un
+  // valeur de la maquette (ex. « 20 000 »). On garde donc la vraie valeur ici, on la remet dès qu'un
   // champ réapparaît, et on la lit même quand le champ n'est pas affiché.
   var cur = {};
   function setVal(id, v) {
@@ -194,7 +194,7 @@ PANNEAU_SYNC_SCRIPT = r'''<script id="sa-panneau-sync">
   }
 
   function check(p) {
-    if (!p.campagne.objectif) return 'Indiquez l’objectif de la campagne (en dollars), par exemple 350 000.';
+    if (!p.campagne.objectif) return 'Indiquez l’objectif de la campagne (en dollars), par exemple 50 000.';
     if (p.general.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.general.email)) return 'Le courriel de l’association n’est pas valide. Exemple : nom@exemple.com';
     var bad = p.annonces.items.filter(function(a) { return a.on && !a.titre; });
     if (bad.length) return 'Une annonce affichée n’a pas de titre. Donnez-lui un titre ou masquez-la.';
@@ -492,7 +492,7 @@ PUBLIC_HOME_SYNC_SCRIPT = r'''<script id="ascil-home-sync">
       if (campSec && s.campagne) {
         var obj = Number(s.campagne.objectif) || 0;
         var rec = Number(s.campagne.recolte) || 0;
-        var pct = Math.min(100, Math.round((rec / obj) * 100));
+        var pct = obj > 0 ? Math.min(100, Math.round((rec / obj) * 100)) : 0;
 
         var objEl = campSec.querySelector('p.serif.tnum');
         if (objEl) objEl.textContent = obj.toLocaleString('fr-CA') + ' $';
@@ -507,7 +507,7 @@ PUBLIC_HOME_SYNC_SCRIPT = r'''<script id="ascil-home-sync">
           barWrap.style.display = '';
         }
 
-        if (rec > 0) {
+        if (rec > 0 && obj > 0) {
           if (barWrap) {
             barWrap.setAttribute('aria-valuemax', String(obj));
             var bar = barWrap.querySelector('.bar');

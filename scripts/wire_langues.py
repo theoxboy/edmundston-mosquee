@@ -148,7 +148,7 @@ SCRIPT = r"""<script id="ascil-i18n">
     var m = k.match(/^(.+?) — ASCIL(?: \((?:mobile|tablette)\))?$/);
     if (m && has(m[1])) return dict[m[1]] + ' — ASCIL';
     if (depth > 2) return null;
-    // Nombre suivi d'un texte connu : « 12 places restantes », « 140 000 $ récoltés · 40 % ».
+    // Nombre suivi d'un texte connu : « 12 places restantes », « 50 000 $ récoltés · 50 % ».
     var n = k.match(/^([−+-]?\d[\d\s.,]*(?:\s?[$%])?) (.+)$/);
     if (n) { var r0 = tr(n[2], depth + 1); if (r0 != null) return n[1] + ' ' + r0; }
     if (!prefixes) prefixes = Object.keys(dict).filter(function (x) { return PREFIX_END.test(x); }).sort(function (a, b) { return b.length - a.length; });
@@ -167,7 +167,7 @@ SCRIPT = r"""<script id="ascil-i18n">
     }
     return false;
   }
-  // En arabe (de droite à gauche), un nombre en plusieurs morceaux (« 350 000 $ », « 17 % », « 06:30 »)
+  // En arabe (de droite à gauche), un nombre en plusieurs morceaux (« 50 000 $ », « 17 % », « 06:30 »)
   // serait lu bloc par bloc et inversé (« $ 000 350 ») : chaque nombre est tenu en un seul bloc
   // lu de gauche à droite, entre deux marques invisibles (isolement Unicode U+2066 … U+2069).
   var ISO = /[\u2066\u2069]/g;
