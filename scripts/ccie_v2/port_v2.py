@@ -7,7 +7,7 @@ Idempotent : une page déjà portée (marqueur ccie-v2) est ignorée.
 """
 import sys, re, pathlib
 sys.path.insert(0, sys.argv[1])
-from bundle import split, join
+from bundle import split, join, add_assets
 
 MARK = '<style id="ccie-v2">'
 EXTRA = r"""
@@ -22,7 +22,7 @@ EXTRA = r"""
 @media (max-width:1400px){.cc .navlink{font-size:14px}.cc .nav-desk{gap:2px !important}}
 @media (max-width:1400px){.cc .brand .lg-t1{font-size:18px !important}.cc .brand .logo-sub{font-size:12px !important}}
 @media (max-width:1260px){.cc .navlink{font-size:13px}.cc .brand .lg-t1{font-size:16px !important}.cc .brand .logo-sub{font-size:11px !important}}
-@media (max-width:640px){.cc .brand .lg-t1{font-size:17px !important;line-height:1.1}.cc .brand .logo-sub{font-size:11px !important}}
+@media (max-width:640px){.cc .brand .lg-t1{font-size:17px !important;line-height:1.1}.cc .brand .logo-sub{font-size:11px !important}.cc .don-btn{padding:0 !important;min-width:44px;justify-content:center}.cc .don-btn .don-ic{display:inline-flex !important}.cc .don-btn>span:last-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
 .cc .navlink:hover,.cc .navlink.on{color:#8E6524}
 .cc .brand .lg-t1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;letter-spacing:0}
 .cc .ftr{padding:0}
@@ -84,15 +84,19 @@ if '--out' in args:
     out = pathlib.Path(args[args.index('--out') + 1])
     args = args[:args.index('--out')]
 src, pages = pathlib.Path(args[0]), [pathlib.Path(p) for p in args[1:]]
-vt = split(src.read_text(encoding='utf-8'))[2]
+vtext = src.read_text(encoding='utf-8')
+vt = split(vtext)[2]
 css = [s for s in re.findall(r'<style[^>]*>(.*?)</style>', vt, re.S) if '@font-face' not in s[:300]][0]
+ASSETS = sorted(set(re.findall(r'url\("?([0-9a-f]{8}-[0-9a-f-]{27})', css)))
 for p in pages:
     t = p.read_text(encoding='utf-8')
     i, j, tpl = split(t)
     new = port(tpl, css)
-    if new is None:
+    text = t if new is None else join(t, i, j, new)
+    text, added = add_assets(text, vtext, ASSETS)
+    if text == t:
         print('déjà porté', p.name)
         continue
     dst = (out / p.name) if out else p
-    dst.write_text(join(t, i, j, new), encoding='utf-8')
-    print('porté', p.name, '->', dst)
+    dst.write_text(text, encoding='utf-8')
+    print('porté' if new is not None else 'assets', p.name, '+%d assets' % len(added))
