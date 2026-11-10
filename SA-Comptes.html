@@ -9,82 +9,82 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#FAF8F1}
-a{color:#0E4D3C}a:hover{color:#08362a}
-.sa{container-type:inline-size;position:relative;box-sizing:border-box;font-family:'Noto Sans',system-ui,sans-serif;color:#1E2B26;background:#FAF8F1;font-size:15px;line-height:1.5;min-height:100vh}
+body{margin:0;background:#FBF8F1}
+a{color:#141A2B}a:hover{color:#0B0F1A}
+.sa{container-type:inline-size;position:relative;box-sizing:border-box;font-family:'Noto Sans',system-ui,sans-serif;color:#141A2B;background:#FBF8F1;font-size:15px;line-height:1.5;min-height:100vh}
 .sa *{box-sizing:border-box}
 .sa button,.sa input,.sa select,.sa textarea{font:inherit;color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .serif{font-family:'Noto Serif',Georgia,serif}
 .tnum{font-variant-numeric:tabular-nums}
-.top{display:flex;align-items:center;gap:12px;padding:10px 24px;min-height:68px;background:#0E4D3C;color:#fff;position:sticky;top:0;z-index:30}
-.role{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:#C49A4A;color:#1E2B26;border-radius:999px;padding:3px 10px}
-.status{margin:0;display:flex;align-items:center;gap:8px;font-size:14px;color:#F3EAD8}
+.top{display:flex;align-items:center;gap:12px;padding:10px 24px;min-height:68px;background:#141A2B;color:#fff;position:sticky;top:0;z-index:30}
+.role{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:#B88A3E;color:#141A2B;border-radius:999px;padding:3px 10px}
+.status{margin:0;display:flex;align-items:center;gap:8px;font-size:14px;color:#F3ECDD}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid transparent;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;white-space:nowrap;background:none;position:relative;overflow:hidden;transition:background .2s ease,color .2s ease,transform .15s ease,box-shadow .2s ease,border-color .2s ease}
-.btn-gold{background:#C49A4A;color:#1E2B26}.btn-gold:hover:not([disabled]){background:#AE8436;box-shadow:0 8px 20px -10px rgba(196,154,74,.9)}
-.btn-green{background:#0E4D3C;color:#fff}.btn-green:hover:not([disabled]){background:#08362a;color:#fff}
-.btn-line{background:#fff;border-color:#E4D9C0;color:#0E4D3C}.btn-line:hover:not([disabled]){border-color:#0E4D3C}
+.btn-gold{background:#B88A3E;color:#141A2B}.btn-gold:hover:not([disabled]){background:#A8813C;box-shadow:0 8px 20px -10px rgba(168,129,60,.9)}
+.btn-green{background:#141A2B;color:#fff}.btn-green:hover:not([disabled]){background:#0B0F1A;color:#fff}
+.btn-line{background:#fff;border-color:#E7DCC6;color:#141A2B}.btn-line:hover:not([disabled]){border-color:#141A2B}
 .btn-danger{background:#fff;border-color:#E8B4B0;color:#8C1D18}.btn-danger:hover:not([disabled]){background:#FBEAE8;border-color:#B3261E}
 .btn-onDark{background:transparent;border-color:rgba(255,255,255,.45);color:#fff}.btn-onDark:hover:not([disabled]){border-color:#fff;color:#fff}
 .btn[disabled]{opacity:.45;cursor:not-allowed}
 .btn-sm{min-height:36px;padding:0 14px;font-size:13px}
-.ico{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1.5px solid #E4D9C0;background:#fff;color:#0E4D3C;cursor:pointer;flex:none;text-decoration:none;transition:border-color .2s ease,transform .15s ease,background .2s ease}
-.ico:hover:not([disabled]){border-color:#0E4D3C;transform:translateY(-2px)}
-.in{width:100%;min-height:44px;padding:8px 12px;border-radius:10px;border:1.5px solid #CDBF9C;background:#fff;transition:border-color .2s ease,box-shadow .2s ease}
-.in:focus{outline:none;border-color:#0E4D3C;box-shadow:0 0 0 3px rgba(14,77,60,.16)}
+.ico{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1.5px solid #E7DCC6;background:#fff;color:#141A2B;cursor:pointer;flex:none;text-decoration:none;transition:border-color .2s ease,transform .15s ease,background .2s ease}
+.ico:hover:not([disabled]){border-color:#141A2B;transform:translateY(-2px)}
+.in{width:100%;min-height:44px;padding:8px 12px;border-radius:10px;border:1.5px solid #D5C6A6;background:#fff;transition:border-color .2s ease,box-shadow .2s ease}
+.in:focus{outline:none;border-color:#141A2B;box-shadow:0 0 0 3px rgba(20,26,43,.16)}
 .in[aria-invalid="true"]{border-color:#B3261E}
 .lbl{font-weight:600;font-size:14px}
-.hint{font-size:13px;color:#4F5E57;margin:0}
+.hint{font-size:13px;color:#5B6272;margin:0}
 .fld{display:flex;flex-direction:column;gap:6px;min-width:0}
-.sw{position:relative;flex:none;width:52px;height:30px;border-radius:999px;border:0;background:#CFC6B1;cursor:pointer;padding:0;transition:background .15s}
+.sw{position:relative;flex:none;width:52px;height:30px;border-radius:999px;border:0;background:#D5C9B0;cursor:pointer;padding:0;transition:background .15s}
 .sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
-.sw[aria-checked="true"]{background:#0E4D3C}
+.sw[aria-checked="true"]{background:#141A2B}
 .sw[aria-checked="true"]::after{transform:translateX(22px)}
-.sw:hover:not([disabled]){box-shadow:0 0 0 4px rgba(196,154,74,.25)}
+.sw:hover:not([disabled]){box-shadow:0 0 0 4px rgba(168,129,60,.25)}
 .sw[disabled]{opacity:.45;cursor:not-allowed}
-.row{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:10px 0;border-top:1px solid #F3EAD8}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:10px 0;border-top:1px solid #F3ECDD}
 .row:first-child{border-top:0}
 .sp{display:flex;flex-direction:column;gap:16px;scroll-margin-top:84px}
-.sp + .sp{margin-top:22px;padding-top:28px;border-top:2px solid #E4D9C0}
+.sp + .sp{margin-top:22px;padding-top:28px;border-top:2px solid #E7DCC6}
 .sp-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.eyebrow{margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7A5A1E}
-.ttl-page{margin:4px 0 0;font-size:32px;color:#0E4D3C;font-weight:700}
-.card{background:#FFFEF9;border:1px solid #E4D9C0;border-radius:18px;position:relative;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
-.card:hover{border-color:#C49A4A;box-shadow:0 10px 28px -18px rgba(14,77,60,.35)}
+.eyebrow{margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E6524}
+.ttl-page{margin:4px 0 0;font-size:32px;color:#141A2B;font-weight:700}
+.card{background:#FBF8F1;border:1px solid #E7DCC6;border-radius:18px;position:relative;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.card:hover{border-color:#B88A3E;box-shadow:0 10px 28px -18px rgba(20,26,43,.35)}
 .card-h{display:flex;align-items:center;gap:14px;padding:18px 22px}
-.card-b{padding:14px 22px 22px;border-top:1px solid #F3EAD8;display:flex;flex-direction:column;gap:16px}
-.num{flex:none;width:34px;height:34px;border-radius:10px;background:#F3EAD8;color:#0E4D3C;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .25s ease,color .25s ease}
-.card:hover .num{background:#0E4D3C;color:#fff}
-.ttl{margin:0;font-size:18px;font-weight:700;color:#0E4D3C}
-.dsc{margin:2px 0 0;font-size:13px;color:#4F5E57}
+.card-b{padding:14px 22px 22px;border-top:1px solid #F3ECDD;display:flex;flex-direction:column;gap:16px}
+.num{flex:none;width:34px;height:34px;border-radius:10px;background:#F3ECDD;color:#141A2B;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .25s ease,color .25s ease}
+.card:hover .num{background:#141A2B;color:#fff}
+.ttl{margin:0;font-size:18px;font-weight:700;color:#141A2B}
+.dsc{margin:2px 0 0;font-size:13px;color:#5B6272}
 .tag{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
-.tag-green{background:#E3F3EC;color:#0E4D3C}
-.tag-gold{background:#FBF3E0;color:#7A5A1E;border:1px solid #E8C98A}
+.tag-green{background:#E3F3EC;color:#141A2B}
+.tag-gold{background:#FBF6EB;color:#8E6524;border:1px solid #E8C98A}
 .tag-red{background:#FBEAE8;color:#8C1D18}
-.tag-super{background:#C49A4A;color:#1E2B26}
+.tag-super{background:#B88A3E;color:#141A2B}
 .g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.info{margin:0;padding:12px 14px;border-radius:12px;background:#F7F2E4;font-size:13px;color:#4F5E57}
+.info{margin:0;padding:12px 14px;border-radius:12px;background:#F7F1E4;font-size:13px;color:#5B6272}
 .warn{margin:0;padding:14px 16px;border-radius:12px;background:#FFF4E0;border:1px solid #E8C98A;font-size:14px;color:#5C4313}
 .err{margin:0;padding:12px 14px;border-radius:12px;background:#FBEAE8;color:#8C1D18;font-size:14px}
-.ok-box{margin:0;padding:16px 18px;border-radius:14px;background:#E8F5EE;border:1.5px solid #0E4D3C;color:#0E4D3C}
-.pw-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:18px;font-weight:800;letter-spacing:.04em;background:#fff;padding:8px 14px;border-radius:10px;border:1.5px solid #0E4D3C;color:#1E2B26;user-select:all}
+.ok-box{margin:0;padding:16px 18px;border-radius:14px;background:#E8F5EE;border:1.5px solid #141A2B;color:#141A2B}
+.pw-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:18px;font-weight:800;letter-spacing:.04em;background:#fff;padding:8px 14px;border-radius:10px;border:1.5px solid #141A2B;color:#141A2B;user-select:all}
 .lay{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;max-width:1400px;margin:0 auto;padding:24px 24px 80px}
 .side{flex:0 0 230px;display:flex;flex-direction:column;gap:2px}
-.side-t{margin:0 0 8px 12px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7A5A1E}
-.nav a{display:flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;border-radius:10px;text-decoration:none;color:#1E2B26;font-weight:600;font-size:14px;transition:background .2s ease,color .2s ease}
-.nav a:hover{background:#F3EAD8;color:#0E4D3C}
-.nav a.on{background:#0E4D3C;color:#fff}
-.side-sub{display:flex;flex-direction:column;margin:4px 0 8px 14px;padding-left:10px;border-left:2px solid #E4D9C0}
-.side-sub a{min-height:36px;font-weight:500;font-size:13px;color:#4F5E57}
-.acct-card{border:1px solid #E4D9C0;border-radius:14px;padding:16px 18px;background:#fff;display:flex;flex-direction:column;gap:12px}
+.side-t{margin:0 0 8px 12px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E6524}
+.nav a{display:flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;border-radius:10px;text-decoration:none;color:#141A2B;font-weight:600;font-size:14px;transition:background .2s ease,color .2s ease}
+.nav a:hover{background:#F3ECDD;color:#141A2B}
+.nav a.on{background:#141A2B;color:#fff}
+.side-sub{display:flex;flex-direction:column;margin:4px 0 8px 14px;padding-left:10px;border-left:2px solid #E7DCC6}
+.side-sub a{min-height:36px;font-weight:500;font-size:13px;color:#5B6272}
+.acct-card{border:1px solid #E7DCC6;border-radius:14px;padding:16px 18px;background:#fff;display:flex;flex-direction:column;gap:12px}
 .acct-card.is-off{background:#F9F6EE;opacity:.82}
 .acct-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.acct-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:#4F5E57}
-.acct-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-top:10px;border-top:1px solid #F3EAD8}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:#1E2B26;color:#fff;padding:12px 20px;border-radius:999px;font-weight:600;max-width:calc(100% - 32px);text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.acct-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:#5B6272}
+.acct-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding-top:10px;border-top:1px solid #F3ECDD}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:#141A2B;color:#fff;padding:12px 20px;border-radius:999px;font-weight:600;max-width:calc(100% - 32px);text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.25)}
 .only-s{display:none !important}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #C49A4A;outline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #B88A3E;outline-offset:2px}
 @container (max-width: 899px){
  .side{display:none !important}
  .only-s{display:flex !important}
@@ -108,14 +108,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
  <header class="top">
   <div style="display:flex;align-items:center;gap:12px">
    <svg aria-hidden="true" width="30" height="34" viewBox="8 16 190 212" style="flex:none;overflow:visible">
-    <path d="M58 226 C48 160 62 102 122 76 C182 102 196 160 188 226 L183 226 C188 166 174 118 122 95 C74 116 62 166 66 226 Z" fill="#F3EAD8"></path>
-    <path d="M14 226 C10 186 30 160 60 148 L61 162 C38 172 24 194 22 226 Z" fill="#F3EAD8"></path>
-    <path d="M117.5 80 L122 42 L126.5 80 Z" fill="#F3EAD8"></path>
+    <path d="M58 226 C48 160 62 102 122 76 C182 102 196 160 188 226 L183 226 C188 166 174 118 122 95 C74 116 62 166 66 226 Z" fill="#F3ECDD"></path>
+    <path d="M14 226 C10 186 30 160 60 148 L61 162 C38 172 24 194 22 226 Z" fill="#F3ECDD"></path>
+    <path d="M117.5 80 L122 42 L126.5 80 Z" fill="#F3ECDD"></path>
     <g transform="rotate(-40 122 30)"><path d="M127.83 20.67 A11.00 11.00 0 1 0 127.83 39.33 A9.33 9.33 0 0 1 127.83 20.67 Z" fill="#C49A4A"></path></g>
    </svg>
    <span style="display:flex;flex-direction:column;line-height:1.15">
     <span style="font-size:20px;font-weight:800">Centre Islamique d'Edmundston</span>
-    <span class="hide-m" style="font-size:12px;color:#F3EAD8;font-weight:600">Panneau de gestion</span>
+    <span class="hide-m" style="font-size:12px;color:#F3ECDD;font-weight:600">Panneau de gestion</span>
    </span>
    <span class="hide-m role lg-tag">Superadmin</span>
   </div>
@@ -158,7 +158,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
    <div>
     <p class="eyebrow">Administration</p>
     <h1 class="serif ttl-page">Comptes et accès</h1>
-    <p style="margin:6px 0 0;color:#4F5E57;max-width:680px">Créez des comptes pour les bénévoles de le Centre Islamique d'Edmundston avec un accès adapté à leur rôle. Chaque nouveau compte reçoit un mot de passe provisoire et doit choisir le sien dès sa première connexion.</p>
+    <p style="margin:6px 0 0;color:#5B6272;max-width:680px">Créez des comptes pour les bénévoles de le Centre Islamique d'Edmundston avec un accès adapté à leur rôle. Chaque nouveau compte reçoit un mot de passe provisoire et doit choisir le sien dès sa première connexion.</p>
    </div>
 
    <div class="only-s" style="flex-direction:column;gap:6px">
@@ -183,7 +183,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
      <div>
       <p style="margin:0;font-weight:800;font-size:16px" id="temp-pw-title">Mot de passe provisoire généré</p>
-      <p style="margin:4px 0 12px;font-size:14px;color:#1E2B26">Transmettez cet identifiant et ce mot de passe provisoire à la personne concernée. Il ne sera plus affiché après la fermeture de cet encadré, et la personne devra choisir son propre mot de passe (12 caractères minimum) dès sa première connexion.</p>
+      <p style="margin:4px 0 12px;font-size:14px;color:#141A2B">Transmettez cet identifiant et ce mot de passe provisoire à la personne concernée. Il ne sera plus affiché après la fermeture de cet encadré, et la personne devra choisir son propre mot de passe (12 caractères minimum) dès sa première connexion.</p>
      </div>
      <button type="button" class="btn btn-line btn-sm" id="temp-pw-close">Fermer</button>
     </div>
@@ -271,30 +271,30 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </div>
      </div>
      <div class="card-b">
-      <div style="overflow-x:auto;border:1px solid #E4D9C0;border-radius:12px;background:#fff">
+      <div style="overflow-x:auto;border:1px solid #E7DCC6;border-radius:12px;background:#fff">
        <table style="border-collapse:collapse;width:100%;font-size:14px">
         <thead>
-         <tr style="border-bottom:1px solid #E4D9C0;background:#FAF8F1">
-          <th scope="col" style="text-align:left;padding:10px 14px;color:#4F5E57;font-weight:700">Rôle</th>
-          <th scope="col" style="text-align:left;padding:10px 14px;color:#4F5E57;font-weight:700">Pages autorisées</th>
-          <th scope="col" style="text-align:left;padding:10px 14px;color:#4F5E57;font-weight:700">Gestion des comptes</th>
+         <tr style="border-bottom:1px solid #E7DCC6;background:#FBF8F1">
+          <th scope="col" style="text-align:left;padding:10px 14px;color:#5B6272;font-weight:700">Rôle</th>
+          <th scope="col" style="text-align:left;padding:10px 14px;color:#5B6272;font-weight:700">Pages autorisées</th>
+          <th scope="col" style="text-align:left;padding:10px 14px;color:#5B6272;font-weight:700">Gestion des comptes</th>
          </tr>
         </thead>
         <tbody>
-         <tr style="border-bottom:1px solid #F3EAD8">
+         <tr style="border-bottom:1px solid #F3ECDD">
           <td style="padding:10px 14px;font-weight:700"><span class="tag tag-super">Superadmin</span></td>
           <td style="padding:10px 14px">Toutes les pages du panneau</td>
-          <td style="padding:10px 14px;color:#0E4D3C;font-weight:600">Oui (création, rôles, désactivation)</td>
+          <td style="padding:10px 14px;color:#141A2B;font-weight:600">Oui (création, rôles, désactivation)</td>
          </tr>
-         <tr style="border-bottom:1px solid #F3EAD8">
+         <tr style="border-bottom:1px solid #F3ECDD">
           <td style="padding:10px 14px;font-weight:700"><span class="tag tag-green">Éditeur</span></td>
           <td style="padding:10px 14px">Accueil, Site entier, Créer une page, Horaires, À propos, Services, Faire un don, Événements, Ressources, Contact</td>
-          <td style="padding:10px 14px;color:#4F5E57">Non</td>
+          <td style="padding:10px 14px;color:#5B6272">Non</td>
          </tr>
          <tr>
           <td style="padding:10px 14px;font-weight:700"><span class="tag tag-gold">Responsable événements</span></td>
           <td style="padding:10px 14px">Uniquement la page <strong>Événements</strong></td>
-          <td style="padding:10px 14px;color:#4F5E57">Non</td>
+          <td style="padding:10px 14px;color:#5B6272">Non</td>
          </tr>
         </tbody>
        </table>
@@ -330,7 +330,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
        </div>
        <p id="own-pw-err" class="err" role="alert" hidden></p>
-       <p id="own-pw-ok" class="info" role="status" style="background:#E3F3EC;color:#0E4D3C;font-weight:600" hidden></p>
+       <p id="own-pw-ok" class="info" role="status" style="background:#E3F3EC;color:#141A2B;font-weight:600" hidden></p>
        <div>
         <button type="submit" class="btn btn-line" id="btn-own-pw">Mettre à jour mon mot de passe</button>
        </div>
@@ -478,8 +478,8 @@ document.addEventListener('click', function (e) {
       + '<div class="acct-top">'
       + '<div>'
       + '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'
-      + '<strong style="font-size:17px;color:#0E4D3C">' + esc(a.displayName || a.username) + '</strong>'
-      + '<span style="font-size:13px;color:#4F5E57;font-family:ui-monospace,monospace">@' + esc(a.username) + '</span>'
+      + '<strong style="font-size:17px;color:#141A2B">' + esc(a.displayName || a.username) + '</strong>'
+      + '<span style="font-size:13px;color:#5B6272;font-family:ui-monospace,monospace">@' + esc(a.username) + '</span>'
       + roleBadge + statusBadge + tempBadge
       + '</div>'
       + '<div class="acct-meta" style="margin-top:6px">'
@@ -718,7 +718,7 @@ document.addEventListener('click', function (e) {
       if (!b) {
         b = document.createElement('span');
         b.className = 'fm-badge';
-        b.setAttribute('style', 'display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;margin-left:8px;border-radius:999px;background:#C49A4A;color:#1E2B26;font-size:12px;font-weight:800');
+        b.setAttribute('style', 'display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 6px;margin-left:8px;border-radius:999px;background:#B88A3E;color:#141A2B;font-size:12px;font-weight:800');
         a.appendChild(b);
       }
       b.textContent = String(n);
