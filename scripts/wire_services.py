@@ -613,7 +613,7 @@ SERVICES_XVALS = r"""
 
 SERVICES_DEFAULT = {
     'items': [
-        {'kind': 'prieres', 'titre': 'Les cinq prières quotidiennes', 'texte': 'Au 34, 37e Avenue, tous les jours.', 'icone': 0, 'saison': False,
+        {'kind': 'prieres', 'titre': 'Les cinq prières quotidiennes', 'texte': 'Au 106, rue de l’Église, tous les jours.', 'icone': 0, 'saison': False,
          'lien': 'Page : Horaires du mois', 'lienTexte': 'Tableau complet des horaires', 'khutba': False, 'femmes': False, 'zakat': None, 'zakatAnnee': '', 'on': True},
         {'kind': 'jumua', 'titre': 'La prière du vendredi (Jumu’a)', 'texte': 'Khutba suivie de la prière.', 'icone': 1, 'saison': False,
          'lien': '', 'lienTexte': '', 'khutba': True, 'femmes': True, 'zakat': None, 'zakatAnnee': '', 'on': True},
@@ -622,7 +622,7 @@ SERVICES_DEFAULT = {
         {'kind': 'aid', 'titre': 'Les prières de l’Aïd', 'texte': '', 'icone': 3, 'saison': True, 'lien': '', 'lienTexte': '',
          'khutba': False, 'femmes': False, 'zakat': 15, 'zakatAnnee': '2025', 'on': True},
         {'kind': 'libre', 'titre': 'Solidarité et événements caritatifs',
-         'texte': 'Exemple : la journée de parrainage d’orphelins avec l’organisme Soleil des Orphelins, le 25 avril 2026 au 34, 37e Avenue.',
+         'texte': 'Exemple : la journée de parrainage d’orphelins avec l’organisme Soleil des Orphelins, le 25 avril 2026 au 106, rue de l’Église.',
          'icone': 4, 'saison': False, 'lien': 'Page : Événements', 'lienTexte': 'Voir les événements', 'khutba': False, 'femmes': False,
          'zakat': None, 'zakatAnnee': '', 'on': True},
     ],
@@ -660,11 +660,11 @@ def patch_services(tpl):
     icons = re.findall(r'<span style="display:flex;width:52px;height:52px;[^"]*">(<svg.*?</svg>)</span>', first, flags=re.S)
     assert len(icons) == 5, f'{len(icons)} icônes de services au lieu de 5'
     arrow = re.search(r'<a class="link" href="(?:[MT]-)?Horaires\.dc\.html"[^>]*>Tableau complet des horaires (<svg.*?</svg>)</a>', first, flags=re.S).group(1)
-    pill = '<span class="pill" style="background:#F3EAD8;color:#7A5A1E">Saisonnier</span>'
+    pill = '<span class="pill" style="background:#F4EBD6;color:#7A5A1E">Saisonnier</span>'
     ic = ''.join(f'<sc-if value="{{{{c.i{k}}}}}" hint-placeholder-val="{{{{ {str(k == 0).lower()} }}}}">{svg}</sc-if>' for k, svg in enumerate(icons))
     cards = ('<sc-for list="{{svCards}}" as="c" hint-placeholder-count="5"><div class="card">'
              '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">'
-             f'<span style="display:flex;width:52px;height:52px;border-radius:14px;background:#F3EAD8;align-items:center;justify-content:center;color:#0E4D3C">{ic}</span>'
+             f'<span style="display:flex;width:52px;height:52px;border-radius:14px;background:#F4EBD6;align-items:center;justify-content:center;color:#0B0F1A">{ic}</span>'
              + sc_if('c.saison', pill, 'false') + '</div>'
              '<p class="h3" style="margin-top:18px">{{c.titre}}</p>'
              + sc_if('c.isPri', '<p style="margin:10px 0 0">{{c.texte}} Fajr à <strong class="tnum">{{c.fajr}}</strong>, Icha à <strong class="tnum">{{c.icha}}</strong>.</p>')
@@ -694,7 +694,7 @@ def patch_services(tpl):
         ca = re.search(r'<a class="card" href="(?:[MT]-)?' + re.escape(page) + r'\.dc\.html"', m).start()
         cb = m.index('</a>', m.index('<span class="link">', ca)) + len('</a>')
         m = m[:ca] + sc_if(f'svA_{key}', m[ca:cb]) + m[cb:]
-    oa = m.index('<section class="sand" style="border-top:1px solid #E4D9C0"><div class="wrap sec"><p class="eyebrow">Services</p>')
+    oa = m.index('<section class="sand" style="border-top:1px solid #E9E3D3"><div class="wrap sec"><p class="eyebrow">Services</p>')
     ob = m.index('</section>', oa) + len('</section>')
     m = m[:oa] + sc_if('svAutres', m[oa:ob]) + m[ob:]
 
@@ -706,7 +706,7 @@ def patch_services(tpl):
     assert len(lis) == 3, 'équipements introuvables'
     for li, key in zip(lis, ['fauteuil', 'ablutions', 'parking']):
         e = e.replace(li, sc_if(f'svE_{key}', li))
-    femmes = ('<li class="card" style="display:flex;gap:14px;align-items:center"><span style="color:#0E4D3C">' + FEMMES_ICON
+    femmes = ('<li class="card" style="display:flex;gap:14px;align-items:center"><span style="color:#0B0F1A">' + FEMMES_ICON
               + '</span><span style="font-weight:600">Espace réservé aux femmes</span></li>')
     e = rep(e, '\n  </ul>', sc_if('svE_femmes', femmes, 'false') + '\n  </ul>')
     m = m[:ea] + sc_if('svEquip', e) + m[eb:]

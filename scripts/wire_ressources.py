@@ -473,13 +473,13 @@ RES_JS = r"""
     };"""
 
 # Pas de str.format() ici : il transformait {{x.texte}} en {x.texte}, affiché tel quel sur la page.
-LINK_CARD_IN = ('<span style="color:#0E4D3C">@ICON@</span><span style="min-width:0"><span style="display:block;font-weight:700;overflow-wrap:anywhere">{{x.titre}}</span>'
+LINK_CARD_IN = ('<span style="color:#0B0F1A">@ICON@</span><span style="min-width:0"><span style="display:block;font-weight:700;overflow-wrap:anywhere">{{x.titre}}</span>'
                 + sc_if('x.hasTexte', '<span class="muted" style="display:block;margin-top:4px;font-size:15px">{{x.texte}}</span>')
                 + '@PILL@</span>')
 
 
 def link_cards(var, icon):
-    pill = '<span class="pill" style="background:#F3EAD8;color:#7A5A1E;margin-top:10px">Lien externe</span>'
+    pill = '<span class="pill" style="background:#F4EBD6;color:#7A5A1E;margin-top:10px">Lien externe</span>'
     inner_a = LINK_CARD_IN.replace('@ICON@', icon).replace('@PILL@', pill)
     inner_d = LINK_CARD_IN.replace('@ICON@', icon).replace('@PILL@', '')
     return (f'<sc-for list="{{{{{var}}}}}" as="x" hint-placeholder-count="2">'
@@ -534,8 +534,8 @@ def patch_ressources(tpl):
     # ---------- Services publics et repères ----------
     sa, sb = section_span(m, '<section class="sec" aria-labelledby="in-t">')
     sec = m[sa:sb]
-    icon_pub = re.search(r'<a class="card" href="#"[^>]*><span style="color:#0E4D3C">(<svg(?:(?!</svg>).)*</svg>)</span><span><span[^>]*>Accueil et Intégration', sec, re.S).group(1)
-    icon_rep = re.search(r'<a class="card" href="#"[^>]*><span style="color:#0E4D3C">(<svg(?:(?!</svg>).)*</svg>)</span><span><span[^>]*>Horaires astronomiques', sec, re.S).group(1)
+    icon_pub = re.search(r'<a class="card" href="#"[^>]*><span style="color:#0B0F1A">(<svg(?:(?!</svg>).)*</svg>)</span><span><span[^>]*>Accueil et Intégration', sec, re.S).group(1)
+    icon_rep = re.search(r'<a class="card" href="#"[^>]*><span style="color:#0B0F1A">(<svg(?:(?!</svg>).)*</svg>)</span><span><span[^>]*>Horaires astronomiques', sec, re.S).group(1)
     sec = rep(sec, '<div class="g2">', '<div class="{{inCols}}">')
     cols = re.findall(r'<div style="display:flex;flex-direction:column;gap:16px;margin-top:20px">.*?</a></div>', sec, re.S)
     assert len(cols) == 2, len(cols)
@@ -596,7 +596,7 @@ DUA_JS = r"""
     const duas = (W.duas || []).map((d) => {
       const done = !!this.amSeen[d.id];
       return { text: d.texte, by: d.signature, when: ago(d.published_at), count: amc[d.id] !== undefined ? amc[d.id] : d.amin, pressed: String(done),
-        bg: done ? '#0E4D3C' : '#fff', fg: done ? '#fff' : '#0E4D3C',
+        bg: done ? '#0B0F1A' : '#fff', fg: done ? '#fff' : '#0B0F1A',
         amin: () => {
           if (this.amSeen[d.id]) return;
           this.amSeen[d.id] = 1;
@@ -667,7 +667,7 @@ def patch_dua(tpl):
             + sc_if('annEmpty', empty.format(t='Aucune annonce publiée pour le moment. Partagez la vôtre avec le formulaire.'), 'false')
             + '\n    <sc-if value="{{isDua}}" hint-placeholder-val="{{ true }}">')
     # ---------- Formulaire ----------
-    fa = m.index('<div class="card" style="padding:28px;border:2px solid #0E4D3C">')
+    fa = m.index('<div class="card" style="padding:28px;border:2px solid #0B0F1A">')
     fb = m.index('<div class="card sand"><p class="eyebrow">Modération', fa)
     form = m[fa:fb]
     form = resub(form, r'(<div style="margin-top:14px"><div class="seg" role="group" aria-label="Type de message">.*?</div></div>)', lambda x: sc_if('bothTabs', x.group(1)))
@@ -681,8 +681,8 @@ def patch_dua(tpl):
                + '<div class="field"><label for="d1">Votre message</label>')
     form = rep(form, '<button type="button" class="btn btn-green" sc-camel-on-click="{{dSend}}">Envoyer pour validation</button>',
                HONEYPOT + '<button type="button" class="btn btn-green" sc-camel-on-click="{{dSend}}" aria-busy="{{dBusy}}">{{dSendLbl}}</button>')
-    form = rep(form, '<p class="pop" style="margin:0;font-weight:700;color:#0E4D3C">Merci ! Votre message apparaît sur le mur après validation.</p>',
-               '<p class="pop" role="status" style="margin:0;font-weight:700;color:#0E4D3C">{{dOkMsg}}</p>')
+    form = rep(form, '<p class="pop" style="margin:0;font-weight:700;color:#0B0F1A">Merci ! Votre message apparaît sur le mur après validation.</p>',
+               '<p class="pop" role="status" style="margin:0;font-weight:700;color:#0B0F1A">{{dOkMsg}}</p>')
     # Mur en pause : le formulaire laisse place à un avis.
     ia = form.index('<div style="display:flex;flex-direction:column;gap:14px;margin-top:16px">')
     ib = form.rindex('</div>\n   </div>')

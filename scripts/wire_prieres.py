@@ -227,11 +227,11 @@ def patch_markup(tpl):
     tpl = tpl[:a] + sc_if('showAuj', left) + tpl[b:]
 
     # Carte du vendredi : heure du prochain vendredi, conseil, affichage.
-    fri_time = '<p class="tnum" style="margin:8px 0 0;font-size:56px;font-weight:700;color:#C49A4A;line-height:1">12:30</p>'
+    fri_time = '<p class="tnum" style="margin:8px 0 0;font-size:56px;font-weight:700;color:#D9B46C;line-height:1">12:30</p>'
     tpl = rep(tpl, fri_time, fri_time.replace('>12:30<', '>{{friTime}}<'))
-    tpl = resub(tpl, r'<p style="margin:12px 0 0;color:#F3EAD8">Khutba suivie[^<]*</p>',
-                lambda m: '<p style="margin:12px 0 0;color:#F3EAD8">{{friNote}}</p>')
-    tpl = resub(tpl, r'(<div style="background:#0E4D3C;color:#fff;border-radius:22px;padding:30px">.*?\{\{friNote\}\}</p>\s*</div>)',
+    tpl = resub(tpl, r'<p style="margin:12px 0 0;color:#F4EBD6">Khutba suivie[^<]*</p>',
+                lambda m: '<p style="margin:12px 0 0;color:#F4EBD6">{{friNote}}</p>')
+    tpl = resub(tpl, r'(<div style="background:#0B0F1A;color:#fff;border-radius:22px;padding:30px">.*?\{\{friNote\}\}</p>\s*</div>)',
                 lambda m: sc_if('showFri', m.group(1)))
 
     # Mois complet : titre, filtre Vendredis, PDF retiré, tableau rendu depuis la base.
@@ -244,21 +244,21 @@ def patch_markup(tpl):
                           lambda m: MONTH_PLACEHOLDER)
 
     # Ramadan, Aïd, Qibla.
-    tpl = resub(tpl, r'(<div class="card">\s*<span style="color:#0E4D3C">(?:(?!</span>).)*</span>\s*<p class="h3" style="margin-top:14px">Ramadan</p>)\s*'
+    tpl = resub(tpl, r'(<div class="card">\s*<span style="color:#0B0F1A">(?:(?!</span>).)*</span>\s*<p class="h3" style="margin-top:14px">Ramadan</p>)\s*'
                      r'<p class="muted" style="margin:8px 0 0">Les horaires du Ramadan[^<]*</p>\s*</div>',
                 lambda m: sc_if('showRam', m.group(1)
                                 + '<p class="muted" style="margin:8px 0 0">{{ramIntro}}</p>'
-                                + sc_if('hasRamToday', '<p style="margin:8px 0 0;font-weight:600;color:#0E4D3C">{{ramToday}}</p>', 'false')
+                                + sc_if('hasRamToday', '<p style="margin:8px 0 0;font-weight:600;color:#0B0F1A">{{ramToday}}</p>', 'false')
                                 + sc_if('hasRamTar', '<p style="margin:6px 0 0">{{ramTar}}</p>', 'false')
                                 + '</div>'))
-    tpl = resub(tpl, r'(<div class="card">\s*<span style="color:#0E4D3C">(?:(?!</span>).)*</span>\s*<p class="h3" style="margin-top:14px">Prières de l’Aïd</p>)\s*'
+    tpl = resub(tpl, r'(<div class="card">\s*<span style="color:#0B0F1A">(?:(?!</span>).)*</span>\s*<p class="h3" style="margin-top:14px">Prières de l’Aïd</p>)\s*'
                      r'<p class="muted" style="margin:8px 0 0">Date selon l’annonce TCOM\. Lieu :</p>\s*'
-                     r'<p style="margin:6px 0 0;font-size:20px;font-weight:700;color:#0E4D3C">15 rue Frontenac</p>\s*'
+                     r'<p style="margin:6px 0 0;font-size:20px;font-weight:700;color:#0B0F1A">15 rue Frontenac</p>\s*'
                      r'<p class="muted" style="margin:2px 0 0;font-size:15px">[^<]*</p>\s*'
                      r'<a class="btn btn-ghost" href="https://maps\.google\.com/\?q=15\+rue\+Frontenac\+Edmundston"( style="margin-top:16px">(?:(?!</a>).)*</a>)\s*</div>',
                 lambda m: sc_if('showAid', m.group(1)
                                 + '<p class="muted" style="margin:8px 0 0">{{aidDates}} Lieu :</p>'
-                                + '<p style="margin:6px 0 0;font-size:20px;font-weight:700;color:#0E4D3C;overflow-wrap:anywhere">{{aidLieu}}</p>'
+                                + '<p style="margin:6px 0 0;font-size:20px;font-weight:700;color:#0B0F1A;overflow-wrap:anywhere">{{aidLieu}}</p>'
                                 + sc_if('hasAidHref', '<a class="btn btn-ghost" href="{{aidHref}}"' + m.group(2), 'true')
                                 + '</div>'))
     tpl = resub(tpl, r'(<div class="card" style="display:flex;flex-direction:column">\s*<p class="h3">Qibla</p>.*?</svg>\s*<p style="margin:0">.*?</p>\s*</div>\s*</div>)',
@@ -273,7 +273,7 @@ def patch_markup(tpl):
     tpl = rep(tpl, '@keyframes needle{from{transform:rotate(-30deg)}to{transform:rotate(61.6deg)}}',
               '@keyframes needle{from{transform:rotate(-90deg)}to{transform:rotate(0deg)}}')
     tpl = rep(tpl, '.needle{transform:rotate(61.6deg) !important}', '.needle{transform:rotate(0deg) !important}')
-    tpl = resub(tpl, r'(<section class="sand" style="border-top:1px solid #E4D9C0">\s*<div class="wrap sec g3">.*?</section>)',
+    tpl = resub(tpl, r'(<section class="sand" style="border-top:1px solid #E9E3D3">\s*<div class="wrap sec g3">.*?</section>)',
                 lambda m: sc_if('showSand', m.group(1)))
     return tpl
 
@@ -330,7 +330,7 @@ LIVE_SCRIPT = r'''<script id="ascil-prayer-live">
       var bg = isToday ? '#F6E7C4' : (isFri ? '#F7F2E4' : '#fff');
       var row = '<tr class="' + (isFri ? '' : 'nf') + '" style="background:' + bg + '"' + (isToday ? ' aria-current="date"' : '') + '>';
       row += '<td style="white-space:nowrap;font-weight:' + (isFri || isToday ? 700 : 400) + '">' + esc(label) +
-        (isToday ? ' <span class="pill" style="background:#C49A4A;color:#1E2B26;padding:2px 8px;font-size:11px">AUJOURD’HUI</span>' : '') + '</td>';
+        (isToday ? ' <span class="pill" style="background:#D9B46C;color:#141B2C;padding:2px 8px;font-size:11px">AUJOURD’HUI</span>' : '') + '</td>';
       row += cell(fajr) + cell(d.lever || D.lever);
       if (isFri) {
         var j = d.jumuha || D.jumuha || D.jumua || '';
@@ -423,7 +423,7 @@ KHUTBA_XVALS = r"""
       kPrev: () => this.setState({ kw: Math.max(0, kw - 1) }),
       kNext: () => this.setState({ kw: Math.min(Math.max(0, list.length - 1), kw + 1) }),
       kWeeks: list.map((v, o) => ({ date: fd(v.date), main: v.langue, trad: hasT(v) ? 'Traduction : ' + v.traduction : 'Sans traduction',
-        pressed: String(o === kw), bd: o === kw ? '#C49A4A' : '#E4D9C0', pick: () => this.setState({ kw: o }) })),
+        pressed: String(o === kw), bd: o === kw ? '#D9B46C' : '#E9E3D3', pick: () => this.setState({ kw: o }) })),
       kHasWeeks: list.length > 0, kNote: note, kHasNote: !!note,
     };
   }
@@ -473,7 +473,7 @@ RAPPEL_XVALS = r"""
         if (ms > 0 && ms < 2147483647) this.rTimer = setTimeout(() => {
           const son = document.getElementById('rp-son'), vib = document.getElementById('rp-vib');
           const wantVib = RS.vibration && (!vib || vib.checked);
-          try { new N(title(target), { body: target.n + ' à ' + target.time + ' · 34, 37e Avenue, Edmundston', tag: 'ascil-' + target.n, silent: !(RS.son && (!son || son.checked)) }); } catch (e) {}
+          try { new N(title(target), { body: target.n + ' à ' + target.time + ' · 106, rue de l’Église, Edmundston', tag: 'ascil-' + target.n, silent: !(RS.son && (!son || son.checked)) }); } catch (e) {}
           try { if (wantVib && navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {}
           this.rKey = ''; this.setState({ now2: Date.now() });
         }, ms);
@@ -500,7 +500,7 @@ RAPPEL_XVALS = r"""
           const st0 = toUtc(d.date, t);
           L.push('BEGIN:VEVENT', 'UID:' + d.date + '-' + p.col + '@ascil-mosquee', 'DTSTAMP:' + now, 'DTSTART:' + stamp(st0),
             'DTEND:' + stamp(new Date(st0.getTime() + 15 * 60000)), 'SUMMARY:' + p.n.replace('\u2019', "'") + ' - ASCIL',
-            'LOCATION:34, 37e Avenue\\, Edmundston', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + p.n.replace('\u2019', "'"),
+            'LOCATION:106, rue de l’Église\\, Edmundston', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + p.n.replace('\u2019', "'"),
             'TRIGGER:-PT' + (st.rdl || 0) + 'M', 'END:VALARM', 'END:VEVENT');
           n++;
         });
@@ -515,7 +515,7 @@ RAPPEL_XVALS = r"""
       } catch (e) { this.setState({ rIcsMsg: 'Le téléchargement a échoué. Réessayez.' }); }
     };
     return {
-      rPrayers: offered.map((p) => ({ n: p.n, t: p.time || 'heure à venir', pressed: String(!!st.rp[p.n]), bg: st.rp[p.n] ? '#0E4D3C' : '#fff', fg: st.rp[p.n] ? '#fff' : '#0E4D3C',
+      rPrayers: offered.map((p) => ({ n: p.n, t: p.time || 'heure à venir', pressed: String(!!st.rp[p.n]), bg: st.rp[p.n] ? '#0B0F1A' : '#fff', fg: st.rp[p.n] ? '#fff' : '#0B0F1A',
         toggle: () => persist({ rp: Object.assign({}, st.rp, { [p.n]: !st.rp[p.n] }) }) })),
       rMissing: offered.some((p) => !p.time),
       rDelays: [[0, 'À l\u2019heure']].concat(RS.delais.map((d) => [d, dLabel(d) + ' avant'])).map((d) => ({ label: d[1], pressed: String(st.rdl === d[0]), pick: () => persist({ rdl: d[0] }) })),
@@ -556,8 +556,8 @@ def patch_khutba(tpl):
     if '{{kJum}}' in tpl:
         return tpl
     tpl = resub(tpl, r'<div class="flag" role="note"[^>]*>(?:(?!</div>).)*</div>', lambda m: '')
-    tpl = resub(tpl, r'<p style="margin:24px 0 0;color:#F3EAD8">Jumu’a à <strong style="color:#fff">12:30</strong>(?:(?!</p>).)*</p>',
-                lambda m: sc_if('kHasCur', '<p style="margin:24px 0 0;color:#F3EAD8">Jumu’a à <strong style="color:#fff">{{kJum}}</strong>'
+    tpl = resub(tpl, r'<p style="margin:24px 0 0;color:#F4EBD6">Jumu’a à <strong style="color:#fff">12:30</strong>(?:(?!</p>).)*</p>',
+                lambda m: sc_if('kHasCur', '<p style="margin:24px 0 0;color:#F4EBD6">Jumu’a à <strong style="color:#fff">{{kJum}}</strong>'
                                 + sc_if('kHasImam', ' · Imam {{kImam}}', 'false') + '</p>', 'false'))
     tpl = rep(tpl, 'Les prochains vendredis <span class="ex">[EXEMPLE À MODIFIER]</span></h2>', 'Les prochains vendredis</h2>')
     tpl = resub(tpl, r'(<div class="g4" style="margin-top:20px">\s*<sc-for list="\{\{kWeeks\}\}".*?</sc-for>\s*</div>)', lambda m: sc_if('kHasWeeks', m.group(1), 'true'))
@@ -586,7 +586,7 @@ def patch_rappel(tpl):
               + sc_if('rHasIcs', '<button type="button" class="btn btn-ghost" sc-camel-on-click="{{rIcs}}" style="width:100%;min-height:52px;margin-top:14px">'
                       'Ajouter les rappels du mois à mon calendrier</button>'
                       '<p class="muted" style="margin:8px 0 0;font-size:14px">Fichier .ics : vos rappels sonnent même page fermée.</p>', 'false')
-              + sc_if('rHasIcsMsg', '<p role="status" style="margin:8px 0 0;font-size:14px;font-weight:600;color:#0E4D3C">{{rIcsMsg}}</p>', 'false'))
+              + sc_if('rHasIcsMsg', '<p role="status" style="margin:8px 0 0;font-size:14px;font-weight:600;color:#0B0F1A">{{rIcsMsg}}</p>', 'false'))
     tpl = resub(tpl, r'(<div class="flag" style="background:#FDF3F2;border:1.5px dashed #B3261E">.*?)\s*<span class="muted">\(état d’erreur\)</span>(</p></div>)',
                 lambda m: sc_if('rDenied', m.group(1) + m.group(2), 'false'))
     return tpl

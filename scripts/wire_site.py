@@ -1045,8 +1045,8 @@ ALERT_SCRIPT = r"""<script id="ascil-alert-banner">
     pg_calendrier: 'N3-Calendrier', pg_inscription: 'N3-Inscription', pg_dua: 'N3-Dua' };
   // Couleurs du site ; contrastes texte / fond : blanc sur vert 9,6:1, encre sur or 6,9:1, blanc sur rouge 6,5:1.
   var TONES = {
-    info: { bg: '#0E4D3C', fg: '#FFFFFF', label: 'Information' },
-    attention: { bg: '#C49A4A', fg: '#1E2B26', label: 'Attention' },
+    info: { bg: '#0B0F1A', fg: '#FFFFFF', label: 'Information' },
+    attention: { bg: '#D9B46C', fg: '#141B2C', label: 'Attention' },
     urgent: { bg: '#B3261E', fg: '#FFFFFF', label: 'Urgent' }
   };
   var ICON = { info: '<circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path>',
@@ -1069,7 +1069,7 @@ ALERT_SCRIPT = r"""<script id="ascil-alert-banner">
     el.setAttribute('role', 'region');
     el.setAttribute('aria-label', 'Information importante');
     el.style.cssText = 'position:relative;z-index:60;background:' + t.bg + ';color:' + t.fg +
-      ';font:600 15px/1.45 "Noto Sans",system-ui,sans-serif;padding:10px 16px';
+      ';font:600 15px/1.45 "Jost",system-ui,sans-serif;padding:10px 16px';
     var row = document.createElement('div');
     row.style.cssText = 'max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;text-align:center';
     var svg = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
@@ -1180,9 +1180,9 @@ SEASON_SCRIPT = r"""<script id="ascil-season">
     el.id = 'ascil-season';
     el.setAttribute('aria-label', t.title);
     // Fond vert du site : texte crème 8,6:1 ; titre arabe en or, en grand (≥ 18,7 px gras) : 4,3:1.
-    el.style.cssText = 'background:#0E4D3C;color:#F3EAD8;border-radius:20px;padding:20px 24px;margin:16px auto;' +
+    el.style.cssText = 'background:#0B0F1A;color:#F4EBD6;border-radius:20px;padding:20px 24px;margin:16px auto;' +
       'max-width:1180px;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;' +
-      'font-family:"Noto Sans",system-ui,sans-serif';
+      'font-family:"Jost",system-ui,sans-serif';
     var head = document.createElement('div');
     head.style.cssText = 'flex:1 1 260px;min-width:0';
     var h = document.createElement('p');
@@ -1190,7 +1190,7 @@ SEASON_SCRIPT = r"""<script id="ascil-season">
     h.textContent = t.title;
     var ar = document.createElement('p');
     ar.lang = 'ar'; ar.dir = 'rtl';
-    ar.style.cssText = 'margin:4px 0 0;font-size:22px;font-weight:700;color:#C49A4A;text-align:start';
+    ar.style.cssText = 'margin:4px 0 0;font-size:22px;font-weight:700;color:#D9B46C;text-align:start';
     ar.textContent = t.ar;
     head.appendChild(h); head.appendChild(ar);
     var info = document.createElement('p');
@@ -1208,7 +1208,7 @@ SEASON_SCRIPT = r"""<script id="ascil-season">
     link.href = 'Horaires.dc.html';
     link.textContent = 'Horaires du mois';
     link.style.cssText = 'display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;' +
-      'background:#C49A4A;color:#1E2B26;font-weight:700;text-decoration:none';
+      'background:#D9B46C;color:#141B2C;font-weight:700;text-decoration:none';
     el.appendChild(head); el.appendChild(info); el.appendChild(link);
     return el;
   }
