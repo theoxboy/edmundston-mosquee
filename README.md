@@ -1,2 +1,2 @@
-# ascil-mosquee
-Site web de la mosquée de Rivière-du-Loup (ASCIL) — déployé sur Cloudflare Pages
+# edmundston-mosquee
+Site web du Centre Islamique d'Edmundston (Edmundston Islamic Centre) — déployé sur Cloudflare Pages

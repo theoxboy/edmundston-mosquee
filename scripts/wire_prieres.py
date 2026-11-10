@@ -13,7 +13,7 @@ Pages Horaires.dc.html, M-Horaires.dc.html, T-Horaires.dc.html - étape H4 :
    « Aujourd'hui », compte à rebours, menu mobile, pied de page) viennent de la base.
    Le script #ascil-prayer-live charge les données, les range dans window.__ascilPrayer et
    prévient la page (événement « ascil:prayer »), qui se redessine.
-2. Tableau « Mois complet » : mois courant (fuseau America/Toronto) lu dans la base,
+2. Tableau « Mois complet » : mois courant (fuseau America/Moncton) lu dans la base,
    « AUJOURD'HUI » sur le vrai jour, vendredis mis en évidence avec l'heure de Jumu'a,
    colonnes Suhoor / Iftar pendant le Ramadan (si activées). Bouton PDF retiré.
 3. Réglages « horaires » (Superadmin → Horaires) : bloc Aujourd'hui (affichage, compte à
@@ -106,7 +106,7 @@ HOR_VALS = r'''  /*ascil-prayer*/
       const dd = g('aid', a[0], ''), hh = g('aid', a[1], '');
       if (dd && (!today || dd >= today)) aidL.push(a[2] + ' : ' + fmtDay(dd) + (hh ? ' à ' + hh : '') + '.');
     });
-    const aidHref = String(g('aid', 'itineraire', 'https://maps.google.com/?q=15+rue+Frontenac+Riviere-du-Loup') || '');
+    const aidHref = String(g('aid', 'itineraire', 'https://maps.google.com/?q=15+rue+Frontenac+Edmundston') || '');
     const qDeg = String(g('qibla', 'degres', '61,6') || '61,6');
     const qNum = parseFloat(qDeg.replace(',', '.'));
     const qRepere = String(g('qibla', 'repere', '') || '');
@@ -255,7 +255,7 @@ def patch_markup(tpl):
                      r'<p class="muted" style="margin:8px 0 0">Date selon l’annonce TCOM\. Lieu :</p>\s*'
                      r'<p style="margin:6px 0 0;font-size:20px;font-weight:700;color:#0E4D3C">15 rue Frontenac</p>\s*'
                      r'<p class="muted" style="margin:2px 0 0;font-size:15px">[^<]*</p>\s*'
-                     r'<a class="btn btn-ghost" href="https://maps\.google\.com/\?q=15\+rue\+Frontenac\+Riviere-du-Loup"( style="margin-top:16px">(?:(?!</a>).)*</a>)\s*</div>',
+                     r'<a class="btn btn-ghost" href="https://maps\.google\.com/\?q=15\+rue\+Frontenac\+Edmundston"( style="margin-top:16px">(?:(?!</a>).)*</a>)\s*</div>',
                 lambda m: sc_if('showAid', m.group(1)
                                 + '<p class="muted" style="margin:8px 0 0">{{aidDates}} Lieu :</p>'
                                 + '<p style="margin:6px 0 0;font-size:20px;font-weight:700;color:#0E4D3C;overflow-wrap:anywhere">{{aidLieu}}</p>'
@@ -401,7 +401,7 @@ KHUTBA_XVALS = r"""
     const PT = (typeof window !== 'undefined' && window.__ascilPrayer) || {};
     const KS = PT.khutba || null, st = this.state;
     let today = PT.date || '';
-    if (!today) { try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) {} }
+    if (!today) { try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) {} }
     const fd = (iso) => { try { return new Intl.DateTimeFormat('fr-CA', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(iso + 'T12:00:00Z')); } catch (e) { return iso; } };
     const list = KS ? (KS.vendredis || []).filter((v) => v.on && v.date >= today).slice(0, KS.nombre || 4) : [];
     const kw = Math.min(st.kw || 0, Math.max(0, list.length - 1));
@@ -450,7 +450,7 @@ RAPPEL_XVALS = r"""
       }), 0);
     }
     let secs = 0, isFri = false;
-    try { const p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Toronto', weekday: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(st.now2));
+    try { const p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Moncton', weekday: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(st.now2));
       const g = (t) => +((p.find((x) => x.type === t) || {}).value || 0); secs = (g('hour') % 24) * 3600 + g('minute') * 60 + g('second');
       isFri = (p.find((x) => x.type === 'weekday') || {}).value === 'Fri'; } catch (e) {}
     const okT = (v) => typeof v === 'string' && /^\d\d:\d\d$/.test(v);
@@ -473,7 +473,7 @@ RAPPEL_XVALS = r"""
         if (ms > 0 && ms < 2147483647) this.rTimer = setTimeout(() => {
           const son = document.getElementById('rp-son'), vib = document.getElementById('rp-vib');
           const wantVib = RS.vibration && (!vib || vib.checked);
-          try { new N(title(target), { body: target.n + ' à ' + target.time + ' · 174 rue Lafontaine, Rivière-du-Loup', tag: 'ascil-' + target.n, silent: !(RS.son && (!son || son.checked)) }); } catch (e) {}
+          try { new N(title(target), { body: target.n + ' à ' + target.time + ' · 34, 37e Avenue, Edmundston', tag: 'ascil-' + target.n, silent: !(RS.son && (!son || son.checked)) }); } catch (e) {}
           try { if (wantVib && navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {}
           this.rKey = ''; this.setState({ now2: Date.now() });
         }, ms);
@@ -485,7 +485,7 @@ RAPPEL_XVALS = r"""
       const days = (PT.days || []).filter((d) => d.date >= (PT.date || ''));
       const toUtc = (ds, hm) => { const y = +ds.slice(0, 4), mo = +ds.slice(5, 7), d = +ds.slice(8, 10), h = +hm.slice(0, 2), mi = +hm.slice(3, 5);
         const want = Date.UTC(y, mo - 1, d, h, mi); let guess = want;
-        for (let k = 0; k < 2; k++) { const q = {}; new Intl.DateTimeFormat('en-US', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(guess)).forEach((x) => { q[x.type] = x.value; });
+        for (let k = 0; k < 2; k++) { const q = {}; new Intl.DateTimeFormat('en-US', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(guess)).forEach((x) => { q[x.type] = x.value; });
           guess += want - Date.UTC(+q.year, +q.month - 1, +q.day, +q.hour % 24, +q.minute); }
         return new Date(guess); };
       const stamp = (dt) => dt.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
@@ -500,7 +500,7 @@ RAPPEL_XVALS = r"""
           const st0 = toUtc(d.date, t);
           L.push('BEGIN:VEVENT', 'UID:' + d.date + '-' + p.col + '@ascil-mosquee', 'DTSTAMP:' + now, 'DTSTART:' + stamp(st0),
             'DTEND:' + stamp(new Date(st0.getTime() + 15 * 60000)), 'SUMMARY:' + p.n.replace('\u2019', "'") + ' - ASCIL',
-            'LOCATION:174 rue Lafontaine\\, Riviere-du-Loup', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + p.n.replace('\u2019', "'"),
+            'LOCATION:34, 37e Avenue\\, Edmundston', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + p.n.replace('\u2019', "'"),
             'TRIGGER:-PT' + (st.rdl || 0) + 'M', 'END:VALARM', 'END:VEVENT');
           n++;
         });

@@ -53,12 +53,12 @@ SCRIPT = r"""<script id="ascil-pied-live">
       if (https(g.mapUrl)) each('a[href*="maps.google."]', function (a) { setHref(a, g.mapUrl.trim()); });
       if (g.address || g.city) {
         var adr = document.querySelector('footer .g4 > div:first-child > p');
-        var want = (g.address || '174 rue Lafontaine') + '\n' + (g.city || 'Rivière-du-Loup (Québec)');
+        var want = (g.address || '34, 37e Avenue') + '\n' + (g.city || 'Edmundston, NB E3V 3S2');
         if (adr && adr.innerText.replace(/\r/g, '').trim() !== want) {
           adr.textContent = '';
-          adr.appendChild(document.createTextNode(g.address || '174 rue Lafontaine'));
+          adr.appendChild(document.createTextNode(g.address || '34, 37e Avenue'));
           adr.appendChild(document.createElement('br'));
-          adr.appendChild(document.createTextNode(g.city || 'Rivière-du-Loup (Québec)'));
+          adr.appendChild(document.createTextNode(g.city || 'Edmundston, NB E3V 3S2'));
         }
       }
       var ul = followList();

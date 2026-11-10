@@ -279,7 +279,7 @@ SCRIPT = r"""<script id="ascil-i18n">
 
 
 # Textes identiques dans les trois langues (noms propres, adresses, sélecteur de langue).
-KEEP = {'ASCIL', 'FR', 'EN', 'English', 'Français', 'Facebook', 'associationrdl.ascil@gmail.com', 'gmail.com', 'N', '{x.texte}', '9 619 km'}
+KEEP = {'ASCIL', 'FR', 'EN', 'English', 'Français', 'Facebook', '', 'gmail.com', 'N', '{x.texte}', '9 619 km'}
 
 
 def norm(s):

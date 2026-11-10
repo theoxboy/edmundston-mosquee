@@ -664,7 +664,7 @@ def patch_cours(tpl, default):
     sec = tpl[a:b]
     sec = resub(sec, r'(id="tar-t" style="margin-top:10px">)25 à 40 \$ par mois(</p><p class="muted" style="margin:8px 0 0">).*?(</p>)', r'\1{{tarifTitre}}\2{{tarifTxt}}\3')
     sec = resub(sec, r'(<div class="card"><p class="eyebrow">Premier cours</p>.*?<p class="muted" style="margin:8px 0 0">).*?(</p></div>)', r'\1{{essaiTxt}}\2')
-    sec = resub(sec, r'(<p class="eyebrow">Lieu</p><p class="h3" style="margin-top:10px">)174 rue Lafontaine(</p><p class="muted" style="margin:8px 0 0">).*?(</p>)', r'\1{{lieuTitre}}\2{{lieuTxt}}\3')
+    sec = resub(sec, r'(<p class="eyebrow">Lieu</p><p class="h3" style="margin-top:10px">)34, 37e Avenue(</p><p class="muted" style="margin:8px 0 0">).*?(</p>)', r'\1{{lieuTitre}}\2{{lieuTxt}}\3')
     ea = sec.index('<div class="card"><p class="eyebrow">Premier cours</p>')
     sec = wrap_between(sec, ea, '</p></div>', 'essaiOn')
     tpl = tpl[:a] + sc_if('infosOn', sec) + tpl[b:]
@@ -729,7 +729,7 @@ PHONE_SVG = ('<svg class="icon" aria-hidden="true" width="22" height="22" sc-cam
 FUNERAILLES_JS = r"""
     const PT = (typeof window !== 'undefined' && window.__ascilPrayer) || {};
     const V = PT.funerailles || __DEFAULT__, st = this.state;
-    const tel = String(V.telephone || '').trim(), mail = String(V.courriel || '').trim() || 'associationrdl.ascil@gmail.com';
+    const tel = String(V.telephone || '').trim(), mail = String(V.courriel || '').trim() || '';
     const S = (V.etapes || []).filter((s) => s.on !== false && s.titre), D = ((V.docs || {}).items || []).filter((d) => d.on !== false && d.titre);
     const W = ['Aucune', 'Une', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six', 'Sept', 'Huit', 'Neuf', 'Dix'];
     const main = tel || mail;
@@ -754,9 +754,9 @@ FUNERAILLES_JS = r"""
 def patch_funerailles(tpl, default):
     tpl = strip_marks(tpl)
     tpl = set_xvals(tpl, FUNERAILLES_JS, default)
-    tpl = rep(tpl, 'Contactez les responsables par courriel à associationrdl.ascil@gmail.com.</p>', '{{fuLead}}</p>')
+    tpl = rep(tpl, 'Contactez les responsables par courriel à .</p>', '{{fuLead}}</p>')
     tpl = rep(tpl, '>Responsable des funérailles · 24 h / 24</p>', '>{{fuWho}}</p>')
-    tpl = rep(tpl, 'overflow-wrap:anywhere">associationrdl.ascil@gmail.com</p>', 'overflow-wrap:anywhere">{{fuMain}}</p>')
+    tpl = rep(tpl, 'overflow-wrap:anywhere"></p>', 'overflow-wrap:anywhere">{{fuMain}}</p>')
     m = re.search(r'<a class="btn btn-green" href="mailto:associationrdl\.ascil@gmail\.com" style="font-size:18px;min-height:56px">(<svg.*?</svg>)Écrire par courriel</a>', tpl, flags=re.S)
     assert m, 'bouton courriel introuvable'
     tpl = tpl.replace(m.group(0), '<a class="btn btn-green" href="{{fuHref}}" style="font-size:18px;min-height:56px">'
@@ -836,7 +836,7 @@ def patch_aide(tpl, default):
                 r'<div class="prog" style="background:#F3EAD8;margin-top:6px;height:8px"><i style="width:{{x.w}}%"></i></div></li></sc-for>\2')
     a = tpl.index('<div class="card"><p class="eyebrow">Ce qui manque ce mois-ci</p>')
     tpl = wrap_between(tpl, a, '</ul></div>', 'manqueOn')
-    tpl = resub(tpl, r'(<p class="eyebrow">Déposer des denrées</p><p class="h3" style="margin-top:10px">)174 rue Lafontaine(</p><p class="tnum" style="margin:8px 0 0">)Samedi et dimanche, 10 h – 14 h(</p>)'
+    tpl = resub(tpl, r'(<p class="eyebrow">Déposer des denrées</p><p class="h3" style="margin-top:10px">)34, 37e Avenue(</p><p class="tnum" style="margin:8px 0 0">)Samedi et dimanche, 10 h – 14 h(</p>)'
                 r'(<p class="muted" style="margin:8px 0 0">)Produits non périssables, non ouverts, non périmés\.(</p>)',
                 r'\1{{depotAdr}}\2{{depotQuand}}\3<sc-if value="{{hasDepotNote}}" hint-placeholder-val="{{ true }}">\4{{depotNote}}\5</sc-if>')
     a = tpl.index('<div class="card"><p class="eyebrow">Déposer des denrées</p>')
@@ -866,9 +866,9 @@ FEMMES_JS = r"""
       HF[k] = [NAMES[i], slots.length ? slots.map((s) => fmt(s[0]) + ' – ' + fmt(s[1])).join(' · ') : 'Fermé', slots];
     });
     let wd = 'lun', mins = 0, ymd = '';
-    try { const p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Toronto', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(this.state.now));
+    try { const p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Moncton', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(this.state.now));
       const g = (t) => (p.find((x) => x.type === t) || {}).value; wd = { Mon: 'lun', Tue: 'mar', Wed: 'mer', Thu: 'jeu', Fri: 'ven', Sat: 'sam', Sun: 'dim' }[g('weekday')] || 'lun'; mins = (+g('hour')) * 60 + (+g('minute'));
-      ymd = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(this.state.now)); } catch (e) {}
+      ymd = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(this.state.now)); } catch (e) {}
     const closedToday = !!V.fermeture && V.fermeture === ymd;
     const today = HF[wd], slot = closedToday ? null : today[2].find((s) => mins >= s[0] && mins < s[1]);
     const nextS = closedToday ? null : today[2].find((s) => s[0] > mins);

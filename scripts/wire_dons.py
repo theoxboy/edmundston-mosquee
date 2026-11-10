@@ -365,7 +365,7 @@ DONS_JS = r"""
       exp: this.state.faq === k ? 'true' : 'false', toggle: () => this.setState({ faq: this.state.faq === k ? -1 : k }) }));
     // Bandeau Merci : partage de cette page.
     const url = typeof location !== 'undefined' ? location.origin + location.pathname : '';
-    const shareTxt = 'Soutenez le nouveau lieu de la mosquée de Rivière-du-Loup : ';
+    const shareTxt = 'Soutenez le nouveau lieu de la mosquée de Edmundston : ';
     const SUIVRE = { campagne: 'N3-Campagne.dc.html', evenements: 'Evenements.dc.html', apropos: 'APropos.dc.html', accueil: pre ? 'Accueil.dc.html' : 'Main.dc.html' };
     return {
       objFmt: nf(objectif), objMax: String(objectif), leadObj: objectif > 0 ? nf(objectif) : 'les fonds nécessaires',

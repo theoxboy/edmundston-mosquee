@@ -6,7 +6,7 @@
     { "re": "^· dans (\\d+) min$", "ar": "· بعد $1 دقيقة", "en": "· in $1 min" },
     { "re": "^dans (\\d+) h (\\d\\d)$", "ar": "بعد $1 س $2 د", "en": "in $1 h $2" },
     { "re": "^dans (\\d+) min$", "ar": "بعد $1 دقيقة", "en": "in $1 min" },
-    { "re": "^© (\\d{4}) Association Socio-Culturelle Islamique Louperivoise — Rivière-du-Loup, Québec$", "ar": "© $1 الجمعية الاجتماعية الثقافية الإسلامية بريفيير-دو-لو — ريفيير-دو-لو، كيبيك", "en": "© $1 Association Socio-Culturelle Islamique Louperivoise — Rivière-du-Loup, Quebec" },
+    { "re": "^© (\\d{4}) Edmundston Islamic Centre — Edmundston, Québec$", "ar": "© $1 الجمعية الاجتماعية الثقافية الإسلامية بإدموندستون — إدموندستون، كيبيك", "en": "© $1 Edmundston Islamic Centre — Edmundston, Quebec" },
     { "re": "^(\\d[\\d\\s.,]*) \\$ récoltés · (\\d+(?:[.,]\\d+)?) ?%$", "ar": "$1 $ مجموعة · $2 %", "en": "$1 $ raised · $2 %" }
   ],
 
@@ -27,14 +27,14 @@
   "Langue : français": { "ar": "اللغة: العربية", "en": "Language: English" },
   "Revenir en haut de la page": { "ar": "العودة إلى أعلى الصفحة", "en": "Back to top" },
 
-  "Mosquée de Rivière-du-Loup": { "ar": "مسجد ريفيير-دو-لو", "en": "Rivière-du-Loup Mosque" },
-  "ASCIL — Association Socio-Culturelle Islamique Louperivoise, accueil": { "ar": "ASCIL — الجمعية الاجتماعية الثقافية الإسلامية بريفيير-دو-لو، الصفحة الرئيسية", "en": "ASCIL — Association Socio-Culturelle Islamique Louperivoise, home" },
+  "Centre Islamique d'Edmundston": { "ar": "مسجد إدموندستون", "en": "Edmundston Mosque" },
+  "Centre Islamique d'Edmundston — Edmundston Islamic Centre, accueil": { "ar": "Centre Islamique d'Edmundston — الجمعية الاجتماعية الثقافية الإسلامية بإدموندستون، الصفحة الرئيسية", "en": "Centre Islamique d'Edmundston — Edmundston Islamic Centre, home" },
   "Association Socio-Culturelle": { "ar": "الجمعية الاجتماعية الثقافية", "en": "Association Socio-Culturelle" },
-  "Islamique Louperivoise": { "ar": "الإسلامية بريفيير-دو-لو", "en": "Islamique Louperivoise" },
-  "Rivière-du-Loup (Québec)": { "ar": "ريفيير-دو-لو (كيبيك)", "en": "Rivière-du-Loup (Quebec)" },
+  "Islamique Louperivoise": { "ar": "الإسلامية بإدموندستون", "en": "Islamique Louperivoise" },
+  "Edmundston, NB": { "ar": "إدموندستون (كيبيك)", "en": "Edmundston (Quebec)" },
 
   "Horaires du mois": { "ar": "مواقيت الشهر", "en": "This month’s times" },
-  "Tableau officiel de l’ASCIL": { "ar": "الجدول الرسمي للجمعية", "en": "ASCIL’s official timetable" },
+  "Tableau officiel de l’Centre Islamique d'Edmundston": { "ar": "الجدول الرسمي للجمعية", "en": "Centre Islamique d'Edmundston’s official timetable" },
   "Rappel de prière": { "ar": "تذكير بالصلاة", "en": "Prayer reminder" },
   "Une alerte avant chaque prière": { "ar": "تنبيه قبل كل صلاة", "en": "An alert before each prayer" },
   "Langue de la khutba": { "ar": "لغة الخطبة", "en": "Khutbah language" },
@@ -84,10 +84,10 @@
   "Le site": { "ar": "الموقع", "en": "The site" },
   "Outils": { "ar": "أدوات", "en": "Tools" },
   "Suivre et s’informer": { "ar": "تابعنا وابقَ على اطلاع", "en": "Follow and stay informed" },
-  "Page Facebook de l’ASCIL": { "ar": "صفحة الجمعية على فيسبوك", "en": "ASCIL’s Facebook page" },
+  "Page Facebook de l’Centre Islamique d'Edmundston": { "ar": "صفحة الجمعية على فيسبوك", "en": "Centre Islamique d'Edmundston’s Facebook page" },
   "TCOM — annonces Ramadan et Aïd": { "ar": "TCOM — إعلانات رمضان والعيد", "en": "TCOM — Ramadan and Eid announcements" },
   "CCIQ — annonces Ramadan et Aïd": { "ar": "CCIQ — إعلانات رمضان والعيد", "en": "CCIQ — Ramadan and Eid announcements" },
   "Itinéraire": { "ar": "الاتجاهات", "en": "Directions" },
   "Espace administration": { "ar": "فضاء الإدارة", "en": "Admin area" },
-  "174 rue Lafontaine": { "ar": "174 شارع لافونتين", "en": "174 rue Lafontaine" }
+  "34, 37e Avenue": { "ar": "174 شارع لافونتين", "en": "34, 37e Avenue" }
 }

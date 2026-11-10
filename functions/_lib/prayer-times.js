@@ -1,7 +1,7 @@
 // Tableau mensuel des heures de prière (table prayer_times) : source unique des horaires du site.
 // Une ligne par jour (date AAAA-MM-JJ). Pour les heures du jour, toute case vide ou absente se
 // replie sur les défauts de l'Accueil (home.priere : Fajr 06:30, Jumu'a 12:30, Icha 19:00).
-// Lever, Dohr, Asr et Maghreb encore vides sont alors calculés (ISNA, Rivière-du-Loup) ; la liste
+// Lever, Dohr, Asr et Maghreb encore vides sont alors calculés (ISNA, Edmundston) ; la liste
 // `calc` du jour nomme les colonnes calculées. Rien n'est écrit dans la table.
 import { DEFAULT_SETTINGS, cleanHomeSettings } from './settings.js';
 import { CALC_COLUMNS, calcDay } from './prayer-calc.js';
@@ -54,10 +54,10 @@ export function monthDates(ym) {
   return out;
 }
 
-export function todayToronto() {
+export function todayMoncton() {
   try {
     return new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'America/Toronto',
+      timeZone: 'America/Moncton',
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -67,8 +67,8 @@ export function todayToronto() {
   }
 }
 
-export function currentMonthToronto() {
-  return todayToronto().slice(0, 7);
+export function currentMonthMoncton() {
+  return todayMoncton().slice(0, 7);
 }
 
 // Défauts issus de la carte « Prochaine prière » de l'Accueil (site_settings.home.priere),
@@ -86,13 +86,13 @@ export async function readHomeDefaults(db) {
       p = base;
     }
   }
-  const fajr = cleanTime(p.fajr) || '06:30';
+  const fajr = cleanTime(p.fajr) || '';
   const lever = cleanTime(p.lever) || '';
   const dohr = cleanTime(p.dohr) || '';
   const asr = cleanTime(p.asr) || '';
   const maghreb = cleanTime(p.maghreb) || '';
-  const isha = cleanTime(p.icha ?? p.isha) || '19:00';
-  const jumuha = cleanTime(p.jumua ?? p.jumuha) || '12:30';
+  const isha = cleanTime(p.icha ?? p.isha) || '';
+  const jumuha = cleanTime(p.jumua ?? p.jumuha) || '';
 
   return {
     fajr,
@@ -110,9 +110,9 @@ export async function readHomeDefaults(db) {
 export function resolveDayWithDefaults(row, defaults, date) {
   const r = row || {};
   const d = defaults || {
-    fajr: '06:30', lever: '', dohr: '', asr: '', maghreb: '', isha: '19:00', jumuha: '12:30',
+    fajr: '', lever: '', dohr: '', asr: '', maghreb: '', isha: '', jumuha: '',
   };
-  const fajr = cleanTime(r.fajr) || d.fajr || '06:30';
+  const fajr = cleanTime(r.fajr) || d.fajr || '';
   // Lever, Dohr, Asr, Maghreb : ligne du tableau, puis défaut de l'Accueil, et seulement en dernier
   // recours le calcul local ISNA (prayer-calc.js). Fajr, Icha et Jumu'a ne sont jamais calculés.
   const manual = {};
@@ -124,8 +124,8 @@ export function resolveDayWithDefaults(row, defaults, date) {
     if (!manual[col] && computed && computed[col]) { manual[col] = computed[col]; calc.push(col); }
   }
   const { lever, dohr, asr, maghreb } = manual;
-  const isha = cleanTime(r.isha ?? r.icha) || d.isha || '19:00';
-  const jumuha = cleanTime(r.jumuha ?? r.jumua) || d.jumuha || '12:30';
+  const isha = cleanTime(r.isha ?? r.icha) || d.isha || '';
+  const jumuha = cleanTime(r.jumuha ?? r.jumua) || d.jumuha || '';
 
   const hasRow = Boolean(
     row && PRAYER_COLUMNS.some((col) => Boolean(cleanTime(row[col])))
@@ -148,7 +148,7 @@ export function resolveDayWithDefaults(row, defaults, date) {
   };
 }
 
-export async function readDay(db, date = todayToronto()) {
+export async function readDay(db, date = todayMoncton()) {
   const defaults = await readHomeDefaults(db);
   let row = null;
   if (db) {
@@ -329,3 +329,21 @@ export async function writeMonth(db, month, cleanedDays) {
 
   return { upserted, cleared };
 }
+
+export const todayMoncton = todayMoncton;
+export const currentMonthToronto = currentMonthMoncton;
+
+export const todayMoncton = todayMoncton;
+export const currentMonthToronto = currentMonthMoncton;
+
+export const todayMoncton = todayMoncton;
+export const currentMonthToronto = currentMonthMoncton;
+
+export const todayMoncton = todayMoncton;
+export const currentMonthToronto = currentMonthMoncton;
+
+export const todayMoncton = todayMoncton;
+export const currentMonthToronto = currentMonthMoncton;
+
+export const todayToronto = todayMoncton;
+export const currentMonthToronto = currentMonthMoncton;

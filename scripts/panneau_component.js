@@ -16,7 +16,7 @@ class Component extends DCLogic {
         { id: 'campagne', on: true, lien: 'Page : Faire un don' }],
       annonces: [],
       max: 3,
-      priere: { fajr: '06:30', lever: '', dohr: '', jumua: '12:30', asr: '', maghreb: '', icha: '19:00' }
+      priere: { fajr: '', lever: '', dohr: '', jumua: '', asr: '', maghreb: '', icha: '' }
     };
   }
   constructor(props) {
@@ -155,7 +155,7 @@ class Component extends DCLogic {
         ['evenements', 'Événements', 'Calendrier, inscription'], ['ressources', 'Ressources', 'Dua et annonces'], ['contact', 'Contact', '']]),
       rowsPriere: rows([['hegirien', 'Date hégirienne', 'À côté de la date du jour.'], ['progression', 'Barre de progression', 'Temps écoulé depuis la prière précédente.'], ['puces', 'Puces des prières', 'Les cinq boutons cliquables.']]),
       rowsPied: rows([['pHor', 'Horaires résumés', 'Repris de « Prochaine prière ».'], ['pIti', 'Bouton « Itinéraire »', 'Lien des coordonnées générales.'],
-        ['pFb', 'Page Facebook de l’ASCIL', ''], ['pTcom', 'TCOM — annonces Ramadan et Aïd', ''], ['pCciq', 'CCIQ — annonces Ramadan et Aïd', ''], ['pMail', 'Courriel du pied de page', '']]),
+        ['pFb', 'Page Facebook', ''], ['pTcom', 'TCOM — annonces Ramadan et Aïd', ''], ['pCciq', 'CCIQ — annonces Ramadan et Aïd', ''], ['pMail', 'Courriel du pied de page', '']]),
       maxOpts: [1, 2, 3].map((n) => ({ n, p: String(c.max === n), pick: () => this.upd((x) => { x.max = n; }) })),
       addAnn: () => {
         if (c.annonces.length >= 10) { this.flash('L’accueil compte au plus 10 annonces. Supprimez-en une avant d’en ajouter.'); return; }

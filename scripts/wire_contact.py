@@ -83,7 +83,7 @@ TABS = [
     dict(key='contact', sections=[
         dict(title='Adresse et carte', desc='Adresse, ville, courriel et page Facebook viennent des coordonnées générales (Accueil).', f=[
             SW('carte', 'Carte et bouton « Ouvrir dans Google Maps »'),
-            T('lat', 'Latitude', max=20, ph='47.836047'), T('lng', 'Longitude', max=20, ph='-69.537465'),
+            T('lat', 'Latitude', max=20, ph='47.3726047'), T('lng', 'Longitude', max=20, ph='-68.3247465'),
             T('codePostal', 'Code postal', max=10, ph='G5R 0A0', hint='Vide : la ligne n’est pas affichée.'),
             SW('lignes.stationnement.on', 'Ligne « Stationnement »'), T('lignes.stationnement.texte', 'Texte', max=120, wide=True),
             SW('lignes.fauteuil.on', 'Ligne « Accessible en fauteuil roulant »'), T('lignes.fauteuil.texte', 'Texte', max=120, wide=True),
@@ -217,7 +217,7 @@ SYNC_SCRIPT = r'''<script id="sa-co-sync">
     if (saving) return;
     var coord = function (v, lim) { var n = Number(v.replace(/\s/g, '').replace(',', '.').replace(/[−–]/g, '-')); return v === '' || (isFinite(n) && Math.abs(n) <= lim); };
     if (!coord(val('x-contact-lat'), 90) || !coord(val('x-contact-lng'), 180)) {
-      flash('Coordonnées illisibles. Écrivez par exemple 47.836047 pour la latitude et -69.537465 pour la longitude.');
+      flash('Coordonnées illisibles. Écrivez par exemple 47.3726047 pour la latitude et -68.3247465 pour la longitude.');
       return;
     }
     var mp = val('x-contact-form-mapage');
@@ -334,7 +334,7 @@ CO_JS = r"""
     const PAGES = { accueil: 'Main', horaires: 'Horaires', apropos: 'APropos', services: 'Services', dons: 'Dons', evenements: 'Evenements', ressources: 'Ressources',
       mariages: 'N2-Mariages', funerailles: 'N2-Funerailles' };
     const page = (k) => (PAGES[k] ? pre + PAGES[k] + '.dc.html' : '');
-    const mail = G.email || 'associationrdl.ascil@gmail.com';
+    const mail = G.email || '';
     const at = mail.indexOf('@');
     const L = C.lignes || {};
     const ligne = (k) => !!(L[k] && L[k].on && L[k].texte);
@@ -380,7 +380,7 @@ def patch_contact(tpl):
     card = resub(card, r'<a class="btn btn-gold" href="https://maps\.google\.com/\?q=47\.836047,-69\.537465">', '<a class="btn btn-gold" href="{{coMap}}" target="_blank" rel="noopener">')
     card = rep(card, '>47,836047 · −69,537465</span>', '>{{coCoords}}</span>')
     sec = sec[:ca] + sc_if('coCarte', card) + sec[cb:]
-    sec = rep(sec, '>174 rue Lafontaine<br>Rivière-du-Loup (Québec)</h2>', '>{{coAdr}}<br>{{coVille}}</h2>')
+    sec = rep(sec, '>34, 37e Avenue<br>Edmundston (Québec)</h2>', '>{{coAdr}}<br>{{coVille}}</h2>')
     sec = rep(sec, '<p class="ph" style="margin:12px 0 0">Code postal : affiché une fois confirmé par l’association</p>',
               sc_if('hasCP', '<p class="muted" style="margin:12px 0 0">Code postal : {{coCP}}</p>', 'false'))
     for txt, on, var in (('Stationnement dans les rues avoisinantes', 'liStat', 'txStat'), ('Salle de prière accessible en fauteuil roulant', 'liFaut', 'txFaut'),

@@ -1,5 +1,5 @@
 // Photos des pages créées (étape M1). Les fichiers vivent dans l'espace de stockage Cloudflare KV
-// « ascil-medias », relié sous le nom « MEDIA » (wrangler.toml) ; la clé de chaque fichier est la
+// « edmundston-medias », relié sous le nom « MEDIA » (wrangler.toml) ; la clé de chaque fichier est la
 // colonne file_key de la table media (migration 0011), qui garde sa fiche.
 // KV est « finalement cohérent » : une photo qui vient d'être envoyée peut mettre jusqu'à une minute
 // à être visible partout ; le panneau l'annonce comme « en cours de mise en ligne », pas comme une erreur.
@@ -10,7 +10,7 @@
 //  - le fichier est servi avec son vrai type, nosniff et une politique qui interdit tout script.
 
 export const MAX_BYTES = 5 * 1024 * 1024;
-export const NO_STORAGE = 'Le stockage des photos n’est pas relié au site : l’espace KV « ascil-medias » (liaison MEDIA, déclarée dans wrangler.toml) est introuvable. Vérifiez-le dans Cloudflare, puis redéployez.';
+export const NO_STORAGE = 'Le stockage des photos n’est pas relié au site : l’espace KV « edmundston-medias » (liaison MEDIA, déclarée dans wrangler.toml) est introuvable. Vérifiez-le dans Cloudflare, puis redéployez.';
 export const NO_TABLE = 'La table des photos n’existe pas encore. Appliquez la migration 0011 dans la console D1, puis réessayez.';
 export const KEY_RE = /^[0-9a-f]{32}\.(jpg|png|webp|gif)$/;
 

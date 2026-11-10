@@ -217,15 +217,15 @@ function alertHtml(alert) {
 }
 
 const HEADER = `<header class="hdr"><div class="hdr-in">
-<a class="logo" href="/">ASCIL<small>Mosquée de Rivière-du-Loup</small></a>
+<a class="logo" href="/">Centre Islamique d'Edmundston<small>Edmundston Islamic Centre</small></a>
 <nav aria-label="Navigation principale"><ul class="nav">
 <li><a href="/Horaires.dc.html">Horaires</a></li><li><a href="/APropos.dc.html">À propos</a></li>
 <li><a href="/Services.dc.html">Services</a></li><li><a href="/Evenements.dc.html">Événements</a></li><li><a href="/Contact.dc.html">Contact</a></li>
 <li><a class="don" href="/Dons.dc.html">Faire un don</a></li></ul></nav></div></header>`;
 
 const FOOTER = `<footer class="ftr"><div class="ftr-in">
-<p><strong>ASCIL</strong> · Association Socio-Culturelle Islamique Louperivoise</p>
-<p>174 rue Lafontaine, Rivière-du-Loup (Québec) · <a href="mailto:associationrdl.ascil@gmail.com">associationrdl.ascil@gmail.com</a></p>
+<p><strong>Centre Islamique d'Edmundston</strong> (Edmundston Islamic Centre)</p>
+<p>34, 37e Avenue, Edmundston, NB E3V 3S2</p>
 <p><a href="/">Retour à l’accueil</a></p></div></footer>`;
 
 // Les balises email_off empêchent Cloudflare de remplacer les adresses par « [email protected] » :
@@ -234,7 +234,7 @@ function shell({ title, description, body, noindex, canonical, layout, alert, dr
   const site = layout !== 'blank';
   return `<!doctype html><html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)} — ASCIL</title>
+<title>${esc(title)} — Centre Islamique d'Edmundston</title>
 ${description ? `<meta name="description" content="${esc(description)}">` : ''}
 ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
 ${canonical ? `<link rel="canonical" href="${esc(canonical)}">` : ''}

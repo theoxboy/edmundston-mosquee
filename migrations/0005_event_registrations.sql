@@ -2,7 +2,7 @@
 
 CREATE TABLE IF NOT EXISTS event_registrations (
   id              INTEGER PRIMARY KEY AUTOINCREMENT,
-  event_slug      TEXT    NOT NULL DEFAULT 'iftar-2027',
+  event_slug      TEXT    NOT NULL DEFAULT '',
   event_title     TEXT    NOT NULL,
   code            TEXT    NOT NULL UNIQUE,
   name            TEXT    NOT NULL,
@@ -22,6 +22,6 @@ CREATE INDEX IF NOT EXISTS idx_reg_date  ON event_registrations(created_at);
 INSERT OR IGNORE INTO site_settings (key, value, updated_at)
 VALUES (
   'event_registration',
-  '{"event_slug":"iftar-2027","event_title":"Iftar communautaire","date_str":"Samedi 20 février 2027 · 17 h 15","location":"174 rue Lafontaine","description":"Repas de rupture du jeûne ouvert à tous : familles, voisins, étudiants. Gratuit, dons bienvenus.","total_seats":120,"max_per_reg":6,"deadline":"2027-02-18","is_open":true,"opt_vege":true,"opt_code":true,"opt_agenda":true}',
+  '{"event_slug":"","event_title":"[À compléter]","date_str":"","location":"34, 37e Avenue, Edmundston, NB E3V 3S2","description":"","total_seats":0,"max_per_reg":1,"deadline":"","is_open":false,"opt_vege":false,"opt_code":false,"opt_agenda":false}',
   strftime('%s', 'now')
 );

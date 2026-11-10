@@ -110,7 +110,7 @@ EV_ITEM = [
     dict(t='date', p='date', l='Date', hint='Vide : affiché « En cours », ne passe jamais.'),
     dict(t='time', p='debut', l='Début'), dict(t='time', p='fin', l='Fin'),
     SEL('lieu', 'Lieu (filtre)', [['mosquee', 'À la mosquée'], ['salle', 'Salle de l’Aïd'], ['campagne', 'Campagne'], ['autre', 'Autre']]),
-    T('lieuTexte', 'Adresse affichée', max=120, ph='Mosquée — 174 rue Lafontaine'),
+    T('lieuTexte', 'Adresse affichée', max=120, ph='Mosquée — 34, 37e Avenue'),
     SEL('categorie', 'Catégorie (calendrier)', [['comm', 'Communauté'], ['priere', 'Prière et spiritualité'], ['cours', 'Cours'], ['collecte', 'Collectes']]),
     A('resume', 'Résumé', max=400),
     SEL('lien', 'Lien', LIENS), T('lienTexte', 'Texte du lien', max=40, ph='En savoir plus'),
@@ -230,7 +230,7 @@ SYNC_SCRIPT = r'''<script id="sa-ev-sync">
   var INS_SW = __INS_SW__;
   var JOURS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
   var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
-  var LIEUX = { mosquee: 'Mosquée — 174 rue Lafontaine', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
+  var LIEUX = { mosquee: 'Mosquée — 34, 37e Avenue', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
   var pagesBase = null, ins = null, insBase = '', events = [], regs = [], restricted = '', role = '', saving = false, started = false;
 
   function comp() { return window.__saEv; }
@@ -365,7 +365,7 @@ SYNC_SCRIPT = r'''<script id="sa-ev-sync">
       var mails = Array.from(new Set(regs.filter(function (r) { return r.status === 'confirmed' && r.contact && r.contact.indexOf('@') > -1; })
         .map(function (r) { return r.contact.trim(); })));
       if (!mails.length) { flash('Aucune adresse courriel parmi les inscrits confirmés.'); return; }
-      location.href = 'mailto:associationrdl.ascil@gmail.com?bcc=' + encodeURIComponent(mails.join(',')) + '&subject=' + encodeURIComponent('Information — ' + (ins ? ins.event_title : 'Événement ASCIL'));
+      location.href = 'mailto:?bcc=' + encodeURIComponent(mails.join(',')) + '&subject=' + encodeURIComponent('Information — ' + (ins ? ins.event_title : 'Événement ASCIL'));
       return;
     }
     if (b.hasAttribute('data-ev-cancel')) {
@@ -621,10 +621,10 @@ EV_JS = r"""
     const EV = PT.evenements || __EV__;
     const pre = (typeof location !== 'undefined' && /\/(M-|T-)[^\/]*$/.exec(location.pathname)) ? /\/(M-|T-)[^\/]*$/.exec(location.pathname)[1] : '';
     let today = PT.date || '';
-    if (!today) { try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) { today = ''; } }
+    if (!today) { try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) { today = ''; } }
     const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
     const MC = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
-    const LIEUX = { mosquee: 'Mosquée — 174 rue Lafontaine', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
+    const LIEUX = { mosquee: 'Mosquée — 34, 37e Avenue', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
     const PAGES = { dons: 'Dons', campagne: 'N3-Campagne', horaires: 'Horaires', services: 'Services', cours: 'N2-Cours', inscription: 'N3-Inscription',
       calendrier: 'N3-Calendrier', contact: 'Contact', ressources: 'Ressources' };
     const page = (k) => (PAGES[k] ? pre + PAGES[k] + '.dc.html' : '');
@@ -655,7 +655,7 @@ EV_JS = r"""
         public: x.public || '', hasPublic: !!x.public,
         placesTxt: x.places > 0 ? x.places + ' places' : 'Illimitées', hasPlaces: x.inscription !== 'non' || x.places > 0,
         insHref, hasIns: !!insHref, insLabel: x.inscription === 'contact' ? 'S’inscrire par message' : 'S’inscrire',
-        map: 'https://maps.google.com/?q=' + encodeURIComponent((lieuTxt.split('—').pop() || lieuTxt).trim() + ' Rivière-du-Loup'),
+        map: 'https://maps.google.com/?q=' + encodeURIComponent((lieuTxt.split('—').pop() || lieuTxt).trim() + ' Edmundston'),
         showMap: !!x.itineraire && !!lieuTxt && x.lieu !== 'campagne',
         canShare: !!EV.partage, shareLbl: shared ? 'Lien copié' : 'Partager',
         share: () => {
@@ -731,12 +731,12 @@ def patch_evenements(tpl):
     sec = resub(sec, r'<span class="pill"([^>]*)>Inscription requise</span>', lambda x: sc_if('une.hasPill', '<span class="pill"' + x.group(1) + '>{{une.pill}}</span>', 'false'))
     sec = rep(sec, ' style="margin-top:14px">Journée de parrainage d’orphelins</h2>', ' style="margin-top:14px;overflow-wrap:anywhere">{{une.titre}}</h2>')
     sec = resub(sec, r'(<p style="margin:12px 0 0">)Avec l’organisme Soleil des Orphelins\.</p>', lambda x: sc_if('une.hasResume', x.group(1) + '{{une.resume}}</p>'))
-    sec = resub(sec, r'(<p style="margin:12px 0 0;display:flex[^"]*">)(<svg.*?</svg>)Mosquée — 174 rue Lafontaine</p>',
+    sec = resub(sec, r'(<p style="margin:12px 0 0;display:flex[^"]*">)(<svg.*?</svg>)Mosquée — 34, 37e Avenue</p>',
                 lambda x: sc_if('une.hasLieu', x.group(1) + x.group(2) + '{{une.lieuTxt}}</p>'))
     sec = resub(sec, r'<a class="btn btn-green" href="(?:[MT]-)?EvenementDetail\.dc\.html">S’inscrire</a>',
                 sc_if('uneHasBtn', sc_if('uneBtnIsLink', '<a class="btn btn-green" href="{{uneHref}}">{{uneBtnLabel}}</a>', 'false')
                       + sc_if('uneBtnIsToggle', '<button type="button" class="btn btn-green" sc-camel-on-click="{{une.toggle}}" aria-expanded="{{une.exp}}">{{uneBtnLabel}}</button>'), 'true'))
-    sec = resub(sec, r'<a class="btn btn-ghost" href="https://maps\.google\.com/\?q=174\+rue\+Lafontaine\+Riviere-du-Loup">(<svg.*?</svg>)Itinéraire</a>',
+    sec = resub(sec, r'<a class="btn btn-ghost" href="https://maps\.google\.com/\?q=174\+rue\+Lafontaine\+Edmundston">(<svg.*?</svg>)Itinéraire</a>',
                 lambda x: sc_if('uneShowMap', '<a class="btn btn-ghost" href="{{une.map}}" target="_blank" rel="noopener">' + x.group(1) + 'Itinéraire</a>'))
     k = sec.rindex('</div>\n   </div>\n  </div>\n </div>\n</section>')
     sec = sec[:k] + fiche('une') + sec[k:]
@@ -796,7 +796,7 @@ CAL_JS = r"""
     const st = this.state;
     const pre = (typeof location !== 'undefined' && /\/(M-|T-)[^\/]*$/.exec(location.pathname)) ? /\/(M-|T-)[^\/]*$/.exec(location.pathname)[1] : '';
     let today = PT.date || '';
-    if (!today) { try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) { today = '2026-01-01'; } }
+    if (!today) { try { today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) { today = '2026-01-01'; } }
     const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
     const T = {"cours": ["Cours", "#0E4D3C", "#fff", "#0E4D3C"], "priere": ["Prière et spiritualité", "#C49A4A", "#1E2B26", "#C49A4A"], "comm": ["Communauté", "#1E2B26", "#fff", "#1E2B26"], "collecte": ["Collectes", "#fff", "#0E4D3C", "#0E4D3C"]};
     const CATS = Object.keys(T).filter((k) => !CAL.categories || CAL.categories[k] !== false);
@@ -808,7 +808,7 @@ CAL_JS = r"""
     const lead = (new Date(Date.UTC(y, mo, 1)).getUTCDay() + 6) % 7;
     const hm = (t) => (t ? t.replace(':', ' h ').replace(/ h 00$/, ' h') : '');
     const span = (a, b) => (a ? hm(a) + (b ? ' – ' + hm(b) : '') : 'Toute la journée');
-    const LIEUX = { mosquee: 'Mosquée — 174 rue Lafontaine', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
+    const LIEUX = { mosquee: 'Mosquée — 34, 37e Avenue', salle: 'Salle de l’Aïd', campagne: 'Campagne de l’ASCIL', autre: '' };
     const E = [];
     if (CAL.evenements !== false) {
       (EV.items || []).filter((x) => x.on && x.titre && x.date && x.date.slice(0, 7) === ym).forEach((x) => {
@@ -820,7 +820,7 @@ CAL_JS = r"""
     }
     if (CAL.cours !== false && CO && Array.isArray(CO.items)) {
       const WD = { Dimanche: 0, Lundi: 1, Mardi: 2, Mercredi: 3, Jeudi: 4, Vendredi: 5, Samedi: 6 };
-      const lieu = (CO.infos && CO.infos.lieu) || '174 rue Lafontaine';
+      const lieu = (CO.infos && CO.infos.lieu) || '34, 37e Avenue';
       CO.items.filter((c) => c.on && c.titre && WD[c.jour] !== undefined).forEach((c) => {
         for (let n = 1; n <= dim; n++) {
           if (new Date(Date.UTC(y, mo, n)).getUTCDay() !== WD[c.jour]) continue;
@@ -855,8 +855,8 @@ CAL_JS = r"""
       const clean = (s) => String(s || '').replace(/[\\;,]/g, (c) => '\\' + c).replace(/\n/g, '\\n');
       const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//ASCIL//Calendrier//FR', 'BEGIN:VEVENT',
         'UID:' + e.date + '-' + e.i + '@ascil', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
-        e.debut ? 'DTSTART;TZID=America/Toronto:' + dt(e.date, e.debut) : 'DTSTART;VALUE=DATE:' + dt(e.date),
-        e.debut ? 'DTEND;TZID=America/Toronto:' + dt(e.date, e.fin || e.debut) : 'DTEND;VALUE=DATE:' + dt(next(e.date)),
+        e.debut ? 'DTSTART;TZID=America/Moncton:' + dt(e.date, e.debut) : 'DTSTART;VALUE=DATE:' + dt(e.date),
+        e.debut ? 'DTEND;TZID=America/Moncton:' + dt(e.date, e.fin || e.debut) : 'DTEND;VALUE=DATE:' + dt(next(e.date)),
         'SUMMARY:' + clean(e.t), 'LOCATION:' + clean(e.l), 'DESCRIPTION:' + clean(e.desc), 'END:VEVENT', 'END:VCALENDAR'];
       try {
         const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });

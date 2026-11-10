@@ -465,7 +465,7 @@ RES_JS = r"""
     const showPub = on(P) && pubs.length > 0, showRep = on(Q) && reps.length > 0;
     return {
       resIntro: R.intro || '', hasIntro: !!R.intro,
-      showHalal: on(H) && halal.length > 0, halTitre: H.titre || 'À Rivière-du-Loup', halTexte: H.texte || '', hasHalTexte: !!H.texte, halal, halAvert: !!H.avert,
+      showHalal: on(H) && halal.length > 0, halTitre: H.titre || 'À Edmundston', halTexte: H.texte || '', hasHalTexte: !!H.texte, halal, halAvert: !!H.avert,
       showMosq: on(M) && mosq.length > 0, mosq, showCopy: !!M.copier, showIti: !!M.itineraire,
       showIn: showPub || showRep, showPub, showRep, pubs, reps, inCols: showPub && showRep ? 'g2' : '',
       showInst: on(I) && (I.aide || I.cours || I.dua), iAide: !!I.aide, iCours: !!I.cours, iDua: !!I.dua,
@@ -496,7 +496,7 @@ def patch_ressources(tpl):
     # ---------- Manger halal ----------
     sa, sb = section_span(m, '<section class="sec" aria-labelledby="hal-t">')
     sec = m[sa:sb]
-    sec = rep(sec, '>À Rivière-du-Loup</h2>', '>{{halTitre}}</h2>')
+    sec = rep(sec, '>À Edmundston</h2>', '>{{halTitre}}</h2>')
     sec = resub(sec, r'(<p class="muted"[^>]*>)Un seul établissement est indiqué.*?</p>', lambda x: sc_if('hasHalTexte', x.group(1) + '{{halTexte}}</p>'))
     ca = sec.index('<div class="card">')
     cb = sec.index('</div>', ca) + len('</div>')
@@ -607,7 +607,7 @@ DUA_JS = r"""
         report: report(d.id), repLab: rl(d.id) };
     }).filter((d, i) => !st.rep[(W.duas || [])[i].id]);
     const anns = (W.anns || []).filter((a) => !st.rep[a.id]).map((a) => ({ cat: a.categorie || 'Annonce', text: a.texte, by: a.signature, when: ago(a.published_at),
-      mail: 'mailto:associationrdl.ascil@gmail.com?subject=' + encodeURIComponent('Réponse à une annonce du mur : ' + String(a.texte).slice(0, 60)),
+      mail: 'mailto:?subject=' + encodeURIComponent('Réponse à une annonce du mur : ' + String(a.texte).slice(0, 60)),
       report: report(a.id), repLab: rl(a.id) }));
     const send = () => {
       if (st.dBusy) return;
@@ -659,7 +659,7 @@ def patch_dua(tpl):
     m = resub(m, r'(<button type="button" class="chip" sc-camel-on-click="\{\{d\.amin\}\}".*?</button>)', lambda x: sc_if('showCount', x.group(1)))
     m = rep(m, '<p style="margin:0;font-size:18px">{{d.text}}</p>', '<p style="margin:0;font-size:18px;white-space:pre-line;overflow-wrap:anywhere">{{d.text}}</p>')
     m = rep(m, '<p style="margin:10px 0 0;font-size:18px">{{a.text}}</p>', '<p style="margin:10px 0 0;font-size:18px;white-space:pre-line;overflow-wrap:anywhere">{{a.text}}</p>')
-    m = rep(m, '<a class="btn btn-ghost" href="mailto:associationrdl.ascil@gmail.com"', '<a class="btn btn-ghost" href="{{a.mail}}"')
+    m = rep(m, '<a class="btn btn-ghost" href="mailto:"', '<a class="btn btn-ghost" href="{{a.mail}}"')
     empty = ('<div class="card sand" style="text-align:center"><p style="margin:0;font-weight:700">{t}</p></div>')
     m = rep(m, '    <sc-if value="{{isDua}}" hint-placeholder-val="{{ true }}">',
             '    ' + sc_if('wallLoading', '<p class="muted" style="margin:0">Chargement du mur…</p>', 'false')

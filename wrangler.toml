@@ -1,17 +1,17 @@
-# Configuration Cloudflare Pages + Functions du site ASCIL.
+# Configuration Cloudflare Pages + Functions du site Centre Islamique d'Edmundston.
 # Le site statique est servi depuis la racine du dépôt ; l'API vit dans functions/.
-name = "ascil-mosquee"
+name = "edmundston-mosquee"
 compatibility_date = "2026-10-01"
 pages_build_output_dir = "."
 
 [[d1_databases]]
 binding = "DB"
-database_name = "ascil-mosquee"
-database_id = "461b1f02-3d2f-48bd-a0b7-a946987eb86a"
+database_name = "edmundston-mosquee"
+database_id = "84b1ab7c-b44e-4266-8302-038b6e428376"
 migrations_dir = "migrations"
 
-# Photos des pages créées (étape M1) : espace de stockage KV « ascil-medias » (palier gratuit,
+# Photos des pages créées (étape M1) : espace de stockage KV « edmundston-medias » (palier gratuit,
 # sans carte bancaire). La clé de chaque photo = colonne file_key de la table media (D1).
 [[kv_namespaces]]
 binding = "MEDIA"
-id = "fdbb500e86bf46bdac5b21f8a5390f8a"
+id = "72946197a2ef4fb283d64743b45a5d61"

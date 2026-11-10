@@ -33,7 +33,7 @@ async function activeAlert(db) {
     const row = await db.prepare("SELECT value FROM site_settings WHERE key = 'alert'").first();
     const a = cleanAlertSettings(row ? JSON.parse(row.value) : null);
     if (!a.on || !a.message) return null;
-    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto' }).format(new Date());
+    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton' }).format(new Date());
     if ((a.from && today < a.from) || (a.to && today > a.to)) return null;
     return a;
   } catch {

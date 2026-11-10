@@ -80,7 +80,7 @@ LOAD_JS = r"""
     const dayStr = (ms) => {
       try {
         const p = {};
-        new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date(ms)).forEach((x) => { p[x.type] = x.value; });
+        new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date(ms)).forEach((x) => { p[x.type] = x.value; });
         return p.year + '-' + p.month + '-' + p.day;
       } catch (e) { return new Date(ms).toISOString().slice(0, 10); }
     };
@@ -105,7 +105,7 @@ LOAD_JS = r"""
     const toS = (h) => +h.slice(0, 2) * 3600 + +h.slice(3, 5) * 60;
     let secs = 0;
     try {
-      const pp = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Toronto', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(st.now));
+      const pp = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Moncton', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(st.now));
       const g = (k) => { const x = pp.find((q) => q.type === k); return x ? parseInt(x.value, 10) % 24 : 0; };
       secs = g('hour') * 3600 + g('minute') * 60 + (pp.find((q) => q.type === 'second') ? parseInt(pp.find((q) => q.type === 'second').value, 10) : 0);
     } catch (e) {}
@@ -189,7 +189,7 @@ CAL_SCRIPT = r"""<script id="th-ramadan-cal">
   var box = null, data = null, wk = -1;
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function today() {
-    try { var p = {}; new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + '-' + p.month + '-' + p.day; } catch (e) { return new Date().toISOString().slice(0, 10); }
+    try { var p = {}; new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + '-' + p.month + '-' + p.day; } catch (e) { return new Date().toISOString().slice(0, 10); }
   }
   function utc(d) { return Date.UTC(+d.slice(0, 4), +d.slice(5, 7) - 1, +d.slice(8, 10)); }
   function add(d, n) { return new Date(utc(d) + n * 86400000).toISOString().slice(0, 10); }
@@ -240,17 +240,17 @@ CAL_SCRIPT = r"""<script id="th-ramadan-cal">
 </script>
 """
 
-EMAIL = 'associationrdl.ascil@gmail.com'
+EMAIL = ''
 
 
 def footer(tpl):
     a = tpl.index('<footer class="ftr">')
     b = tpl.index('</footer>', a) + len('</footer>')
     f = tpl[a:b]
-    logo = f[f.index('<div><div style="display:flex;align-items:center;gap:12px">'):f.index('\n    <p style="margin:14px 0 0">174 rue Lafontaine')]
+    logo = f[f.index('<div><div style="display:flex;align-items:center;gap:12px">'):f.index('\n    <p style="margin:14px 0 0">34, 37e Avenue')]
     lk = 'color:inherit;text-decoration:underline;text-underline-offset:3px'
     new = ('<footer class="ftr">\n <div class="wrap">\n  <div class="g4" style="gap:36px">\n   '
-           + logo + '\n    <p style="margin:14px 0 0">174 rue Lafontaine<br>Rivière-du-Loup (Québec)</p></div>\n'
+           + logo + '\n    <p style="margin:14px 0 0">34, 37e Avenue<br>Edmundston, NB E3V 3S2</p></div>\n'
            '   <div><p style="margin:0 0 10px;font-weight:700;color:#F5D896">Ramadan</p><p style="margin:0;line-height:2">'
            + sc_if('hasIftar', 'Iftar ce soir {{iftar}}<br>', 'false')
            + f'<a href="/TH-Ramadan-Page.dc.html" style="{lk}">Le mois du Ramadan</a><br><a href="/Horaires.dc.html" style="{lk}">Horaires du mois</a></p></div>\n'
@@ -261,7 +261,7 @@ def footer(tpl):
            f'<a href="mailto:{EMAIL}" style="{lk};overflow-wrap:anywhere">{EMAIL}</a></p><p class="ar" style="margin:14px 0 0;font-size:26px;color:#F5D896">رمضان كريم</p></div>\n'
            '  </div>\n'
            '  <p style="margin:44px 0 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);font-size:14px">© 2026 Association Socio-Culturelle '
-           'Islamique Louperivoise — Rivière-du-Loup, Québec<a href="superadmin.html" rel="nofollow" style="float:right;color:#F3EAD8;opacity:.75;'
+           'Islamique Louperivoise — Edmundston, Québec<a href="superadmin.html" rel="nofollow" style="float:right;color:#F3EAD8;opacity:.75;'
            'text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:4px 0;margin-left:16px">Espace administration</a></p>\n'
            ' </div>\n</footer>')
     return tpl[:a] + new + tpl[b:]
@@ -415,7 +415,7 @@ MENU_SCRIPT = r"""<script id="ascil-ramadan-menu">
   var LINKS = { ramadan: ['/TH-Ramadan-Page.dc.html', 'Ramadan'], aid_fitr: ['/TH-Fitr-Page.dc.html', 'Aïd al-Fitr'], aid_adha: ['/TH-Adha-Page.dc.html', 'Aïd al-Adha'] };
   var HREF = '', LABEL = '';
   function today() {
-    try { var p = {}; new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + '-' + p.month + '-' + p.day; } catch (e) { return new Date().toISOString().slice(0, 10); }
+    try { var p = {}; new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + '-' + p.month + '-' + p.day; } catch (e) { return new Date().toISOString().slice(0, 10); }
   }
   function active(s) {
     if (!s || !LINKS[s.mode]) return false;

@@ -399,8 +399,8 @@ for title, out in SCREENS.items():
 print('superadmin.html = SA-Connexion.dc.html')
 
 # 2. Lien depuis le site public (pied de page de toutes les pages)
-ANCHOR = 'Islamique Louperivoise — Rivière-du-Loup, Québec</p>'
-LINK = ('Islamique Louperivoise — Rivière-du-Loup, Québec'
+ANCHOR = 'Islamique Louperivoise — Edmundston, Québec</p>'
+LINK = ('Islamique Louperivoise — Edmundston, Québec'
         '<a href="superadmin.html" rel="nofollow" style="float:right;color:#F3EAD8;opacity:.75;'
         'text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:4px 0;margin-left:16px">'
         'Espace administration</a></p>')

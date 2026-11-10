@@ -57,7 +57,7 @@ PUBLIC_INSCRIPTION_SYNC_SCRIPT = r'''<script id="ascil-inscription-sync">
       'DTEND:' + dtEnd,
       'SUMMARY:' + (title || 'Événement ASCIL'),
       'DESCRIPTION:' + (desc || ''),
-      'LOCATION:' + (location || '174 rue Lafontaine, Rivière-du-Loup'),
+      'LOCATION:' + (location || '34, 37e Avenue, Edmundston'),
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR'
@@ -339,10 +339,10 @@ ADMIN_EVENEMENTS_SYNC_SCRIPT = r'''<script id="sa-evenements-sync">
     var f22 = document.getElementById('f22');
 
     return {
-      event_slug: initialSettings ? initialSettings.event_slug : 'iftar-2027',
+      event_slug: initialSettings ? initialSettings.event_slug : '',
       event_title: f19 ? f19.value : 'Iftar communautaire',
       date_str: initialSettings ? initialSettings.date_str : 'Samedi 20 février 2027 · 17 h 15',
-      location: initialSettings ? initialSettings.location : '174 rue Lafontaine',
+      location: initialSettings ? initialSettings.location : '34, 37e Avenue',
       description: initialSettings ? initialSettings.description : '',
       total_seats: parseInt(f20 ? f20.value : 120, 10) || 120,
       max_per_reg: parseInt(f21 ? f21.value : 6, 10) || 6,
@@ -445,7 +445,7 @@ ADMIN_EVENEMENTS_SYNC_SCRIPT = r'''<script id="sa-evenements-sync">
           return;
         }
 
-        var mailtoUrl = 'mailto:associationrdl.ascil@gmail.com?bcc=' + encodeURIComponent(uniqueEmails.join(',')) + '&subject=' + encodeURIComponent('Information — ' + (initialSettings ? initialSettings.event_title : 'Événement ASCIL'));
+        var mailtoUrl = 'mailto:?bcc=' + encodeURIComponent(uniqueEmails.join(',')) + '&subject=' + encodeURIComponent('Information — ' + (initialSettings ? initialSettings.event_title : 'Événement ASCIL'));
         window.location.href = mailtoUrl;
         return;
       }

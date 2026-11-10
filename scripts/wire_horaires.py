@@ -1,7 +1,7 @@
 """Branche le panneau « Horaires → Horaires du mois » (SA-Horaires.dc.html, étape H3).
 
 Fonctionnalités branchées dans #sp-0 (« Horaires du mois ») :
-1. Choix du mois (mois courant en fuseau America/Toronto + les 2 mois suivants).
+1. Choix du mois (mois courant en fuseau America/Moncton + les 2 mois suivants).
 2. Tableau éditable du mois (tous les jours du mois), lu et enregistré via l'API H2
    (GET / PUT /api/admin/prayer-times/:month).
 3. « Copier une heure sur tout le mois » (choix de la prière, de l'heure, et de la portée :
@@ -204,7 +204,7 @@ SP0_HTML = (
     '<div class="card-b">'
     '<div class="g2">'
     '<div class="fld"><label class="lbl" for="f7">Lieu</label><input class="in" id="f7" type="text" value="Salle louée — 15 rue Frontenac" maxlength="120"></div>'
-    '<div class="fld"><label class="lbl" for="f8">Lien itinéraire</label><input class="in" id="f8" type="url" value="https://maps.google.com/?q=15+rue+Frontenac+Riviere-du-Loup" maxlength="500"></div>'
+    '<div class="fld"><label class="lbl" for="f8">Lien itinéraire</label><input class="in" id="f8" type="url" value="https://maps.google.com/?q=15+rue+Frontenac+Edmundston" maxlength="500"></div>'
     '</div>'
     '<div class="g2">'
     '<div class="fld"><label class="lbl" for="f9">Aïd al-Fitr — date</label><input class="in tnum" id="f9" type="date" value=""><p class="hint">Vide = « Selon l’annonce TCOM ».</p></div>'
@@ -416,7 +416,7 @@ HORAIRES_SYNC_SCRIPT = r'''<script id="sa-horaires-sync">
   function computeAllowedMonths() {
     var nowStr = '';
     try {
-      nowStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+      nowStr = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
     } catch (e) {
       nowStr = new Date().toISOString().slice(0, 10);
     }
@@ -926,7 +926,7 @@ HORAIRES_SYNC_SCRIPT = r'''<script id="sa-horaires-sync">
     return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
   }
   function todayIso() {
-    try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); }
+    try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); }
     catch (e) { return new Date().toISOString().slice(0, 10); }
   }
   function longFr(iso) {

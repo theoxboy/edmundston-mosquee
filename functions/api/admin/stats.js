@@ -46,9 +46,9 @@ export async function onRequestGet({ request, env }) {
 
   // 2. Campagne et Dons (accessible à superadmin et editor)
   let campagne = {
-    objectif: 350000,
-    recolte: 140000,
-    pct: 40,
+    objectif: 0,
+    recolte: 0,
+    pct: 0,
     donationsCount: 0,
     donationsSum: 0,
   };

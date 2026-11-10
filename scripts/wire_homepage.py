@@ -165,7 +165,7 @@ PANNEAU_SYNC_SCRIPT = r'''<script id="sa-panneau-sync">
     if (s.chargement) setVal('f-dur', s.chargement.duration === 'rapide' ? 'Rapide (environ 1,5 s)' : 'Normale (environ 3 s)');
     if (s.hero) { setVal('f-h1', s.hero.h1); setVal('f-h2', s.hero.h2); }
     if (s.campagne) {
-      setVal('f-obj', fmt(s.campagne.objectif || 350000)); setVal('f-rec', fmt(s.campagne.recolte || 0));
+      setVal('f-obj', fmt(s.campagne.objectif || 0)); setVal('f-rec', fmt(s.campagne.recolte || 0));
       setVal('f-int', s.campagne.btnInterac); setVal('f-sui', s.campagne.btnSuivre);
     }
     if (s.annonces) setVal('f-tous', s.annonces.btnTous);
@@ -233,7 +233,7 @@ PANNEAU_SYNC_SCRIPT = r'''<script id="sa-panneau-sync">
     var blob = new Blob([JSON.stringify(collect(), null, 2)], { type: 'application/json' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'reglages-accueil-ascil-' + new Date().toISOString().slice(0, 10) + '.json';
+    a.download = 'reglages-accueil-edmundston-' + new Date().toISOString().slice(0, 10) + '.json';
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
     toast('Réglages exportés : le fichier .json est dans vos téléchargements.');
@@ -398,11 +398,11 @@ PUBLIC_HOME_SYNC_SCRIPT = r'''<script id="ascil-home-sync">
         if (s.general.address || s.general.city) {
           var footAdr = document.querySelector('footer .g4 > div:first-child > p:nth-of-type(1)');
           if (footAdr) {
-            footAdr.innerHTML = (s.general.address || '174 rue Lafontaine') + '<br>' + (s.general.city || 'Rivière-du-Loup (Québec)');
+            footAdr.innerHTML = (s.general.address || '34, 37e Avenue') + '<br>' + (s.general.city || 'Edmundston, NB E3V 3S2');
           }
           var cardAdr = document.querySelector('section[aria-label="Accès rapides"] a[href="Contact.dc.html"] p.h3');
           if (cardAdr) {
-            cardAdr.textContent = 'Nous trouver — ' + (s.general.address || '174 rue Lafontaine');
+            cardAdr.textContent = 'Nous trouver — ' + (s.general.address || '34, 37e Avenue');
           }
         }
       }
@@ -490,7 +490,7 @@ PUBLIC_HOME_SYNC_SCRIPT = r'''<script id="ascil-home-sync">
         campSec.style.display = s.on.campagne === false ? 'none' : '';
       }
       if (campSec && s.campagne) {
-        var obj = Number(s.campagne.objectif) || 350000;
+        var obj = Number(s.campagne.objectif) || 0;
         var rec = Number(s.campagne.recolte) || 0;
         var pct = Math.min(100, Math.round((rec / obj) * 100));
 

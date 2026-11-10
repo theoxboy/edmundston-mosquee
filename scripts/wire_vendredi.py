@@ -51,7 +51,7 @@ LOGIC = r"""
     const st = this.state, p2 = (n) => String(n).padStart(2, '0'), T = /^\d\d:\d\d$/;
     const pp = {};
     try {
-      new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' })
+      new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' })
         .formatToParts(new Date(st.now)).forEach((x) => { pp[x.type] = x.value; });
     } catch (e) {}
     const today = pp.year ? pp.year + '-' + pp.month + '-' + pp.day : new Date(st.now).toISOString().slice(0, 10);
@@ -201,10 +201,10 @@ def footer(tpl):
     a = tpl.index('<footer class="ftr">')
     b = tpl.index('</footer>', a) + len('</footer>')
     f = tpl[a:b]
-    logo = f[f.index('<div><div style="display:flex;align-items:center;gap:12px">'):f.index('\n    <p style="margin:14px 0 0">174 rue Lafontaine')]
+    logo = f[f.index('<div><div style="display:flex;align-items:center;gap:12px">'):f.index('\n    <p style="margin:14px 0 0">34, 37e Avenue')]
     lk = 'color:inherit;text-decoration:underline;text-underline-offset:3px'
     new = ('<footer class="ftr">\n <div class="wrap">\n  <div class="g4" style="gap:36px">\n   '
-           + logo + '\n    <p style="margin:14px 0 0">174 rue Lafontaine<br>Rivière-du-Loup (Québec)</p></div>\n'
+           + logo + '\n    <p style="margin:14px 0 0">34, 37e Avenue<br>Edmundston, NB E3V 3S2</p></div>\n'
            f'   <div><p style="margin:0 0 10px;font-weight:700;color:{GOLD}">Vendredi</p><p style="margin:0;line-height:2">'
            + sc_if('hasJ', 'Khutba et prière {{J}}<br>', 'false') + sc_if('hasArrive', 'Arriver avant {{arrive}}<br>', 'false')
            + f'<a href="/TH-Vendredi-Horaires.dc.html" style="{lk}">Horaires du vendredi</a><br>'
@@ -216,7 +216,7 @@ def footer(tpl):
            f'<a href="mailto:{EMAIL}" style="{lk};overflow-wrap:anywhere">{EMAIL}</a></p><p class="ar" style="margin:14px 0 0;font-size:26px;color:{GOLD}">جمعة مباركة</p></div>\n'
            '  </div>\n'
            '  <p style="margin:44px 0 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);font-size:14px">© 2026 Association Socio-Culturelle '
-           'Islamique Louperivoise — Rivière-du-Loup, Québec<a href="superadmin.html" rel="nofollow" style="float:right;color:#F3EAD8;opacity:.75;'
+           'Islamique Louperivoise — Edmundston, Québec<a href="superadmin.html" rel="nofollow" style="float:right;color:#F3EAD8;opacity:.75;'
            'text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:4px 0;margin-left:16px">Espace administration</a></p>\n'
            ' </div>\n</footer>')
     return tpl[:a] + new + tpl[b:]

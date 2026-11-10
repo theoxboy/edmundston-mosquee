@@ -46,7 +46,7 @@ export async function onRequest(context) {
 
   if (path.startsWith('/api/')) {
     if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method) && !sameOrigin(request)) {
-      return error(403, 'origin', 'Requête refusée : elle ne vient pas du site de l’ASCIL.');
+      return error(403, 'origin', 'Requête refusée : elle ne vient pas du site du Centre Islamique d’Edmundston.');
     }
     if (!env.DB) return error(503, 'no_db', 'La base de données n’est pas reliée au site. Ajoutez la liaison D1 « DB » dans Cloudflare Pages.');
     try {

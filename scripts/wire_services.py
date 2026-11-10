@@ -613,7 +613,7 @@ SERVICES_XVALS = r"""
 
 SERVICES_DEFAULT = {
     'items': [
-        {'kind': 'prieres', 'titre': 'Les cinq prières quotidiennes', 'texte': 'Au 174 rue Lafontaine, tous les jours.', 'icone': 0, 'saison': False,
+        {'kind': 'prieres', 'titre': 'Les cinq prières quotidiennes', 'texte': 'Au 34, 37e Avenue, tous les jours.', 'icone': 0, 'saison': False,
          'lien': 'Page : Horaires du mois', 'lienTexte': 'Tableau complet des horaires', 'khutba': False, 'femmes': False, 'zakat': None, 'zakatAnnee': '', 'on': True},
         {'kind': 'jumua', 'titre': 'La prière du vendredi (Jumu’a)', 'texte': 'Khutba suivie de la prière.', 'icone': 1, 'saison': False,
          'lien': '', 'lienTexte': '', 'khutba': True, 'femmes': True, 'zakat': None, 'zakatAnnee': '', 'on': True},
@@ -622,7 +622,7 @@ SERVICES_DEFAULT = {
         {'kind': 'aid', 'titre': 'Les prières de l’Aïd', 'texte': '', 'icone': 3, 'saison': True, 'lien': '', 'lienTexte': '',
          'khutba': False, 'femmes': False, 'zakat': 15, 'zakatAnnee': '2025', 'on': True},
         {'kind': 'libre', 'titre': 'Solidarité et événements caritatifs',
-         'texte': 'Exemple : la journée de parrainage d’orphelins avec l’organisme Soleil des Orphelins, le 25 avril 2026 au 174 rue Lafontaine.',
+         'texte': 'Exemple : la journée de parrainage d’orphelins avec l’organisme Soleil des Orphelins, le 25 avril 2026 au 34, 37e Avenue.',
          'icone': 4, 'saison': False, 'lien': 'Page : Événements', 'lienTexte': 'Voir les événements', 'khutba': False, 'femmes': False,
          'zakat': None, 'zakatAnnee': '', 'on': True},
     ],

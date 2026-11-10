@@ -67,14 +67,14 @@ LOAD_JS = r"""
         hy = yp ? String(yp.value).replace(/\D/g, '') : '';
       } catch (e) { hy = ''; }
     }
-    // Compte à rebours jusqu'à la prière (date + heure, heure de Rivière-du-Loup).
+    // Compte à rebours jusqu'à la prière (date + heure, heure de Edmundston).
     let left = -1;
     if (has && heure) {
       const guess = Date.UTC(+date.slice(0, 4), +date.slice(5, 7) - 1, +date.slice(8, 10), +heure.slice(0, 2), +heure.slice(3, 5));
       let off = 0;
       try {
         const pp = {};
-        new Intl.DateTimeFormat('en-US', { timeZone: 'America/Toronto', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
+        new Intl.DateTimeFormat('en-US', { timeZone: 'America/Moncton', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
           .formatToParts(new Date(guess)).forEach((x) => { pp[x.type] = x.value; });
         off = Date.UTC(+pp.year, +pp.month - 1, +pp.day, +pp.hour % 24, +pp.minute) - guess;
       } catch (e) { off = 0; }
@@ -175,10 +175,10 @@ def footer(tpl, slug, name, ar):
     b = tpl.index('</footer>', a) + len('</footer>')
     f = tpl[a:b]
     color = re.search(r'<p style="margin:0 0 10px;font-weight:700;color:(#[0-9A-Fa-f]{6})">', f).group(1)
-    logo = f[f.index('<div><div style="display:flex;align-items:center;gap:12px">'):f.index('\n    <p style="margin:14px 0 0">174 rue Lafontaine')]
+    logo = f[f.index('<div><div style="display:flex;align-items:center;gap:12px">'):f.index('\n    <p style="margin:14px 0 0">34, 37e Avenue')]
     lk = 'color:inherit;text-decoration:underline;text-underline-offset:3px'
     new = ('<footer class="ftr">\n <div class="wrap">\n  <div class="g4" style="gap:36px">\n   '
-           + logo + '\n    <p style="margin:14px 0 0">174 rue Lafontaine<br>Rivière-du-Loup (Québec)</p></div>\n'
+           + logo + '\n    <p style="margin:14px 0 0">34, 37e Avenue<br>Edmundston, NB E3V 3S2</p></div>\n'
            f'   <div><p style="margin:0 0 10px;font-weight:700;color:{color}">{name}</p><p style="margin:0;line-height:2">'
            + sc_if('hasTime', 'Prière de l’Aïd {{heure}}<br>', 'false') + sc_if('hasLieu', '{{lieu}}<br>', 'false')
            + f'<a href="/TH-{slug}-Page.dc.html" style="{lk}">La journée de l’Aïd</a><br><a href="/Horaires.dc.html" style="{lk}">Horaires du mois</a></p></div>\n'
@@ -189,7 +189,7 @@ def footer(tpl, slug, name, ar):
            f'<a href="mailto:{EMAIL}" style="{lk};overflow-wrap:anywhere">{EMAIL}</a></p><p class="ar" style="margin:14px 0 0;font-size:26px;color:{color}">{ar}</p></div>\n'
            '  </div>\n'
            '  <p style="margin:44px 0 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);font-size:14px">© 2026 Association Socio-Culturelle '
-           'Islamique Louperivoise — Rivière-du-Loup, Québec<a href="superadmin.html" rel="nofollow" style="float:right;color:#F3EAD8;opacity:.75;'
+           'Islamique Louperivoise — Edmundston, Québec<a href="superadmin.html" rel="nofollow" style="float:right;color:#F3EAD8;opacity:.75;'
            'text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:4px 0;margin-left:16px">Espace administration</a></p>\n'
            ' </div>\n</footer>')
     return tpl[:a] + new + tpl[b:]

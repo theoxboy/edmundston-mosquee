@@ -1,13 +1,13 @@
-// Calcul local des heures de prière (méthode ISNA, Asr standard / chaféite), pour Rivière-du-Loup.
+// Calcul local des heures de prière (méthode ISNA, Asr standard / chaféite), pour Edmundston.
 // Utilisé UNIQUEMENT pour Lever, Dohr, Asr et Maghreb, et seulement quand ni le tableau du mois
 // ni la carte « Prochaine prière » de l'Accueil n'en donnent une : une heure saisie à la main gagne toujours.
-// Fajr, Icha et Jumu'a ne sont JAMAIS calculés (heures fixes de l'ASCIL : 06:30, 19:00, 12:30).
+// Fajr, Icha et Jumu'a ne sont JAMAIS calculés (horaires fixes d'Edmundston (non définis par défaut)).
 // Rien n'est enregistré : le calcul est refait à chaque lecture.
 // Algorithme astronomique classique (position du soleil d'après l'U.S. Naval Observatory,
 // le même que celui des calculateurs usuels, dont Aladhan) : lever et coucher à -0,833°,
 // Dohr au passage du soleil au méridien, Asr quand l'ombre égale la hauteur de l'objet plus son ombre de midi.
 
-export const LIEU = { lat: 47.83, lng: -69.53, tz: 'America/Toronto' };
+export const LIEU = { lat: 47.372, lng: -68.324, tz: 'America/Moncton' };
 export const CALC_COLUMNS = ['lever', 'dohr', 'asr', 'maghreb'];
 
 const DEG = Math.PI / 180;

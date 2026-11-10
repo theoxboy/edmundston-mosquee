@@ -66,7 +66,7 @@ URL_MAP = {
 # Contenu d’origine de la page publique : affiché tant que les réglages ne sont pas arrivés
 # (et si le serveur ne répond pas). Identique à DEFAULT_SETTINGS.apropos (functions/_lib/settings.js).
 APROPOS_DEFAULT = {
-    'presentation': {'on': True, 'texte': 'L’ASCIL rassemble les musulmanes et les musulmans de Rivière-du-Loup et des environs. Elle tient un lieu de prière au 174 rue Lafontaine, organise la prière du vendredi, les prières de l’Aïd et des activités de solidarité, et accueille les nouveaux arrivants dans la région.'},
+    'presentation': {'on': True, 'texte': 'L’ASCIL rassemble les musulmanes et les musulmans de Edmundston et des environs. Elle tient un lieu de prière au 34, 37e Avenue, organise la prière du vendredi, les prières de l’Aïd et des activités de solidarité, et accueille les nouveaux arrivants dans la région.'},
     'valeurs': {'on': True, 'items': [
         {'titre': 'Prier ensemble', 'texte': 'Les cinq prières quotidiennes et la prière du vendredi (Jumu’a).', 'on': True},
         {'titre': 'Se soutenir', 'texte': 'Accueil, solidarité et événements caritatifs, comme l’activité avec Soleil des Orphelins d’avril 2026.', 'on': True},
@@ -74,15 +74,15 @@ APROPOS_DEFAULT = {
     ]},
     'histoire': {'on': True, 'items': [
         {'date': '', 'titre': 'Fondation de l’association', 'on': True},
-        {'date': '', 'titre': 'Installation au 174 rue Lafontaine', 'on': True},
+        {'date': '', 'titre': 'Installation au 34, 37e Avenue', 'on': True},
         {'date': '2026-10-01', 'titre': 'Lancement du projet de nouveau lieu', 'on': True},
     ]},
     'projet': {'on': True, 'btnSoutenir': 'Page : Faire un don', 'btnSuivre': 'Page : Campagne en direct'},
     'equipe': {'on': False, 'accord': False, 'items': []},
     'chiffres': {'on': True, 'items': [
         {'valeur': '≈ 1 100', 'libelle': 'abonnés à la page Facebook de l’ASCIL', 'source': 'page Facebook de l’ASCIL', 'on': True},
-        {'valeur': '≈ 45', 'libelle': 'pays d’origine des personnes immigrantes de la région', 'source': 'données de la MRC de Rivière-du-Loup', 'on': True},
-        {'valeur': '2e', 'libelle': 'le Maghreb, région d’origine la mieux représentée après la France', 'source': 'données de la MRC de Rivière-du-Loup', 'on': True},
+        {'valeur': '≈ 45', 'libelle': 'pays d’origine des personnes immigrantes de la région', 'source': 'données de la MRC de Edmundston', 'on': True},
+        {'valeur': '2e', 'libelle': 'le Maghreb, région d’origine la mieux représentée après la France', 'source': 'données de la MRC de Edmundston', 'on': True},
     ]},
 }
 
@@ -877,7 +877,7 @@ def patch_apropos(tpl):
     m = m[:cha] + ('<div class="g3" style="margin-top:28px"><sc-for list="{{apChiffres}}" as="c" hint-placeholder-count="3">'
                    '<div class="card"><p class="serif tnum" style="margin:0;font-size:44px;font-weight:700;color:#0E4D3C;overflow-wrap:anywhere">{{c.v}}<sup style="font-size:22px">{{c.sup}}</sup></p>'
                    '<p style="margin:6px 0 0">{{c.libelle}}</p></div></sc-for>') + m[chb:]
-    m = resub(m, r'>Sources : page Facebook de l’ASCIL ; données de la MRC de Rivière-du-Loup\. ',
+    m = resub(m, r'>Sources : page Facebook de l’ASCIL ; données de la MRC de Edmundston\. ',
               '>' + sc_if('apHasSources', 'Sources : {{apSources}}. ') )
     m = wrap_section(m, '<section class="sec" aria-labelledby="ch-t">', 'apChif')
 

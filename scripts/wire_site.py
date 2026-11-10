@@ -355,7 +355,7 @@ class Component extends DCLogic {
   todayIso() {
     try {
       const p = {};
-      new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' })
+      new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' })
         .formatToParts(new Date()).forEach((x) => { p[x.type] = x.value; });
       if (p.year && p.month && p.day) return p.year + '-' + p.month + '-' + p.day;
     } catch (e) {}
@@ -1055,7 +1055,7 @@ ALERT_SCRIPT = r"""<script id="ascil-alert-banner">
   function today() {
     try {
       var p = {};
-      new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' })
+      new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' })
         .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
       if (p.year && p.month && p.day) return p.year + '-' + p.month + '-' + p.day;
     } catch (e) {}
@@ -1161,7 +1161,7 @@ SEASON_SCRIPT = r"""<script id="ascil-season">
   function today() {
     try {
       var p = {};
-      new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit' })
+      new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Moncton', year: 'numeric', month: '2-digit', day: '2-digit' })
         .formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
       if (p.year && p.month && p.day) return p.year + '-' + p.month + '-' + p.day;
     } catch (e) {}
