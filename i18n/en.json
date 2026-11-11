@@ -28,6 +28,70 @@
 [
 "^(\\d[\\d\\s.,]*) \\$ récoltés · (\\d+(?:[.,]\\d+)?) ?%$",
 "$1 $ raised · $2 %"
+],
+[
+"^(\\d\\d:\\d\\d), dans (\\d+) h (\\d\\d)$",
+"$1, in $2 h $3"
+],
+[
+"^(\\d\\d:\\d\\d), dans (\\d+) min$",
+"$1, in $2 min"
+],
+[
+"^(\\d\\d:\\d\\d), déjà passée aujourd’hui$",
+"$1, already passed today"
+],
+[
+"^© (\\d{4}) Centre communautaire islamique d’Edmundston — Edmundston, Nouveau-Brunswick$",
+"© $1 Edmundston Islamic Community Centre — Edmundston, New Brunswick"
+],
+[
+"^(\\d{1,2}) mouharram (\\d{4}) AH$",
+"$1 Muharram $2 AH"
+],
+[
+"^(\\d{1,2}) safar (\\d{4}) AH$",
+"$1 Safar $2 AH"
+],
+[
+"^(\\d{1,2}) rabia\\ al\\ awal (\\d{4}) AH$",
+"$1 Rabi’ al-Awwal $2 AH"
+],
+[
+"^(\\d{1,2}) rabia\\ ath\\-thani (\\d{4}) AH$",
+"$1 Rabi’ al-Thani $2 AH"
+],
+[
+"^(\\d{1,2}) joumada\\ al\\ oula (\\d{4}) AH$",
+"$1 Jumada al-Ula $2 AH"
+],
+[
+"^(\\d{1,2}) joumada\\ ath\\-thania (\\d{4}) AH$",
+"$1 Jumada al-Akhirah $2 AH"
+],
+[
+"^(\\d{1,2}) rajab (\\d{4}) AH$",
+"$1 Rajab $2 AH"
+],
+[
+"^(\\d{1,2}) chaabane (\\d{4}) AH$",
+"$1 Sha’ban $2 AH"
+],
+[
+"^(\\d{1,2}) ramadan (\\d{4}) AH$",
+"$1 Ramadan $2 AH"
+],
+[
+"^(\\d{1,2}) chawwal (\\d{4}) AH$",
+"$1 Shawwal $2 AH"
+],
+[
+"^(\\d{1,2}) dhou\\ al\\ qi`da (\\d{4}) AH$",
+"$1 Dhu al-Qi’dah $2 AH"
+],
+[
+"^(\\d{1,2}) dhou\\ al\\-hijja (\\d{4}) AH$",
+"$1 Dhu al-Hijjah $2 AH"
 ]
 ],
 "strings": {
@@ -827,6 +891,58 @@
 "— : selon le tableau mensuel du Centre Islamique d'Edmundston, ajouté à sa remise.": "—: per Centre Islamique d'Edmundston’s monthly table, added when it’s provided.",
 "— aujourd’hui": "— today",
 "— demain": "— tomorrow",
-"−20 % dès le 2e enfant d’une même famille. Personne n’est refusé faute de moyens : parlez-nous-en en toute discrétion.": "−20% from the 2nd child in the same family. No one is turned away for lack of means: talk to us discreetly."
+"−20 % dès le 2e enfant d’une même famille. Personne n’est refusé faute de moyens : parlez-nous-en en toute discrétion.": "−20% from the 2nd child in the same family. No one is turned away for lack of means: talk to us discreetly.",
+"CCIE": "CCIE",
+"Centre communautaire islamique d’Edmundston": "Edmundston Islamic Community Centre",
+"Accueil — Centre communautaire islamique d’Edmundston": "Home — Edmundston Islamic Community Centre",
+"CCIE, accueil": "CCIE, home",
+"Tableau officiel du CCIE": "Official CCIE timetable",
+"Le centre": "The centre",
+"Soutenir le CCIE": "Support the CCIE",
+"Edmundston · Madawaska · Nouveau-Brunswick": "Edmundston · Madawaska · New Brunswick",
+"Un lieu de prière,": "A place of prayer,",
+"au cœur du Madawaska": "in the heart of Madawaska",
+"Le Centre communautaire islamique d’Edmundston accueille les familles, les étudiantes et étudiants et les visiteurs pour la prière, l’apprentissage et l’entraide.": "The Edmundston Islamic Community Centre welcomes families, students and visitors for prayer, learning and mutual support.",
+"Prière · Savoir · Entraide": "Prayer · Knowledge · Mutual support",
+"Depuis Edmundston, N.-B.": "From Edmundston, N.B.",
+"EDMUNDSTON": "EDMUNDSTON",
+"106, rue de l’Église": "106 rue de l’Église",
+"Edmundston (Nouveau-Brunswick)": "Edmundston (New Brunswick)",
+"Motif géométrique doré : étoile à huit branches": "Golden geometric pattern: eight-pointed star",
+"Prochaine prière · heure de l’Atlantique": "Next prayer · Atlantic time",
+"Prière du vendredi": "Friday prayer",
+"Khutba et Jumu’a à": "Khutbah and Jumu’ah at",
+". Arrivez un peu avant.": ". Come a little early.",
+"106, rue de l’Église, Edmundston": "106 rue de l’Église, Edmundston",
+"Étudiantes et étudiants": "Students",
+"Nouveau à Edmundston pour vos études ? Venez nous rencontrer, on vous aide à vous installer.": "New to Edmundston for your studies? Come and meet us, we will help you settle in.",
+"Soutenir le centre": "Support the centre",
+"Chaque don fait vivre le CCIE": "Every gift keeps the CCIE going",
+"Loyer, chauffage l’hiver, cours pour les enfants, entraide : le centre fonctionne grâce à la communauté.": "Rent, heating in winter, classes for children, mutual aid: the centre runs thanks to the community.",
+"« L’aumône ne diminue en rien les biens. » (Muslim)": "“Charity never decreases wealth.” (Muslim)",
+"Objectif de l’année": "This year’s goal",
+"Autre": "Other",
+"Donner": "Give",
+"par Interac": "by Interac",
+"La vie du centre": "Life at the centre",
+"Prière célébrée à la salle louée du 106, rue de l’Église, Edmundston, NB E3V 1V5.": "Prayer held in the rented hall at 106 rue de l’Église, Edmundston, NB E3V 1V5.",
+"Avec l’organisme Activités d’entraide, au 106, rue de l’Église.": "With the organization Activités d’entraide, at 106 rue de l’Église.",
+"Première visite": "First visit",
+"Vous êtes les bienvenus": "You are welcome",
+"Que vous soyez musulman ou non, de passage ou nouvellement installé dans le Madawaska, la porte est ouverte.": "Whether you are Muslim or not, passing through or newly settled in Madawaska, our door is open.",
+"Écrire au centre": "Write to the centre",
+"À quoi s’attendre": "What to expect",
+"Pendant la prière, installez-vous à l’arrière pour observer ; quelqu’un viendra vous saluer.": "During prayer, sit at the back to observe; someone will come and greet you.",
+"La tenue": "What to wear",
+"Épaules et genoux couverts ; le foulard n’est pas obligatoire pour une simple visite.": "Shoulders and knees covered; a headscarf is not required for a simple visit.",
+"À l’entrée": "At the entrance",
+"On retire ses chaussures (et ses bottes l’hiver) avant la salle de prière.": "Shoes (and winter boots) come off before the prayer hall.",
+"Au bord de la rivière Saint-Jean, une communauté qui grandit ensemble.": "On the banks of the Saint John River, a community growing together.",
+"Rejoindre et soutenir": "Join and support",
+"Edmundston, NB E3V 1V5": "Edmundston, NB E3V 1V5",
+"— Jumu’a": "— Jumu’ah",
+"— Icha": "— Isha",
+"Page Facebook du CCIE": "CCIE Facebook page",
+"Annonces Ramadan et Aïd": "Ramadan and Eid announcements"
 }
 }
