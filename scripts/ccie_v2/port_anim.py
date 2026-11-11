@@ -17,11 +17,11 @@ SHELL_MARK = 'id="ccie-ldr-shell"'
 
 def logo(camel=False):
     s = ('<svg class="mk" aria-hidden="true" width="120" height="120" viewBox="0 0 120 120" style="overflow:visible;display:block">'
-         '<path class="s1" pathLength="1" d="M24 86V62C24 44 44 38 60 24C76 38 96 44 96 62V86" fill="none" stroke="#D9B46C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>'
-         '<path class="s2" pathLength="1" d="M47 86V68a13 13 0 0 1 26 0v18" fill="none" stroke="#D9B46C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".75"></path>'
-         '<path class="cr" d="M60.0 4.0A7.0 7.0 0 1 0 67.0 11.0A5.5 5.5 0 1 1 60.0 4.0Z" fill="#F0D9A4"></path>'
-         '<path class="w1" pathLength="1" d="M14 99q11.5-7 23 0t23 0 23 0 23 0" fill="none" stroke="#F0D9A4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>'
-         '<path class="w2" pathLength="1" d="M30 111q7.5-5 15 0t15 0 15 0 15 0" fill="none" stroke="#F0D9A4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".6"></path></svg>')
+         '<path class="s1" pathLength="1" d="M24 86V62C24 44 44 38 60 24C76 38 96 44 96 62V86" fill="none" stroke="#A8813C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>'
+         '<path class="s2" pathLength="1" d="M47 86V68a13 13 0 0 1 26 0v18" fill="none" stroke="#A8813C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".75"></path>'
+         '<path class="cr" d="M60.0 4.0A7.0 7.0 0 1 0 67.0 11.0A5.5 5.5 0 1 1 60.0 4.0Z" fill="#8E6524"></path>'
+         '<path class="w1" pathLength="1" d="M14 99q11.5-7 23 0t23 0 23 0 23 0" fill="none" stroke="#8E6524" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>'
+         '<path class="w2" pathLength="1" d="M30 111q7.5-5 15 0t15 0 15 0 15 0" fill="none" stroke="#8E6524" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".6"></path></svg>')
     if camel:  # dans le composant, les attributs SVG s'écrivent en sc-camel-*
         s = s.replace('viewBox=', 'sc-camel-view-box=').replace('pathLength=', 'sc-camel-path-length=')
     return s
@@ -33,7 +33,7 @@ INTRO = ('<div class="ccie-ldr ccie-intro" style="opacity:{{loaderOpacity}}"><di
          '<div class="ccie-bar"><i></i></div><p class="ccie-cap">Chargement</p></div></div>')
 
 LDR_CSS = r"""
-.ccie-ldr{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;pointer-events:none;background:radial-gradient(420px 260px at 50% 45%,rgba(40,62,110,.35),transparent 70%),#0B0F1A;transition:opacity .4s ease,visibility .4s ease}
+.ccie-ldr{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;pointer-events:none;background:radial-gradient(420px 260px at 50% 45%,rgba(168,129,60,.12),transparent 70%),#FBF8F1;transition:opacity .4s ease,visibility .4s ease}
 .ccie-ldr.out{opacity:0;visibility:hidden}
 .ccie-intro{transition:opacity .4s ease}
 .ccie-l1{display:flex;flex-direction:column;align-items:center;gap:22px}
@@ -47,11 +47,11 @@ LDR_CSS = r"""
 .ccie-l1 .cr{animation:ccl1p 3.6s infinite}
 @keyframes ccl1p{0%,42%{opacity:0;transform:scale(.3) rotate(-70deg)}56%{opacity:1;transform:scale(1.18)}64%,88%{opacity:1;transform:none}100%{opacity:0}}
 .ccie-l1 .mk{animation:ccl1g 3.6s infinite}
-@keyframes ccl1g{0%,60%{filter:none}72%{filter:drop-shadow(0 0 14px rgba(240,217,164,.75))}88%{filter:none}}
-.ccie-bar{width:150px;height:2px;border-radius:2px;background:rgba(217,180,108,.18);overflow:hidden}
-.ccie-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#A9843F,#F6E2B0);animation:ccl1b 3.6s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes ccl1g{0%,60%{filter:none}72%{filter:drop-shadow(0 0 12px rgba(168,129,60,.45))}88%{filter:none}}
+.ccie-bar{width:150px;height:2px;border-radius:2px;background:rgba(168,129,60,.18);overflow:hidden}
+.ccie-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8E6524,#D9B46C);animation:ccl1b 3.6s cubic-bezier(.4,0,.2,1) infinite}
 @keyframes ccl1b{0%{width:0;opacity:1}80%{width:100%;opacity:1}100%{width:100%;opacity:0}}
-.ccie-cap{margin:0;font:400 11px/1.6 'Jost',system-ui,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#8E94A3}
+.ccie-cap{margin:0;font:400 11px/1.6 'Jost',system-ui,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#5B6272}
 @media (prefers-reduced-motion: reduce){.ccie-ldr{display:none !important}}
 """
 # enveloppe : apparaît après 0,3 s seulement ; masque les messages techniques du chargeur
