@@ -225,7 +225,7 @@ textarea.in{min-height:72px;resize:vertical}
   <div style="display:flex;align-items:center;gap:12px">
    <svg class="mk mkc" aria-hidden="true" width="34" height="34" viewBox="0 0 120 120" style="flex:none;overflow:visible"><path class="s1" pathLength="1" d="M24 86V62C24 44 44 38 60 24C76 38 96 44 96 62V86" fill="none" stroke="#A8813C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path><path class="s2" pathLength="1" d="M47 86V68a13 13 0 0 1 26 0v18" fill="none" stroke="#A8813C" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".75"></path><path class="cr" d="M60.0 4.0A7.0 7.0 0 1 0 67.0 11.0A5.5 5.5 0 1 1 60.0 4.0Z" fill="#8E6524"></path><path class="w1" pathLength="1" d="M14 99q11.5-7 23 0t23 0 23 0 23 0" fill="none" stroke="#8E6524" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><path class="w2" pathLength="1" d="M30 111q7.5-5 15 0t15 0 15 0 15 0" fill="none" stroke="#8E6524" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".6"></path></svg>
    <span style="display:flex;flex-direction:column;line-height:1.15">
-    <span style="font-size:20px;font-weight:800">Centre Islamique d'Edmundston</span>
+    <span class="lg-t1" style="font-size:20px;font-weight:800">CCIE</span>
     <span class="hide-m" style="font-size:12px;color:#F3ECDD;font-weight:600">Panneau de gestion</span>
    </span>
    <span class="hide-m role lg-tag">Superadmin</span>
@@ -242,11 +242,11 @@ textarea.in{min-height:72px;resize:vertical}
  </header>
 
  <div class="lay">
-  <nav class="side nav" aria-label="Pages du site">
+  <nav class="side nav" aria-label="Pages du site"><!-- ccie-menu -->
    <p class="side-t">Pages du site</p>
-   <a href="SA-Panneau.dc.html">Accueil</a>
    <a href="SA-Site.dc.html">Site entier</a>
    <a href="SA-Pages.dc.html">Créer une page</a>
+   <a href="SA-Panneau.dc.html">Accueil</a>
    <a href="SA-Horaires.dc.html">Horaires</a>
    <a href="SA-APropos.dc.html">À propos</a>
    <a href="SA-Services.dc.html">Services</a>
@@ -275,9 +275,9 @@ textarea.in{min-height:72px;resize:vertical}
    <div class="only-s" style="flex-direction:column;gap:6px">
     <label class="lbl" for="jump-page">Page à gérer</label>
     <select class="in" id="jump-page">
-     <option>Accueil</option>
      <option>Site entier</option>
      <option>Créer une page</option>
+     <option>Accueil</option>
      <option>Horaires</option>
      <option>À propos</option>
      <option>Services</option>
@@ -285,6 +285,8 @@ textarea.in{min-height:72px;resize:vertical}
      <option>Événements</option>
      <option>Ressources</option>
      <option>Contact</option>
+     <option>Formulaires</option>
+     <option>Traductions</option>
      <option selected>Comptes</option>
     </select>
    </div>
@@ -461,7 +463,7 @@ textarea.in{min-height:72px;resize:vertical}
     'Accueil': 'SA-Panneau.dc.html', 'Site entier': 'SA-Site.dc.html', 'Créer une page': 'SA-Pages.dc.html',
     'Horaires': 'SA-Horaires.dc.html', 'À propos': 'SA-APropos.dc.html', 'Services': 'SA-Services.dc.html',
     'Faire un don': 'SA-Dons.dc.html', 'Événements': 'SA-Evenements.dc.html', 'Ressources': 'SA-Ressources.dc.html',
-    'Contact': 'SA-Contact.dc.html', 'Comptes': 'SA-Comptes.html'
+    'Contact': 'SA-Contact.dc.html', 'Formulaires': 'SA-Formulaires.dc.html', 'Traductions': 'SA-Traductions.dc.html', 'Comptes': 'SA-Comptes.html'
   };
   document.addEventListener('change', function (e) {
     var t = e.target;
@@ -487,7 +489,7 @@ document.addEventListener('click', function (e) {
   var ALLOW = { superadmin: null, editor: { not: ['SA-Comptes'] }, events: { only: ['SA-Evenements'] } };
   var NAMES = { 'Accueil': 'SA-Panneau', 'Site entier': 'SA-Site', 'Créer une page': 'SA-Pages', 'Horaires': 'SA-Horaires',
     'À propos': 'SA-APropos', 'Services': 'SA-Services', 'Faire un don': 'SA-Dons', 'Événements': 'SA-Evenements',
-    'Ressources': 'SA-Ressources', 'Contact': 'SA-Contact', 'Comptes': 'SA-Comptes' };
+    'Ressources': 'SA-Ressources', 'Contact': 'SA-Contact', 'Formulaires': 'SA-Formulaires', 'Traductions': 'SA-Traductions', 'Comptes': 'SA-Comptes' };
   var me = null;
   function ok(key) {
     var r = ALLOW[me.role];

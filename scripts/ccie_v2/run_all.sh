@@ -20,3 +20,5 @@ python3 -I $S/port_hero.py $S Main.dc.html index.html M-Accueil.dc.html T-Accuei
 # --- logo A animé : chargement « Tracé lumineux » + apparition « Vague » (maquette effets 1) ---
 grep -l '__bundler/template' *.html | grep -v -E '^([0-9]\.html|SA-|superadmin)' | xargs python3 -I $S/port_anim.py $S --loader >/dev/null || echo FAIL anim
 grep -l '__bundler/template' *.html | grep -E '^(SA-|superadmin)' | xargs python3 -I $S/port_anim.py $S >/dev/null || echo FAIL anim-sa
+# --- un seul menu principal : pages de thème alignées sur le site, menu du panneau dans le même ordre partout ---
+python3 -I $S/port_menu.py $S TH-*.dc.html SA-Panneau.dc.html SA-Comptes.html >/dev/null || echo FAIL menu
